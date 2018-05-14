@@ -1,0 +1,29 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "express-session": "^1.15.6",
+    "mocha": "^5.1.1",
+    "path": "^0.12.7",
+    "pg": "^7.4.1",
+    "pg-promise": "^8.4.0",
+    "supertest": "^3.0.0"
+  }
+}

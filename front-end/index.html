@@ -1,0 +1,43 @@
+<head>
+<link rel="stylesheet" href="styles.css">
+	
+	<title>Real Ultimate History</title>
+	<meta name="Author" content="Roland Edwards">
+	
+</head>
+<body>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>
+
+	<div id='app'>
+		<div>
+			<img src="images/ruh_logo.jpg" class='logo'>
+		</div>
+		<div class='title'>
+			Real, Ultimate History
+		</div>
+		<div class='ruhtop'>
+			<span>Where history goes to die</span>
+			<span v-if='!loggedin'><a v-bind:href="'/#/login'">Log in</a></span>
+			<span v-else><button v-on:click='logout'>Logout</button></span>
+			
+		</div>
+		<div class='sidenav'>
+			<ul>
+				<li><a v-bind:href="'/#/'">Home</a></li>
+				<li><a v-bind:href="'/#/people_index'">People Index</a></li>
+				<li ><a v-bind:href="'/#/events_index'">Events Index</a></li>
+				<li><a >Historical nations</a></li>
+				<li>Historical roles</li>
+				<li>Useful links</li>	
+			</ul>
+		</div> 
+		
+		<router-view class='main' v-on:login='logged_in'></router-view>
+
+	</div>
+
+<script src='bundle.js'></script>
+
+</body>
