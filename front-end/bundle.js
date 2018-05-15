@@ -8504,6 +8504,9 @@ module.exports = Vue;
 //
 //
 //
+//
+//
+//
 
 
 module.exports = {
@@ -8606,16 +8609,16 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('div',[_c('h1',[_vm._v("Add an event")]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.name),expression:"name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.name=$event.target.value}}}),_vm._v("Name of event"),_vm._v(" "),_c('label',{attrs:{"for":"event"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.number),expression:"date.number"}],attrs:{"type":"text","id":"date"},domProps:{"value":(_vm.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.date, "number", $event.target.value)}}}),_vm._v("Date"),_vm._v(" "),_c('label',{attrs:{"for":"date"}}),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.era),expression:"date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.era),expression:"date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.location),expression:"location"}],attrs:{"type":"text","id":"location"},domProps:{"value":(_vm.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.location=$event.target.value}}}),_vm._v("Location"),_vm._v(" "),_c('label',{attrs:{"for":"location"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.description),expression:"description"}],attrs:{"type":"text","id":"description"},domProps:{"value":(_vm.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.description=$event.target.value}}}),_vm._v("Description"),_vm._v(" "),_c('label',{attrs:{"for":"description"}})]),_vm._v(" "),_c('div',[_c('button',{on:{"click":_vm.get_duplicates}},[_vm._v("Submit")])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.dupes_checked),expression:"dupes_checked"}]},[_c('h2',[_vm._v("Potential duplicates")]),_vm._v(" "),_c('p',[_vm._v("The following events have the same name. Please check that you are not submitting a duplicate")]),_vm._v(" "),_c('table',_vm._l((_vm.duplicates),function(d){return _c('tr',[_c('td',[_vm._v(_vm._s(d.event))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(d.date))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(d.description))])])})),_vm._v(" "),_c('button',{on:{"click":_vm.submit_event}},[_vm._v("Submit")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.submitted),expression:"submitted"}]},[_c('h2',[_vm._v("People")]),_vm._v(" "),_c('p',[_vm._v("Please select the people involved in this event, or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.boxes[person.id])?_vm._i(_vm.boxes[person.id],null)>-1:(_vm.boxes[person.id])},on:{"change":function($event){var $$a=_vm.boxes[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.boxes, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.boxes, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.boxes, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"}],attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":_vm.submit_people}},[_vm._v("Submit")])],2),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.events_updated),expression:"events_updated"}]},[_c('form',{ref:"uploadForm",attrs:{"id":"uploadForm","method":"post","encType":"multipart/form-data"}},[_c('input',{attrs:{"id":"picture","type":"file","name":"pic"}}),_vm._v(" "),_c('input',{attrs:{"type":"submit","value":"Upload!"},on:{"click":_vm.picture_submitted}})])])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('div',[_c('h1',[_vm._v("Add an event")]),_vm._v(" "),_c('table',[_c('tr',[_c('td',[_vm._v("Name")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.name),expression:"name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.name=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Date")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.number),expression:"date.number"}],attrs:{"type":"text","id":"date"},domProps:{"value":(_vm.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.date, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.era),expression:"date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date.era),expression:"date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Location")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.location),expression:"location"}],attrs:{"type":"text","id":"location"},domProps:{"value":(_vm.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.location=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Description")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.description),expression:"description"}],attrs:{"type":"text","id":"description"},domProps:{"value":(_vm.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.description=$event.target.value}}})]),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',[_c('button',{on:{"click":_vm.get_duplicates}},[_vm._v("Submit")])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.dupes_checked),expression:"dupes_checked"}]},[_c('h2',[_vm._v("Potential duplicates")]),_vm._v(" "),_c('p',[_vm._v("The following events have the same name. Please check that you are not submitting a duplicate")]),_vm._v(" "),_c('table',_vm._l((_vm.duplicates),function(d){return _c('tr',[_c('td',[_vm._v(_vm._s(d.event))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(d.date))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(d.description))])])})),_vm._v(" "),_c('button',{on:{"click":_vm.submit_event}},[_vm._v("Submit")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.submitted),expression:"submitted"}]},[_c('h2',[_vm._v("People")]),_vm._v(" "),_c('p',[_vm._v("Please select the people involved in this event, or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.boxes[person.id])?_vm._i(_vm.boxes[person.id],null)>-1:(_vm.boxes[person.id])},on:{"change":function($event){var $$a=_vm.boxes[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.boxes, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.boxes, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.boxes, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"}],attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":_vm.submit_people}},[_vm._v("Submit")])],2),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.events_updated),expression:"events_updated"}]},[_c('form',{ref:"uploadForm",attrs:{"id":"uploadForm","method":"post","encType":"multipart/form-data"}},[_c('input',{attrs:{"id":"picture","type":"file","name":"pic"}}),_vm._v(" "),_c('input',{attrs:{"type":"submit","value":"Upload!"}})])])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b280481c", __vue__options__)
+    hotAPI.createRecord("data-v-223ef178", __vue__options__)
   } else {
-    hotAPI.reload("data-v-b280481c", __vue__options__)
+    hotAPI.reload("data-v-223ef178", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/date_to_number.js":4,"vue":8,"vue-hot-reload-api":7}],10:[function(require,module,exports){
@@ -8911,9 +8914,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-21a37fad", __vue__options__)
+    hotAPI.createRecord("data-v-16071ae7", __vue__options__)
   } else {
-    hotAPI.reload("data-v-21a37fad", __vue__options__)
+    hotAPI.reload("data-v-16071ae7", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/date_checks.js":3,"../modules/date_to_number.js":4,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],11:[function(require,module,exports){
@@ -8969,12 +8972,12 @@ module.exports = {
 
 	data: function () {
 		return{
-			event: 'placeholder',
+			event: '',
 			people: [],
 			id: this.$route.params.id,
 			list_returned: false,
 			changes_made: false,
-			boxes: {},
+			ticked_events: {},
 			roles: {},
 			existing_people: [],
 			existing_ids: [],
@@ -9000,28 +9003,31 @@ module.exports = {
 			.then(function(data){
 				console.log('event info for editing requested');
 				this.event = data.body[0];
+				console.log(this.event.date)
 				this.event.date = this.get_era_date(this.event.date);
 			});
 		},
 
 		submit1: function(){
-			console.log('event edit button clicked');
+			
 			this.$http.put('api/event/' + this.id, {name: this.event.name, date: this.dateToNumber(this.event.date), location: this.event.location, description: this.event.description})
 			.then(function(data){
 				console.log('event updated');
 			})
+			//get 'people', an array of person data for people alive during event.
 			this.$http.get('/api/people/?date=' + this.dateToNumber(this.event.date))
 			.then(function(data){
 				console.log('request made to router to get people');
 				this.people = data.body;
 				console.log(this.people);
-				//get existing people
-				this.$http.get('/api/people_events/?event_id=' + this.id)
+
+				//get 'existing_people', an array of person data for people already associated with event
+				this.$http.get('/api/people_events/?table=people&id=' + this.id)
 				.then(function(data) {
 					this.existing_people = data.body;
 					console.log('existing_people: ' + data.body)
 					
-					//tick boxes
+					//tick boxes and add roles
 					roles = {};
 					existing_ids = [];
 					this.existing_people.forEach(function(person){
@@ -9031,19 +9037,19 @@ module.exports = {
 
 					});
 					console.log('existing ids: ' + existing_ids) 
-					this.existing_ids = existing_ids;
-					this.roles = roles;
-					boxes = {};
+					this.existing_people = existing_people;
+					roles = this.roles;
+					ticked_events = {};
 					console.log('existing_ids: ' + this.existing_ids)
-					this.people.forEach(function(person){
-						console.log(person.id);
-						if (this.existing_ids.indexOf(person.id) != -1){
-							this.boxes[person.id] = true;
-									
-						}
-					})
-					this.boxes = boxes;
-				});
+					this.existing_people.forEach(function(person){
+					console.log(person.id);
+						this.ticked_events[person.id] = true;
+						this.roles[person.id] = person.role
+					});
+					
+					this.ticked_events = ticked_events;
+					this.roles = roles;
+				})
 			})
 			this.list_returned = true;
 		},
@@ -9051,9 +9057,9 @@ module.exports = {
 		submit2: function(){
 		
 			var id_list = []; 
-			for (box in this.boxes){
-				if (boxes[box]) {
-					id_list.push(Number(box));
+			for (event in this.ticked_events){
+				if (ticked_events[event]) {
+					id_list.push(Number(event));
 				};
 			console.log('id_list is: ' + id_list)
 			};
@@ -9079,16 +9085,16 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Edit event")]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.event),expression:"event.event"}],attrs:{"type":"text","id":"event"},domProps:{"value":(_vm.event.event)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "event", $event.target.value)}}}),_vm._v("Name of event"),_vm._v(" "),_c('label',{attrs:{"for":"event"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.number),expression:"event.date.number"}],attrs:{"type":"text","id":"date","placeholder":"date"},domProps:{"value":(_vm.event.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event.date, "number", $event.target.value)}}}),_vm._v("Date"),_vm._v(" "),_c('label',{attrs:{"for":"date"}}),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.event.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.event.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.location),expression:"event.location"}],attrs:{"type":"text","id":"location","placeholder":"location"},domProps:{"value":(_vm.event.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "location", $event.target.value)}}}),_vm._v("Location"),_vm._v(" "),_c('label',{attrs:{"for":"location"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.description),expression:"event.description"}],attrs:{"type":"text","id":"description","placeholder":"description"},domProps:{"value":(_vm.event.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "description", $event.target.value)}}}),_vm._v("Description"),_vm._v(" "),_c('label',{attrs:{"for":"description"}})]),_vm._v(" "),_c('div',[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_returned),expression:"!list_returned"}],on:{"click":function($event){_vm.submit1()}}},[_vm._v("Submit")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_returned),expression:"list_returned"}]},[_c('h2',[_vm._v("People to add")]),_vm._v(" "),_c('p',[_vm._v("Select people involved or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.boxes[person.id])?_vm._i(_vm.boxes[person.id],null)>-1:(_vm.boxes[person.id])},on:{"change":function($event){var $$a=_vm.boxes[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.boxes, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.boxes, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.boxes, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[person.id]),expression:"boxes[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.submit2()}}},[_vm._v("Submit")])],2)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/event/' + _vm.id}},[_vm._v("Return to event")])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Edit event")]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.name),expression:"event.name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.event.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "name", $event.target.value)}}}),_vm._v("Name of event"),_vm._v(" "),_c('label',{attrs:{"for":"event"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.number),expression:"event.date.number"}],attrs:{"type":"text","id":"date","placeholder":"date"},domProps:{"value":(_vm.event.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event.date, "number", $event.target.value)}}}),_vm._v("Date"),_vm._v(" "),_c('label',{attrs:{"for":"date"}}),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.event.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.event.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.location),expression:"event.location"}],attrs:{"type":"text","id":"location","placeholder":"location"},domProps:{"value":(_vm.event.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "location", $event.target.value)}}}),_vm._v("Location"),_vm._v(" "),_c('label',{attrs:{"for":"location"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.description),expression:"event.description"}],attrs:{"type":"text","id":"description","placeholder":"description"},domProps:{"value":(_vm.event.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "description", $event.target.value)}}}),_vm._v("Description"),_vm._v(" "),_c('label',{attrs:{"for":"description"}})]),_vm._v(" "),_c('div',[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_returned),expression:"!list_returned"}],on:{"click":function($event){_vm.submit1()}}},[_vm._v("Submit")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_returned),expression:"list_returned"}]},[_c('h2',[_vm._v("People to add")]),_vm._v(" "),_c('p',[_vm._v("Select people involved or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.ticked_events[person.id])?_vm._i(_vm.ticked_events[person.id],null)>-1:(_vm.ticked_events[person.id])},on:{"change":function($event){var $$a=_vm.ticked_events[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.ticked_events, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.ticked_events, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.ticked_events, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.submit2()}}},[_vm._v("Submit")])],2)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/event/' + _vm.id}},[_vm._v("Return to event")])])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f1fb9bc2", __vue__options__)
+    hotAPI.createRecord("data-v-7b65cd59", __vue__options__)
   } else {
-    hotAPI.reload("data-v-f1fb9bc2", __vue__options__)
+    hotAPI.reload("data-v-7b65cd59", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/date_to_number.js":4,"../modules/get_era_date.js":5,"vue":8,"vue-hot-reload-api":7}],12:[function(require,module,exports){
@@ -9263,17 +9269,12 @@ module.exports = {
 						console.log('getting ids and roles already associated');
 						this.existing_events = data.body;
 						ticked_events = {};
+						roles = {};
 						this.existing_events.forEach(function(event){
 							this.ticked_events[event.id] = true;
+								this.roles[event.id] = event.role;
 						})
 						this.ticked_events = ticked_events;
-
-						//fill an object 'roles', consisting of existing event ids with the role of the person
-						roles = {};
-						console.log('existing roles are...')
-						this.existing_events.forEach(function(event){
-							this.roles[event.id] = event.role;
-						})
 						this.roles = roles;
 						console.log('this.roles: ');
 						this.event_list_visible = true;
@@ -9344,9 +9345,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-49abef20", __vue__options__)
+    hotAPI.createRecord("data-v-3c8889b4", __vue__options__)
   } else {
-    hotAPI.reload("data-v-49abef20", __vue__options__)
+    hotAPI.reload("data-v-3c8889b4", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/date_checks.js":3,"../modules/date_to_number.js":4,"../modules/get_era_date.js":5,"vue":8,"vue-hot-reload-api":7}],13:[function(require,module,exports){
@@ -9454,9 +9455,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1e4770e4", __vue__options__)
+    hotAPI.createRecord("data-v-35803a70", __vue__options__)
   } else {
-    hotAPI.reload("data-v-1e4770e4", __vue__options__)
+    hotAPI.reload("data-v-35803a70", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],14:[function(require,module,exports){
@@ -9534,9 +9535,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-36224826", __vue__options__)
+    hotAPI.createRecord("data-v-bfe80640", __vue__options__)
   } else {
-    hotAPI.reload("data-v-36224826", __vue__options__)
+    hotAPI.reload("data-v-bfe80640", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],15:[function(require,module,exports){
@@ -9675,13 +9676,16 @@ module.exports = {
 				this.input_empty = true;
 			}
 			else {
-			this.input_empty = false;
-			
-			this.$http.get('/api/' + this.search_option + '_byname/' + this.search_term)
-			.then(function(data){
-				this.search_results = data.body;
-				console.log(data.body);
+				this.input_empty = false;
+				
+				this.$http.get('/api/' + this.search_option + '_byname/' + this.search_term)
+				.then(function(data){
+					this.search_results = data.body;
+					console.log(data.body);
 				})
+				.catch(function(error){
+					alert(error.body)
+				});
 			}
 		},
 
@@ -9706,9 +9710,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5eb6914e", __vue__options__)
+    hotAPI.createRecord("data-v-51c3c613", __vue__options__)
   } else {
-    hotAPI.reload("data-v-5eb6914e", __vue__options__)
+    hotAPI.reload("data-v-51c3c613", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],16:[function(require,module,exports){
@@ -9812,9 +9816,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-61d71a5f", __vue__options__)
+    hotAPI.createRecord("data-v-0499e2e5", __vue__options__)
   } else {
-    hotAPI.reload("data-v-61d71a5f", __vue__options__)
+    hotAPI.reload("data-v-0499e2e5", __vue__options__)
   }
 })()}
 },{"vue":8,"vue-hot-reload-api":7}],17:[function(require,module,exports){
@@ -9898,9 +9902,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3d75be1c", __vue__options__)
+    hotAPI.createRecord("data-v-b1411a54", __vue__options__)
   } else {
-    hotAPI.reload("data-v-3d75be1c", __vue__options__)
+    hotAPI.reload("data-v-b1411a54", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],18:[function(require,module,exports){
@@ -10025,9 +10029,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8e331ca2", __vue__options__)
+    hotAPI.createRecord("data-v-50f63db5", __vue__options__)
   } else {
-    hotAPI.reload("data-v-8e331ca2", __vue__options__)
+    hotAPI.reload("data-v-50f63db5", __vue__options__)
   }
 })()}
 },{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],19:[function(require,module,exports){

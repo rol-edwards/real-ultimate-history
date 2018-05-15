@@ -4,26 +4,29 @@
 		<div v-show='!changes_made'>
 			<div>
 				<h1>Add an event</h1>
-				<div>
-					<input type='text' v-model='name' id='name'>Name of event</input>
-					<label for='event'></label>
-				</div>
-				<div>
-					<input type='text' v-model='date.number' id='date'>Date</input>
-					<label for='date'></label>
-					<div>
-						<input type='radio' v-model='date.era' value='BC' id='BC'>BC</input>
-						<input type='radio' v-model='date.era' value='AD' id='AD'>AD</input>
-					</div>		
-				</div>
-				<div>
-					<input type='text' v-model='location' id='location'>Location</input>
-					<label for='location'></label>
-				</div>
-				<div>
-					<input type='text' v-model='description' id='description'>Description</input>
-					<label for='description'></label>
-				</div>
+				<table>
+				<tr>
+					<td>Name</td>
+					<td><input type='text' id='name' v-model='name' ></input></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Date</td>
+					<td><input type='text' id='date' v-model='date.number'></input></td>
+					<td><input type='radio' v-model='date.era' value='BC' id='BC' >BC</input>
+						<input type='radio' v-model='date.era' value='AD' id='AD' >AD</input></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><input type='text' id='location' v-model='location' ></input></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td><input type='text' id='description' v-model='description' ></input></td>
+					<td></td>
+				</tr>
+			</table>
 				<div>
 					<button v-on:click='get_duplicates'>Submit</button>
 				</div>
@@ -59,7 +62,7 @@
 				      method='post' 
 				      encType="multipart/form-data">
 				        <input id='picture' type="file" name='pic'/>
-				        <input type='submit' value='Upload!' v-on:click='picture_submitted'/>
+				        <input type='submit' value='Upload!' />
 				    </form>     
 				</div>
 			</div>

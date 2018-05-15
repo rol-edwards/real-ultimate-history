@@ -3,7 +3,7 @@
 		<div v-show='!changes_made'>
 			<h1>Edit event</h1>
 			<div>
-				<input type='text' v-model='event.event' id='event' >Name of event</input>
+				<input type='text' v-model='event.name' id='name' >Name of event</input>
 				<label for='event'></label>
 			</div>
 				<div>
@@ -49,7 +49,7 @@
 
 		data: function () {
 			return{
-				event: 'placeholder',
+				event: '',
 				people: [],
 				id: this.$route.params.id,
 				list_returned: false,
@@ -80,6 +80,7 @@
 				.then(function(data){
 					console.log('event info for editing requested');
 					this.event = data.body[0];
+					console.log(this.event.date)
 					this.event.date = this.get_era_date(this.event.date);
 				});
 			},
@@ -96,8 +97,9 @@
 					console.log('request made to router to get people');
 					this.people = data.body;
 					console.log(this.people);
+
 					//get 'existing_people', an array of person data for people already associated with event
-					this.$http.get('/api/people_events/?event_id=' + this.id)
+					this.$http.get('/api/people_events/?table=people&id=' + this.id)
 					.then(function(data) {
 						this.existing_people = data.body;
 						console.log('existing_people: ' + data.body)
@@ -113,17 +115,18 @@
 						});
 						console.log('existing ids: ' + existing_ids) 
 						this.existing_people = existing_people;
-						this.roles = roles;
+						roles = this.roles;
 						ticked_events = {};
 						console.log('existing_ids: ' + this.existing_ids)
 						this.existing_people.forEach(function(person){
-							console.log(person.id);
-								this.ticked_events[person.id] = true;
-								this.roles[person.id] = person.role
-							}
-						})
+						console.log(person.id);
+							this.ticked_events[person.id] = true;
+							this.roles[person.id] = person.role
+						});
+						
 						this.ticked_events = ticked_events;
-					});
+						this.roles = roles;
+					})
 				})
 				this.list_returned = true;
 			},
@@ -131,9 +134,9 @@
 			submit2: function(){
 			
 				var id_list = []; 
-				for (box in this.ticked_events){
-					if (ticked_events[box]) {
-						id_list.push(Number(box));
+				for (event in this.ticked_events){
+					if (ticked_events[event]) {
+						id_list.push(Number(event));
 					};
 				console.log('id_list is: ' + id_list)
 				};
