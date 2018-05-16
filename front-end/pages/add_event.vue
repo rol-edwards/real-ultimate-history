@@ -95,7 +95,7 @@
 				eventx: 'placeholder',
 
 				//imported modules:
-				dateToNumber: require('../modules/date_to_number.js'),
+				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js')
 			}
 		},

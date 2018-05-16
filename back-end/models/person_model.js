@@ -23,6 +23,7 @@ person.find = function(query, callback){
 	dbConn.query('select * from people ' + whereString + 'order by' + orderString).then(callback);
 };
 
+//separated from above to keep search function efficient
 person.getByName = function(name, callback){
 	console.log('person_model: getting person by name')
 	dbConn.query('select * from people where lower(name) like lower(' +  '\'' + name + '%\')').then(callback)
@@ -63,12 +64,6 @@ person.delete = function(id, callback){
 	//how to indent here?
 };
 
-person.deleteEvents = function(id, callback){
-	console.log('person_model: delete events reached')
-	dbConn.query('delete from people_events where person_id = ' + id)
-	.then(callback)
-};
-
 person.findEvents = function (id, callback) {
 	console.log('model finding events for person');
 	dbConn.query('select e.name, e.id, e.date, pe.role from events e inner join people_events pe on e.id = pe.event_id where pe.person_id =' + id + ' order by e.date').then(callback)
@@ -80,6 +75,13 @@ person.addEvents = function(input, callback){
 	dbConn.query(queryString).then(callback)
 };
 
+person.deleteEvents = function(id, callback){
+	console.log('person_model: delete events reached')
+	dbConn.query('delete from people_events where person_id = ' + id)
+	.then(callback)
+};
+
+//incorporate into search, for pagination in case database gets big?
  person.count = function(callback){
   	dbConn.query('select count (name) from people').then(callback)
  };

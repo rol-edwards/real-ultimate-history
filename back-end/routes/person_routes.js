@@ -31,6 +31,18 @@ router.route('/people')
 	});
 });
 
+//separated from above to keep search function efficient
+router.route('/person_byName/:name')
+.get(function(req, res, next){
+	person.getByName(req.params.name, function(data){
+		if (data instanceof AppError) {
+			console.log('An error was thrown');
+			next(data);
+		}
+		else res.json(data);
+	});
+});
+
 router.route('/person')
 .post(gatekeeper, bodyParser.json(), function(req, res, next){
 	console.log('new person router working.');
@@ -67,7 +79,6 @@ router.route('/person/:id')
 	});
 });
 
-router.route('/person/:id')
 .get(function(req, res, next) {
 	console.log('person routes: looking for ' + req.params.id);
 	person.findById(req.params.id, function(data) {
@@ -81,7 +92,6 @@ router.route('/person/:id')
 	);
 });
 
-router.route('/person/:id')
 .delete(function(req, res, next){
 	person.delete(req.params.id, function(data){
 		if (data instanceof AppError) {
@@ -104,31 +114,6 @@ router.route('/people_count/')
 	});
 });
 
-router.route('/person_byname/:name')
-.get(function(req, res, next){
-	person.getByName(req.params.name, function(data){
-		if (data instanceof AppError) {
-			console.log('An error was thrown');
-			next(data);
-		}
-		else res.json(data);
-	});
-});
-
-//At the moment this isn't used anyway. But maybe subsume into get person
-router.route('/person/by_category/:category/:value')
-.get(bodyParser.json(), function(req, res, next){
-		console.log('person_routes: cat search initiated');
-		var category = req.params.category;
-		var value = req.params.value;
-		person.findByCategory(category, value, function(data){
-			if (data instanceof AppError) {
-			console.log('An error was thrown');
-			next(data);
-		}
-		else res.json(data);
-		});
-	});
 
 router.route('/upload/person/:id')
 .post(function(req, res, next){

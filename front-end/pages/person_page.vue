@@ -51,7 +51,7 @@ module.exports = {
 			deleted_data: '',
 			person_deleted: false,
 			//imported modules:
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date.js'),
 			authenticate: require('../authenticate.js'),
 		}
 	},
@@ -88,7 +88,7 @@ module.exports = {
 				});
 		},
 
-		//first removes person's associated events then removes person
+		//first removes person's associated events then removes person, including their image
 		delete_person: function(){
 			if(confirm('Are you sure you want to delete this person?')){
 				console.log('delete button pressed')

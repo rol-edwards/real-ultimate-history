@@ -77,7 +77,7 @@ module.exports = {
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date.js'),
 		}
 	},
 	created: function() {
@@ -134,7 +134,7 @@ module.exports = {
 			else {
 				this.input_empty = false;
 				
-				this.$http.get('/api/' + this.search_option + '_byname/' + this.search_term)
+				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
 				.then(function(data){
 					this.search_results = data.body;
 					console.log(data.body);
@@ -145,7 +145,7 @@ module.exports = {
 			}
 		},
 
-		//development only
+		//development only, quick way to create a test person.
 		create_test_person: function(){
 			this.$http.post('api/person', {name: 'testguy', dob: -20000, dod: 100})
 			.then(function(data){

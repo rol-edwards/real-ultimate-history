@@ -28,7 +28,8 @@ router.route('/events')
 	});
 });
 
-router.route('/event_byname/:name')
+//separated from above to keep search function efficient
+router.route('/event_byName/:name')
 .get(function(req, res, next){
 	event.getByName(req.params.name, function(data){
 		if (data instanceof AppError) {
@@ -38,32 +39,6 @@ router.route('/event_byname/:name')
 		else res.json(data);
 	});
 });
-
-//probably not needed
-router.route('/event/duplicates/:event').
-get(function(req, res, next){
-	event.checkDuplicates(req.params.event, function(data){
-		console.log('event_routes: duplicate list fetched');
-		if (data instanceof AppError) {
-			console.log('An error was thrown');
-			next(data);
-		}
-		else res.json(data);
-	});
-});
-
-router.route('/person/events/:dob/:dod')
-	.get(bodyParser.json(), function(req, res, next){
-		console.log('find event router reached');
-		var input = {dob: req.params.dob, dod: req.params.dod};
-		person.findPossEvents(input, function(data){
-			if (data instanceof AppError) {
-			console.log('An error was thrown');
-			next(data);
-		}
-		else res.json(data);
-		});
-	});
 
 ///////
 
@@ -91,8 +66,7 @@ router.route('/event/:id')
 		else res.json(data);
 	});
 });
-	
-router.route('/event/:id')
+
 .put(gatekeeper, bodyParser.json(), function(req, res, next){
 	console.log('edit event router working ' + req.params.id);
 	input = req.body;
@@ -101,7 +75,6 @@ router.route('/event/:id')
 	});
 });
 
-router.route('/event/:id')
 .delete(function(req, res, next){
 	event.delete(req.params.id, function(data){
 		if (data instanceof AppError) {

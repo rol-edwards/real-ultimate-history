@@ -1,3 +1,5 @@
+//turns date objects with number and BC/AD era into negative/postive numbers
+
 dateToNumber = function(date){
 	if (date.era == 'BC'){
 

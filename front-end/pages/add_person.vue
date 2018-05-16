@@ -133,10 +133,10 @@ module.exports = {
 			changes_made: false,
 
 			//imported modules
-			date_checks: require('../modules/date_checks.js'),
-			dateToNumber: require('../modules/date_to_number.js'),
+			date_checks: require('../utilities/date_checks.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date.js'),
 		}
 	},
 

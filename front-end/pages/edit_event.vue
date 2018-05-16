@@ -58,9 +58,9 @@
 				roles: {},
 				existing_people: [],
 				existing_ids: [],
-				dateToNumber: require('../modules/date_to_number.js'),
+				dateToNumber: require('../utilities/date_to_number_object.js'),
 				authenticate: require('../authenticate.js'),
-				get_era_date: require('../modules/get_era_date.js')
+				get_era_date: require('../utilities/get_era_date.js')
 			}
 		},
 
@@ -70,6 +70,7 @@
 
 		methods: {
 
+			//gets existing information for event to populate form
 			on_created: function(option){
 				if (option == 'false'){
 					this.$router.push('/login');
@@ -85,6 +86,8 @@
 				});
 			},
 
+			//submits information from form, and creates a checklist of people alive at the time, with already
+			//associated people checked and their roles stated.
 			submit1: function(){
 				
 				this.$http.put('api/event/' + this.id, {name: this.event.name, date: this.dateToNumber(this.event.date), location: this.event.location, description: this.event.description})
@@ -105,16 +108,6 @@
 						console.log('existing_people: ' + data.body)
 						
 						//tick boxes and add roles
-						roles = {};
-						existing_ids = [];
-						this.existing_people.forEach(function(person){
-							this.roles[person.id] = person.role;
-							this.existing_ids.push(Number(person.id));
-							console.log('person id is: ' + person.id);
-
-						});
-						console.log('existing ids: ' + existing_ids) 
-						this.existing_people = existing_people;
 						roles = this.roles;
 						ticked_events = {};
 						console.log('existing_ids: ' + this.existing_ids)
@@ -123,7 +116,6 @@
 							this.ticked_events[person.id] = true;
 							this.roles[person.id] = person.role
 						});
-						
 						this.ticked_events = ticked_events;
 						this.roles = roles;
 					})
@@ -131,17 +123,18 @@
 				this.list_returned = true;
 			},
 			
+			//delete existing associations and submit all that are currently ticked
 			submit2: function(){
 			
 				var id_list = []; 
 				for (event in this.ticked_events){
-					if (ticked_events[event]) {
+					if (this.ticked_events[event]) {
 						id_list.push(Number(event));
 					};
 				console.log('id_list is: ' + id_list)
 				};
 				
-				this.$http.delete('api/people_events/?event_id=' + this.id)
+				this.$http.delete('api/people_events/?table=people&id=' + this.id)
 				.then(function(){
 					id = this.id;
 					roles = this.roles;

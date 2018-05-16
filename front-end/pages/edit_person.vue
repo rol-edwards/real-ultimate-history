@@ -110,10 +110,10 @@ module.exports = {
 			
 
 			//imported modules:
-			date_checks: require('../modules/date_checks.js'),
-			dateToNumber: require('../modules/date_to_number.js'),
+			date_checks: require('../utilities/date_checks.js'),
+			dateToNumber: require('../utilities/date_to_number_object.js'),
 			authenticate: require('../authenticate.js'),
-			get_era_date: require('../modules/get_era_date.js')
+			get_era_date: require('../utilities/get_era_date.js')
 		};
 	},
 	

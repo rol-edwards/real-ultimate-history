@@ -53,6 +53,8 @@
 			
 		methods: {
 
+			//submits username and password to back-end, if correct emits 'login' to make changes to index
+			//and redirects to home.
 			login: function(){
 				console.log('login function activated')
 				this.$http.post('api/login', {username: this.username, password: this.password})
@@ -67,6 +69,7 @@
 				});
 			},
 
+			
 			signup: function(){
 				console.log('signup function called');
 				if (this.new_PW != this.new_PW_check){

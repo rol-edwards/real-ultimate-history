@@ -38,7 +38,7 @@
 				event_deleted: false,
 
 				//imported modules
-				numberToDate: require('../modules/number_to_date.js'),
+				numberToDate: require('../utilities/number_to_date.js'),
 				authenticate: require('../authenticate.js'),
 			};
 		},
