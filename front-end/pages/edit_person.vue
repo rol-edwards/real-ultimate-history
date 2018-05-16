@@ -111,9 +111,9 @@ module.exports = {
 
 			//imported modules:
 			date_checks: require('../utilities/date_checks.js'),
-			dateToNumber: require('../utilities/date_to_number_object.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			get_era_date: require('../utilities/get_era_date.js')
+			numberToDate: require('../utilities/number_to_date_object.js')
 		};
 	},
 	
@@ -138,8 +138,8 @@ module.exports = {
 			this.nation = this.person.nation;
 			this.bio = this.person.bio;
 			this.role = this.person.role;
-			this.dob = this.get_era_date(this.person.dob);
-			this.dod = this.get_era_date(this.person.dod);
+			this.dob = this.numberToDate(this.person.dob);
+			this.dod = this.numberToDate(this.person.dod);
 			})
 		},
 

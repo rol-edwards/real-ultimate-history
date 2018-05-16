@@ -58,9 +58,9 @@
 				roles: {},
 				existing_people: [],
 				existing_ids: [],
-				dateToNumber: require('../utilities/date_to_number_object.js'),
+				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
-				get_era_date: require('../utilities/get_era_date.js')
+				numberToDate: require('../utilities/number_to_date_object.js')
 			}
 		},
 
@@ -82,7 +82,7 @@
 					console.log('event info for editing requested');
 					this.event = data.body[0];
 					console.log(this.event.date)
-					this.event.date = this.get_era_date(this.event.date);
+					this.event.date = this.numberToDate(this.event.date);
 				});
 			},
 

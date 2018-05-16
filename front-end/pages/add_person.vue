@@ -136,7 +136,7 @@ module.exports = {
 			date_checks: require('../utilities/date_checks.js'),
 			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../utilities/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_object.js'),
 		}
 	},
 

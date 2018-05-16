@@ -71,7 +71,7 @@ const app = new Vue ({
 	}
 
 })
-},{"./pages/add_event.vue":9,"./pages/add_person.vue":10,"./pages/edit_event.vue":11,"./pages/edit_person.vue":12,"./pages/event_page.vue":13,"./pages/events_index.vue":14,"./pages/home.vue":15,"./pages/login.vue":16,"./pages/people_index.vue":17,"./pages/person_page.vue":18}],2:[function(require,module,exports){
+},{"./pages/add_event.vue":5,"./pages/add_person.vue":6,"./pages/edit_event.vue":7,"./pages/edit_person.vue":8,"./pages/event_page.vue":9,"./pages/events_index.vue":10,"./pages/home.vue":11,"./pages/login.vue":12,"./pages/people_index.vue":13,"./pages/person_page.vue":14}],2:[function(require,module,exports){
 var authenticate = function(callback){
 	console.log('authentication pending')
 	this.$http.get('/api/user/me')
@@ -87,70 +87,6 @@ var authenticate = function(callback){
 
 module.exports = authenticate;
 },{}],3:[function(require,module,exports){
-date_checks = function(dob, dod, callback){
-	console.log('date_checks called')
-	
-	if (dob > dod){
-		if(confirm('date of death is before date of birth!')){
-			callback()
-		}
-	}
-	else if ((dod-dob) > 120){
-		if(confirm('Age of person is over 120 years. Continue?')){
-			callback()
-		}
-	}
-	else if ((dod-dob) < 10){
-		if(confirm('Age of person is less than 10 years. Continue?')){
-			callback()
-		}
-	}
-	else {
-		callback()
-	}
-}
-
-module.exports = date_checks;
-},{}],4:[function(require,module,exports){
-dateToNumber = function(date){
-	if (date.era == 'BC'){
-
-		return  Number(-date.number);
-	}
-
-	else if (date.era == 'AD'){
-	return Number(date.number);
-	}
-	else {
-		alert('No era selected for' + date)
-	}
-}
-
-module.exports = dateToNumber;
-},{}],5:[function(require,module,exports){
-get_era_date = function(x){
-	if (x < 0){
-		
-		x = {era: 'BC', number: -x}
-	}
-	else {
-		x = {era: 'AD', number: x}
-	}
-	return x;
-}
-
-module.exports = get_era_date;
-},{}],6:[function(require,module,exports){
-numberToDate = function(x) {
-	if (x < 0 ){
-		x = -x + ' BC';
-	}
-	else x = 'AD ' + x;
-	return x;
-}
-
-module.exports = numberToDate;
-},{}],7:[function(require,module,exports){
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -392,7 +328,7 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],8:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v2.5.16
@@ -8430,7 +8366,7 @@ if (inBrowser) {
 module.exports = Vue;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":19}],9:[function(require,module,exports){
+},{"_process":19}],5:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8529,7 +8465,7 @@ module.exports = {
 			eventx: 'placeholder',
 
 			//imported modules:
-			dateToNumber: require('../modules/date_to_number.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js')
 		}
 	},
@@ -8621,7 +8557,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-223ef178", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/date_to_number.js":4,"vue":8,"vue-hot-reload-api":7}],10:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_to_number.js":16,"vue":4,"vue-hot-reload-api":3}],6:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8758,10 +8694,10 @@ module.exports = {
 			changes_made: false,
 
 			//imported modules
-			date_checks: require('../modules/date_checks.js'),
-			dateToNumber: require('../modules/date_to_number.js'),
+			date_checks: require('../utilities/date_checks.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_object.js'),
 		}
 	},
 
@@ -8919,7 +8855,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-16071ae7", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/date_checks.js":3,"../modules/date_to_number.js":4,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],11:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_checks.js":15,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"vue":4,"vue-hot-reload-api":3}],7:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8981,9 +8917,9 @@ module.exports = {
 			roles: {},
 			existing_people: [],
 			existing_ids: [],
-			dateToNumber: require('../modules/date_to_number.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			get_era_date: require('../modules/get_era_date.js')
+			numberToDate: require('../utilities/number_to_date_object.js')
 		}
 	},
 
@@ -8993,6 +8929,7 @@ module.exports = {
 
 	methods: {
 
+		//gets existing information for event to populate form
 		on_created: function(option){
 			if (option == 'false'){
 				this.$router.push('/login');
@@ -9004,10 +8941,12 @@ module.exports = {
 				console.log('event info for editing requested');
 				this.event = data.body[0];
 				console.log(this.event.date)
-				this.event.date = this.get_era_date(this.event.date);
+				this.event.date = this.numberToDate(this.event.date);
 			});
 		},
 
+		//submits information from form, and creates a checklist of people alive at the time, with already
+		//associated people checked and their roles stated.
 		submit1: function(){
 			
 			this.$http.put('api/event/' + this.id, {name: this.event.name, date: this.dateToNumber(this.event.date), location: this.event.location, description: this.event.description})
@@ -9028,16 +8967,6 @@ module.exports = {
 					console.log('existing_people: ' + data.body)
 					
 					//tick boxes and add roles
-					roles = {};
-					existing_ids = [];
-					this.existing_people.forEach(function(person){
-						this.roles[person.id] = person.role;
-						this.existing_ids.push(Number(person.id));
-						console.log('person id is: ' + person.id);
-
-					});
-					console.log('existing ids: ' + existing_ids) 
-					this.existing_people = existing_people;
 					roles = this.roles;
 					ticked_events = {};
 					console.log('existing_ids: ' + this.existing_ids)
@@ -9046,7 +8975,6 @@ module.exports = {
 						this.ticked_events[person.id] = true;
 						this.roles[person.id] = person.role
 					});
-					
 					this.ticked_events = ticked_events;
 					this.roles = roles;
 				})
@@ -9054,17 +8982,18 @@ module.exports = {
 			this.list_returned = true;
 		},
 		
+		//delete existing associations and submit all that are currently ticked
 		submit2: function(){
 		
 			var id_list = []; 
 			for (event in this.ticked_events){
-				if (ticked_events[event]) {
+				if (this.ticked_events[event]) {
 					id_list.push(Number(event));
 				};
 			console.log('id_list is: ' + id_list)
 			};
 			
-			this.$http.delete('api/people_events/?event_id=' + this.id)
+			this.$http.delete('api/people_events/?table=people&id=' + this.id)
 			.then(function(){
 				id = this.id;
 				roles = this.roles;
@@ -9097,7 +9026,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-7b65cd59", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/date_to_number.js":4,"../modules/get_era_date.js":5,"vue":8,"vue-hot-reload-api":7}],12:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"vue":4,"vue-hot-reload-api":3}],8:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9211,10 +9140,10 @@ module.exports = {
 			
 
 			//imported modules:
-			date_checks: require('../modules/date_checks.js'),
-			dateToNumber: require('../modules/date_to_number.js'),
+			date_checks: require('../utilities/date_checks.js'),
+			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			get_era_date: require('../modules/get_era_date.js')
+			numberToDate: require('../utilities/number_to_date_object.js')
 		};
 	},
 	
@@ -9239,8 +9168,8 @@ module.exports = {
 			this.nation = this.person.nation;
 			this.bio = this.person.bio;
 			this.role = this.person.role;
-			this.dob = this.get_era_date(this.person.dob);
-			this.dod = this.get_era_date(this.person.dod);
+			this.dob = this.numberToDate(this.person.dob);
+			this.dod = this.numberToDate(this.person.dod);
 			})
 		},
 
@@ -9350,7 +9279,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3c8889b4", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/date_checks.js":3,"../modules/date_to_number.js":4,"../modules/get_era_date.js":5,"vue":8,"vue-hot-reload-api":7}],13:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_checks.js":15,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"vue":4,"vue-hot-reload-api":3}],9:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9392,7 +9321,7 @@ module.exports = {
 			event_deleted: false,
 
 			//imported modules
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 			authenticate: require('../authenticate.js'),
 		};
 	},
@@ -9460,7 +9389,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-35803a70", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],14:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],10:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9492,7 +9421,7 @@ module.exports = {
 			editable: false,
 
 			//imported modules
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 			authenticate: require('../authenticate.js'),
 		};
 	},
@@ -9540,7 +9469,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-bfe80640", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],15:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],11:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9621,7 +9550,7 @@ module.exports = {
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 		}
 	},
 	created: function() {
@@ -9678,7 +9607,7 @@ module.exports = {
 			else {
 				this.input_empty = false;
 				
-				this.$http.get('/api/' + this.search_option + '_byname/' + this.search_term)
+				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
 				.then(function(data){
 					this.search_results = data.body;
 					console.log(data.body);
@@ -9689,7 +9618,7 @@ module.exports = {
 			}
 		},
 
-		//development only
+		//development only, quick way to create a test person.
 		create_test_person: function(){
 			this.$http.post('api/person', {name: 'testguy', dob: -20000, dod: 100})
 			.then(function(data){
@@ -9715,7 +9644,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-51c3c613", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],16:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],12:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9772,6 +9701,8 @@ module.exports = {
 		
 	methods: {
 
+		//submits username and password to back-end, if correct emits 'login' to make changes to index
+		//and redirects to home.
 		login: function(){
 			console.log('login function activated')
 			this.$http.post('api/login', {username: this.username, password: this.password})
@@ -9786,6 +9717,7 @@ module.exports = {
 			});
 		},
 
+		
 		signup: function(){
 			console.log('signup function called');
 			if (this.new_PW != this.new_PW_check){
@@ -9821,7 +9753,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-0499e2e5", __vue__options__)
   }
 })()}
-},{"vue":8,"vue-hot-reload-api":7}],17:[function(require,module,exports){
+},{"vue":4,"vue-hot-reload-api":3}],13:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9857,7 +9789,7 @@ module.exports = {
 			editable: false,
 
 			//imported modules
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 			authenticate: require('../authenticate.js'),
 			
 		};
@@ -9907,7 +9839,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-b1411a54", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],18:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],14:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9962,7 +9894,7 @@ module.exports = {
 			deleted_data: '',
 			person_deleted: false,
 			//imported modules:
-			numberToDate: require('../modules/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 			authenticate: require('../authenticate.js'),
 		}
 	},
@@ -9999,7 +9931,7 @@ module.exports = {
 				});
 		},
 
-		//first removes person's associated events then removes person
+		//first removes person's associated events then removes person, including their image
 		delete_person: function(){
 			if(confirm('Are you sure you want to delete this person?')){
 				console.log('delete button pressed')
@@ -10034,7 +9966,77 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-50f63db5", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../modules/number_to_date.js":6,"vue":8,"vue-hot-reload-api":7}],19:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],15:[function(require,module,exports){
+date_checks = function(dob, dod, callback){
+	console.log('date_checks called')
+	
+	if (dob > dod){
+		if(confirm('date of death is before date of birth!')){
+			callback()
+		}
+	}
+	else if ((dod-dob) > 120){
+		if(confirm('Age of person is over 120 years. Continue?')){
+			callback()
+		}
+	}
+	else if ((dod-dob) < 10){
+		if(confirm('Age of person is less than 10 years. Continue?')){
+			callback()
+		}
+	}
+	else {
+		callback()
+	}
+}
+
+module.exports = date_checks;
+},{}],16:[function(require,module,exports){
+//turns date objects with number and BC/AD era into negative/postive numbers
+
+dateToNumber = function(date){
+	if (date.era == 'BC'){
+
+		return  Number(-date.number);
+	}
+
+	else if (date.era == 'AD'){
+	return Number(date.number);
+	}
+	else {
+		alert('No era selected for' + date)
+	}
+}
+
+module.exports = dateToNumber;
+},{}],17:[function(require,module,exports){
+//turns negative/positive numbers to date strings with number and BC/AD era
+
+numberToDate = function(x) {
+	if (x < 0 ){
+		x = -x + ' BC';
+	}
+	else x = 'AD ' + x;
+	return x;
+}
+
+module.exports = numberToDate;
+},{}],18:[function(require,module,exports){
+//Turns negative/postive numbers into date objects with BC/AD era
+
+get_era_date = function(x){
+	if (x < 0){
+		
+		x = {era: 'BC', number: -x}
+	}
+	else {
+		x = {era: 'AD', number: x}
+	}
+	return x;
+}
+
+module.exports = get_era_date;
+},{}],19:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

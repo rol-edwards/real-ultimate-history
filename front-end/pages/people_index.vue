@@ -29,7 +29,7 @@ module.exports = {
 	data: function () {
 		return{
 			people: 'placeholder',
-			editable: fals
+			editable: false,
 
 			//imported modules
 			numberToDate: require('../utilities/number_to_date_string.js'),

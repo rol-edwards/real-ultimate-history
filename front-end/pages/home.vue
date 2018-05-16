@@ -77,7 +77,7 @@ module.exports = {
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../utilities/number_to_date.js'),
+			numberToDate: require('../utilities/number_to_date_string.js'),
 		}
 	},
 	created: function() {
