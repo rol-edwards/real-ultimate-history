@@ -77,7 +77,7 @@ router.route('/person/:id')
 	person.update(input, req.params.id, function(data){
 		res.send('Edits made');
 	});
-});
+})
 
 .get(function(req, res, next) {
 	console.log('person routes: looking for ' + req.params.id);
@@ -90,7 +90,7 @@ router.route('/person/:id')
 		else res.json(data);
 		}
 	);
-});
+})
 
 .delete(function(req, res, next){
 	person.delete(req.params.id, function(data){

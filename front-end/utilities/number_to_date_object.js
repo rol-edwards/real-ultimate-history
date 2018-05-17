@@ -1,11 +1,14 @@
-//turns negative/positive numbers to date strings with number and BC/AD era
+//Turns negative/postive numbers into date objects with BC/AD era
 
-numberToDate = function(x) {
-	if (x < 0 ){
-		x = -x + ' BC';
+get_era_date = function(x){
+	if (x < 0){
+		
+		x = {era: 'BC', number: -x}
 	}
-	else x = 'AD ' + x;
+	else {
+		x = {era: 'AD', number: x}
+	}
 	return x;
 }
 
-module.exports = numberToDate;
+module.exports = get_era_date;

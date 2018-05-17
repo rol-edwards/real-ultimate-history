@@ -10010,18 +10010,6 @@ dateToNumber = function(date){
 
 module.exports = dateToNumber;
 },{}],17:[function(require,module,exports){
-//turns negative/positive numbers to date strings with number and BC/AD era
-
-numberToDate = function(x) {
-	if (x < 0 ){
-		x = -x + ' BC';
-	}
-	else x = 'AD ' + x;
-	return x;
-}
-
-module.exports = numberToDate;
-},{}],18:[function(require,module,exports){
 //Turns negative/postive numbers into date objects with BC/AD era
 
 get_era_date = function(x){
@@ -10036,6 +10024,18 @@ get_era_date = function(x){
 }
 
 module.exports = get_era_date;
+},{}],18:[function(require,module,exports){
+//turns negative/positive numbers to date strings with number and BC/AD era
+
+numberToDate = function(x) {
+	if (x < 0 ){
+		x = -x + ' BC';
+	}
+	else x = 'AD ' + x;
+	return x;
+}
+
+module.exports = numberToDate;
 },{}],19:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};

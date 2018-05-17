@@ -65,7 +65,7 @@ router.route('/event/:id')
 		}
 		else res.json(data);
 	});
-});
+})
 
 .put(gatekeeper, bodyParser.json(), function(req, res, next){
 	console.log('edit event router working ' + req.params.id);
@@ -73,7 +73,7 @@ router.route('/event/:id')
 	event.update(input, req.params.id, function(data){
 		res.send('event updated');
 	});
-});
+})
 
 .delete(function(req, res, next){
 	event.delete(req.params.id, function(data){
@@ -83,7 +83,7 @@ router.route('/event/:id')
 		}
 		else res.json(data);
 	});
-});
+})
 
 router.route('/upload/event/:id')
 .post(function(req, res, next){
