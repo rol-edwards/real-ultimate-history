@@ -9942,7 +9942,7 @@ module.exports = {
 		delete_person: function(){
 			if(confirm('Are you sure you want to delete this person?')){
 				console.log('delete button pressed')
-				this.$http.delete('api/people_events/?person_id=' + this.id)
+				this.$http.delete('api/people_events/?table=events&id=' + this.id)
 				.then(function(data){
 					this.$http.delete('api/person/' + this.id)
 					.then(function(data){
