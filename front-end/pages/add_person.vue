@@ -104,6 +104,7 @@
 		</div>
 		<div v-show='changes_made'>
 			<h1>Changes made!</h1>
+			<p><a v-bind:href="'/#/person/' + person.id">Return to person</a></p>
 		</div>
 	</div>
 </template>	
@@ -192,7 +193,7 @@ module.exports = {
 
 						//if there are duplicates, produce a list and reveal a button for next method, otherwise 
 						//call next method
-						if (!this.duplicates){
+						if (this.duplicates.length == 0){
 							console.log('duplicate check: nothing returned')
 							this.submit_person();
 						}

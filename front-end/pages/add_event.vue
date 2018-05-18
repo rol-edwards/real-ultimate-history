@@ -36,36 +36,36 @@
 				<p>The following events have the same name. Please check that you are not submitting a duplicate</p>
 				<table>
 					<tr v-for='d in duplicates'>
-						<td>{{d.event}}</td>
+						<td>{{d.name}}</td>
 						<td>{{d.date}}</td>
 						<td>{{d.description}}</td>
 					</tr>
 				</table>
 				<button v-on:click='submit_event'>Submit</button>
 
-
-				<div v-show='submitted'>
-					<h2>People</h2>
-					<p>Please select the people involved in this event, or add new people</p>
-					<div v-for='person in people'>
-						<input type='checkbox' v-model='boxes[person.id]'>{{person.name}}</input>
-						<input type='text' v-show='boxes[person.id]' v-model='roles[person.id]' id='role'>
-						<label for='role' v-show='boxes[person.id]'>Role</label>
-
-					</div>
-					<button v-on:click='submit_people'>Submit</button>
-
-				</div>
-				<div v-show='events_updated'>
-				    <form ref='uploadForm' 
-				      id='uploadForm' 
-				      method='post' 
-				      encType="multipart/form-data">
-				        <input id='picture' type="file" name='pic'/>
-				        <input type='submit' value='Upload!' />
-				    </form>     
-				</div>
 			</div>
+			<div v-show='submitted'>
+				<h2>People</h2>
+				<p>Please select the people involved in this event, or add new people</p>
+				<div v-for='person in people'>
+					<input type='checkbox' v-model='boxes[person.id]'>{{person.name}}</input>
+					<input type='text' v-show='boxes[person.id]' v-model='roles[person.id]' id='role'>
+					<label for='role' v-show='boxes[person.id]'>Role</label>
+
+				</div>
+				<button v-on:click='submit_people'>Submit</button>
+
+			</div>
+			<div v-show='events_updated'>
+			    <form ref='uploadForm' 
+			      id='uploadForm' 
+			      method='post' 
+			      encType="multipart/form-data">
+			        <input id='picture' type="file" name='pic'/>
+			        <input type='submit' value='Upload!' />
+			    </form>     
+			</div>
+			
 		</div>
 		<div v-show='changes_made'>
 			<h1>Changes made!</h1>
@@ -124,26 +124,33 @@
 				this.$http.get('api/events/?name=' + this.name + '&date=' + this.dateToNumber(this.date))
 				.then(function(data){
 					this.duplicates = data.body;
-					this.dupes_checked = true;
-					console.log(this.duplicates)
+					if (this.duplicates.length == 0){
+						console.log('there were no duplicates')
+						this.submit_event(); 
+					}
+					else {
+						this.dupes_checked = true;
+					}
 				})
 			},
 
 			submit_event: function(){
-			console.log('event create button pressed');
-			this.$http.post('api/event', {name: this.name, date: this.dateToNumber(this.date), location: this.location, description: this.description})
-			.then(function(data){
-				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event' + this.event.id);
-				console.log('new event created');
-				this.event = data.body[0];
-				console.log('event id is: '  + this.event.id);
-			
-				this.$http.get('api/people/?date=' + this.dateToNumber(this.date))
+				console.log('event create button pressed');
+				this.$http.post('api/event', {name: this.name, date: this.dateToNumber(this.date), location: this.location, description: this.description})
 				.then(function(data){
-					this.people = data.body;
+					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event' + this.event.id);
+					console.log('new event created');
+					this.event = data.body[0];
+					console.log('event id is: '  + this.event.id);
+				
+					this.$http.get('api/people/?date=' + this.dateToNumber(this.date))
+					.then(function(data){
+						this.people = data.body;
+						console.log(this.people)
+						this.submitted = true;
+						console.log('submitted should be true now' + this.submitted)
+					});
 				});
-			});
-			this.submitted = true;
 			},	
 		
 			submit_people: function(){
