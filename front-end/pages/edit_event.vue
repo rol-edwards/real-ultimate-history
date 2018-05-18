@@ -19,7 +19,7 @@
 				<label for='location'></label>
 			</div>
 				<div>
-				<input type='text' v-model='event.description' id='description' placeholder='description' >Description</input>
+				<textarea type='text' v-model='event.description' id='description' placeholder='description'>Description</textarea>
 				<label for='description'></label>
 			</div>
 			<div>
@@ -94,7 +94,7 @@
 				.then(function(data){
 					console.log('event updated');
 				})
-				//get 'people', an array of person data for people alive during event.
+				//get 'people', an array of data objects for people alive during event.
 				this.$http.get('/api/people/?date=' + this.dateToNumber(this.event.date))
 				.then(function(data){
 					console.log('request made to router to get people');
@@ -139,8 +139,8 @@
 					id = this.id;
 					roles = this.roles;
 					$http = this.$http;
-					id_list.forEach(function(person){
-						this.$http.post('api/people_events', {person_id: person, event_id: this.id, role: this.roles[person]})
+					id_list.forEach(function(person_id){
+						this.$http.post('api/people_events', {person_id: person_id, event_id: this.id, role: this.roles[person_id]})
 						.then(function(data){
 							console.log('people added');
 						});

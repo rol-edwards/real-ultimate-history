@@ -73,10 +73,10 @@ router.route('/people_events')
 //own model? Maybe I should get rid of these routes and follow convention as Bill said was a possibility.
 router.route('/people_events')
 .delete(function(req, res, next){
-	console.log('people_events_routes: delete reached' + req.query.person_id)
-	if (req.query.person_id){
+	console.log('people_events_routes: delete reached' + req.query.id)
+	if (req.query.table == 'events'){
 		console.log('if clause worked')
-		person.deleteEvents(req.query.person_id, function(data){
+		person.deleteEvents(req.query.id, function(data){
 			console.log('person_event_routes: callback called, deletions made');
 			if (data instanceof AppError) {
 			console.log('An error was thrown');
@@ -87,7 +87,7 @@ router.route('/people_events')
 		});
 	}
 	else {
-		event.deletePeople(req.query.event_id, function(data){
+		event.deletePeople(req.query.id, function(data){
 			console.log('person_event_routes: callback called, deletions made');
 			if (data instanceof AppError) {
 			console.log('An error was thrown');
