@@ -56,14 +56,16 @@
 				<button v-on:click='submit_people'>Submit</button>
 
 			</div>
-			<div v-show='events_updated'>
+			<div v-show='people_updated'>
+				<p>Upload an image or click to finish
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
 			      method='post' 
 			      encType="multipart/form-data">
 			        <input id='picture' type="file" name='pic'/>
 			        <input type='submit' value='Upload!' />
-			    </form>     
+			    </form>    
+			    <button v-on:click='finish'>Finish</button> 
 			</div>
 			
 		</div>
@@ -93,6 +95,7 @@
 				location: '',
 				description: '',
 				eventx: 'placeholder',
+				people_updated: false,
 
 				//imported modules:
 				dateToNumber: require('../utilities/date_to_number.js'),
@@ -138,7 +141,8 @@
 				console.log('event create button pressed');
 				this.$http.post('api/event', {name: this.name, date: this.dateToNumber(this.date), location: this.location, description: this.description})
 				.then(function(data){
-					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event' + this.event.id);
+					this.event = data.body[0];
+					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.event.id);
 					console.log('new event created');
 					this.event = data.body[0];
 					console.log('event id is: '  + this.event.id);
@@ -171,9 +175,13 @@
 							console.log('people added');
 						})
 					})
-				this.changes_made = true;
+				this.people_updated = true;
 
 			},
+
+			finish: function(){
+			this.changes_made = true;
+		}
 		}
 	}
 		
