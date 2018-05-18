@@ -49,6 +49,17 @@ event.update = function(input, id, callback){
 event.delete = function(id, callback){
 	console.log('event_model: deleting person')
 	dbConn.query('delete from events where id = ' + id + ' returning *')
+	.then(function(err, data){
+		fs.unlink(path.join(__dirname, '../../front-end/images/event' + id + '.jpg'), 
+		function(err, data){
+			if (err) {
+				console.log('error')
+				return callback(data)
+			}
+			console.log('image deleted');
+			callback(data);
+		});
+	})
 };
 
 event.findPeople = function (id, callback) {

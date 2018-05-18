@@ -75,7 +75,7 @@
 			delete_event: function(){
 				if(confirm('Are you sure you want to delete this event?')){
 					console.log('delete button pressed')
-					this.$http.delete('api/people_events/?event_id=' + this.id)
+					this.$http.delete('api/people_events/?table=people&id=' + this.id)
 					.then(function(data){
 						this.$http.delete('api/event/' + this.id)
 						.then(function(data){
