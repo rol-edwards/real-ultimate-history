@@ -9213,7 +9213,6 @@ module.exports = {
 						})
 						this.ticked_events = ticked_events;
 						this.roles = roles;
-						console.log('this.roles: ');
 						this.event_list_visible = true;
 
 						
@@ -9239,7 +9238,7 @@ module.exports = {
 
 			//delete all existing event associations for this person
 			console.log('id-list is: ' + ticked_ids);
-			this.$http.delete('api/people_events/?person_id=' + this.id)
+			this.$http.delete('api/people_events/?table=events&id=' + this.id)
 			.then(function(data){
 				console.log('deletions made');
 				
