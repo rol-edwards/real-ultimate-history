@@ -1,6 +1,7 @@
 var path = require('path'),
 	dbConn = require(path.join(__dirname, '../dbConn.js')),
 	queryWriter = require(path.join(__dirname, '../query_writer.js')),
+	fs = require('fs'),
 	event = {};
 
 

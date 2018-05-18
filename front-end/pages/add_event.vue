@@ -181,7 +181,7 @@
 
 			finish: function(){
 			this.changes_made = true;
-		}
+			}
 		}
 	}
 		
