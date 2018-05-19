@@ -159,23 +159,36 @@
 		
 			submit_people: function(){
 			
-				var id_list = [];
+				var ticked_ids = [];
 				for (box in this.boxes){
 					if (box) {
-						id_list.push(Number(box));
+						ticked_ids.push(Number(box));
 					};
 				};
 				id = this.id
 				roles = this.roles
 				$http = this.$http;
 				event = this.event;
-					id_list.forEach(function(person){
+				count = 0;
+				if (ticked_ids.length > 0){
+					ticked_ids.forEach(function(person){
 						this.$http.post('api/people_events', {person_id: person, event_id: this.event.id, role: this.roles[person]})
 						.then(function(data){
-							console.log('people added');
+							count += 1;
+							if (count == ticked_ids.length){
+								this.people_updated = true;
+								console.log('people added');
+							}
+							
 						})
 					})
-				this.people_updated = true;
+				}
+
+				else {
+					this.people_updated = true;
+					console.log('people added');
+				}	
+				
 
 			},
 

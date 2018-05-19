@@ -229,28 +229,35 @@ module.exports = {
 
 			//takes an object 'boxes' consisting of event ids with booleans (provided by the user ticking associated
 			//boxes), and pulls out an array of the 'true' ids
+			var ticked_ids = [];
 				for (var box in this.boxes){
 				if(box) {
-					this.id_list.push(Number(box));
+					ticked_ids.push(Number(box));
 				};
 			};
-			console.log('id_list is' + this.id_list)
 			person = this.person;
 			roles = this.roles;
 			$http = this.$http;
-
+			count = 0;
 			//creates person-event records, including the person's role in the event
-
-			this.id_list.forEach(function(event_id){
-				console.log('submitting an event')
-				console.log('role: ' + this.roles[event_id] + ', person_id: ' + this.person.id)
-				this.$http.post('api/people_events', {person_id: this.person.id, event_id: event_id, role: this.roles[event_id]})
-				.then(function(data){
-					console.log('events added to person');
+			if (ticked_ids.length > 0){
+				ticked_ids.forEach(function(event_id){
+					console.log('submitting an event')
+					console.log('role: ' + this.roles[event_id] + ', person_id: ' + this.person.id)
+					this.$http.post('api/people_events', {person_id: this.person.id, event_id: event_id, role: this.roles[event_id]})
+					.then(function(data){
+						count += 1;
+						if (count == ticked_ids.length){
+							console.log('events added to person');
+							this.events_updated = true;
+						}
+					});
 				});
-				
-			});
-			this.events_updated = true;
+			}
+			else{
+				this.events_updated = true;
+			}
+			
 		},
 
 		//
