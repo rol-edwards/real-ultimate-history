@@ -210,6 +210,8 @@ module.exports = {
 				$http = this.$http;
 				id = this.id;
 				count = 0;
+
+				//need an if-clause here in case ticked_ids is empty. if there are ticked ids, the rest of function will need to be in 'then' to deal with asynchronicity, otherwise not.
 				if (ticked_ids.length > 0){
 					ticked_ids.forEach(function(eventId){
 						this.$http.post('api/people_events', {person_id: this.id, event_id: eventId, role: roles[eventId]})
@@ -219,15 +221,15 @@ module.exports = {
 							if(count >= ticked_ids.length){
 								console.log('changes made');
 								this.events_updated = true;
+								document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
 							}
 						})
 					})
 				}
 				else {
 					this.events_updated = true;
+					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
 				}
-				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
-
 			})
 		},
 

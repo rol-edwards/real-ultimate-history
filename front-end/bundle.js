@@ -8918,6 +8918,17 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 module.exports = {
@@ -8933,6 +8944,9 @@ module.exports = {
 			roles: {},
 			existing_people: [],
 			existing_ids: [],
+			people_updated: false,
+
+			//imported modules:
 			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
 			numberToDate: require('../utilities/number_to_date_object.js')
@@ -8963,7 +8977,7 @@ module.exports = {
 
 		//submits information from form, and creates a checklist of people alive at the time, with already
 		//associated people checked and their roles stated.
-		submit1: function(){
+		submit_event: function(){
 			
 			this.$http.put('api/event/' + this.id, {name: this.event.name, date: this.dateToNumber(this.event.date), location: this.event.location, description: this.event.description})
 			.then(function(data){
@@ -8999,14 +9013,14 @@ module.exports = {
 		},
 		
 		//delete existing associations and submit all that are currently ticked
-		submit2: function(){
+		submit_people: function(){
 		
-			var id_list = []; 
+			var ticked_ids = []; 
 			for (event in this.ticked_events){
 				if (this.ticked_events[event]) {
-					id_list.push(Number(event));
+					ticked_ids.push(Number(event));
 				};
-			console.log('id_list is: ' + id_list)
+			console.log('ticked_ids is: ' + ticked_ids)
 			};
 			
 			this.$http.delete('api/people_events/?table=people&id=' + this.id)
@@ -9014,13 +9028,31 @@ module.exports = {
 				id = this.id;
 				roles = this.roles;
 				$http = this.$http;
-				id_list.forEach(function(person_id){
-					this.$http.post('api/people_events', {person_id: person_id, event_id: this.id, role: this.roles[person_id]})
-					.then(function(data){
-						console.log('people added');
+				count = 0;
+
+				if (ticked_ids.length > 0){
+					ticked_ids.forEach(function(person_id){
+						this.$http.post('api/people_events', {person_id: person_id, event_id: this.id, role: this.roles[person_id]})
+						.then(function(data){
+							count += 1;
+							if (count == ticked_ids.length){
+								console.log('people added');
+								this.people_updated = true;
+								document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+							}
+							
+						});
 					});
-				});
+				}
+				else{
+					this.people_updated = true;
+					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+				}
+				
 			})
+		},
+
+		finish: function(){
 			this.changes_made = true;
 		}
 	}
@@ -9030,7 +9062,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Edit event")]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.name),expression:"event.name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.event.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "name", $event.target.value)}}}),_vm._v("Name of event"),_vm._v(" "),_c('label',{attrs:{"for":"event"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.number),expression:"event.date.number"}],attrs:{"type":"text","id":"date","placeholder":"date"},domProps:{"value":(_vm.event.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event.date, "number", $event.target.value)}}}),_vm._v("Date"),_vm._v(" "),_c('label',{attrs:{"for":"date"}}),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.event.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.event.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.location),expression:"event.location"}],attrs:{"type":"text","id":"location","placeholder":"location"},domProps:{"value":(_vm.event.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "location", $event.target.value)}}}),_vm._v("Location"),_vm._v(" "),_c('label',{attrs:{"for":"location"}})]),_vm._v(" "),_c('div',[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.description),expression:"event.description"}],attrs:{"type":"text","id":"description","placeholder":"description"},domProps:{"value":(_vm.event.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "description", $event.target.value)}}},[_vm._v("Description")]),_vm._v(" "),_c('label',{attrs:{"for":"description"}})]),_vm._v(" "),_c('div',[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_returned),expression:"!list_returned"}],on:{"click":function($event){_vm.submit1()}}},[_vm._v("Submit")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_returned),expression:"list_returned"}]},[_c('h2',[_vm._v("People to add")]),_vm._v(" "),_c('p',[_vm._v("Select people involved or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.ticked_events[person.id])?_vm._i(_vm.ticked_events[person.id],null)>-1:(_vm.ticked_events[person.id])},on:{"change":function($event){var $$a=_vm.ticked_events[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.ticked_events, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.ticked_events, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.ticked_events, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.submit2()}}},[_vm._v("Submit")])],2)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/event/' + _vm.id}},[_vm._v("Return to event")])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Edit event")]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.name),expression:"event.name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.event.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "name", $event.target.value)}}}),_vm._v("Name of event"),_vm._v(" "),_c('label',{attrs:{"for":"event"}})]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.number),expression:"event.date.number"}],attrs:{"type":"text","id":"date","placeholder":"date"},domProps:{"value":(_vm.event.date.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event.date, "number", $event.target.value)}}}),_vm._v("Date"),_vm._v(" "),_c('label',{attrs:{"for":"date"}}),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.event.date.era,"BC")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.date.era),expression:"event.date.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.event.date.era,"AD")},on:{"change":function($event){_vm.$set(_vm.event.date, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.location),expression:"event.location"}],attrs:{"type":"text","id":"location","placeholder":"location"},domProps:{"value":(_vm.event.location)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "location", $event.target.value)}}}),_vm._v("Location"),_vm._v(" "),_c('label',{attrs:{"for":"location"}})]),_vm._v(" "),_c('div',[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.event.description),expression:"event.description"}],attrs:{"type":"text","id":"description","placeholder":"description"},domProps:{"value":(_vm.event.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.event, "description", $event.target.value)}}},[_vm._v("Description")]),_vm._v(" "),_c('label',{attrs:{"for":"description"}})]),_vm._v(" "),_c('div',[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_returned),expression:"!list_returned"}],on:{"click":function($event){_vm.submit_event()}}},[_vm._v("Submit")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_returned),expression:"list_returned"}]},[_c('h2',[_vm._v("People to add")]),_vm._v(" "),_c('p',[_vm._v("Select people involved or add new people")]),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.ticked_events[person.id])?_vm._i(_vm.ticked_events[person.id],null)>-1:(_vm.ticked_events[person.id])},on:{"change":function($event){var $$a=_vm.ticked_events[person.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.ticked_events, person.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.ticked_events, person.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.ticked_events, person.id, $$c)}}}}),_vm._v(_vm._s(person.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.ticked_events[person.id]),expression:"ticked_events[person.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[person.id]),expression:"roles[person.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[person.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, person.id, $event.target.value)}}}),_vm._v(" "),_c('label',{attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.submit_people()}}},[_vm._v("Submit")])],2),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.people_updated),expression:"people_updated"}]},[_c('p',[_vm._v("Upload an image or click to finish\n\t\t    ")]),_c('form',{ref:"uploadForm",attrs:{"id":"uploadForm","method":"post","encType":"multipart/form-data"}},[_c('input',{attrs:{"id":"picture","type":"file","name":"pic"}}),_vm._v(" "),_c('input',{attrs:{"type":"submit","value":"Upload!"}})]),_vm._v(" "),_c('button',{on:{"click":_vm.finish}},[_vm._v("Finish")])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/event/' + _vm.id}},[_vm._v("Return to event")])])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -9256,6 +9288,8 @@ module.exports = {
 				$http = this.$http;
 				id = this.id;
 				count = 0;
+
+				//need an if-clause here in case ticked_ids is empty. if there are ticked ids, the rest of function will need to be in 'then' to deal with asynchronicity, otherwise not.
 				if (ticked_ids.length > 0){
 					ticked_ids.forEach(function(eventId){
 						this.$http.post('api/people_events', {person_id: this.id, event_id: eventId, role: roles[eventId]})
@@ -9265,15 +9299,15 @@ module.exports = {
 							if(count >= ticked_ids.length){
 								console.log('changes made');
 								this.events_updated = true;
+								document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
 							}
 						})
 					})
 				}
 				else {
 					this.events_updated = true;
+					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
 				}
-				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
-
 			})
 		},
 

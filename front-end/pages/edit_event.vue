@@ -23,7 +23,7 @@
 				<label for='description'></label>
 			</div>
 			<div>
-				<button v-on:click='submit1()' v-show='!list_returned'>Submit</button>
+				<button v-on:click='submit_event()' v-show='!list_returned'>Submit</button>
 			</div>
 			<div v-show='list_returned'>
 				<h2>People to add</h2>
@@ -33,7 +33,18 @@
 					<input type='text' id='role' v-show='ticked_events[person.id]' v-model='roles[person.id]'>
 					<label for='role'>Role</label>
 				</div>
-				<button v-on:click='submit2()'>Submit</button>
+				<button v-on:click='submit_people()'>Submit</button>
+			</div>
+			<div v-show='people_updated'>
+				<p>Upload an image or click to finish
+			    <form ref='uploadForm' 
+			      id='uploadForm' 
+			      method='post' 
+			      encType="multipart/form-data">
+			        <input id='picture' type="file" name='pic'/>
+			        <input type='submit' value='Upload!' />
+			    </form>    
+			    <button v-on:click='finish'>Finish</button> 
 			</div>
 		</div>
 		<div v-show='changes_made'>
@@ -58,6 +69,9 @@
 				roles: {},
 				existing_people: [],
 				existing_ids: [],
+				people_updated: false,
+
+				//imported modules:
 				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
 				numberToDate: require('../utilities/number_to_date_object.js')
@@ -88,7 +102,7 @@
 
 			//submits information from form, and creates a checklist of people alive at the time, with already
 			//associated people checked and their roles stated.
-			submit1: function(){
+			submit_event: function(){
 				
 				this.$http.put('api/event/' + this.id, {name: this.event.name, date: this.dateToNumber(this.event.date), location: this.event.location, description: this.event.description})
 				.then(function(data){
@@ -124,14 +138,14 @@
 			},
 			
 			//delete existing associations and submit all that are currently ticked
-			submit2: function(){
+			submit_people: function(){
 			
-				var id_list = []; 
+				var ticked_ids = []; 
 				for (event in this.ticked_events){
 					if (this.ticked_events[event]) {
-						id_list.push(Number(event));
+						ticked_ids.push(Number(event));
 					};
-				console.log('id_list is: ' + id_list)
+				console.log('ticked_ids is: ' + ticked_ids)
 				};
 				
 				this.$http.delete('api/people_events/?table=people&id=' + this.id)
@@ -139,13 +153,31 @@
 					id = this.id;
 					roles = this.roles;
 					$http = this.$http;
-					id_list.forEach(function(person_id){
-						this.$http.post('api/people_events', {person_id: person_id, event_id: this.id, role: this.roles[person_id]})
-						.then(function(data){
-							console.log('people added');
+					count = 0;
+
+					if (ticked_ids.length > 0){
+						ticked_ids.forEach(function(person_id){
+							this.$http.post('api/people_events', {person_id: person_id, event_id: this.id, role: this.roles[person_id]})
+							.then(function(data){
+								count += 1;
+								if (count == ticked_ids.length){
+									console.log('people added');
+									this.people_updated = true;
+									document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+								}
+								
+							});
 						});
-					});
+					}
+					else{
+						this.people_updated = true;
+						document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+					}
+					
 				})
+			},
+
+			finish: function(){
 				this.changes_made = true;
 			}
 		}
