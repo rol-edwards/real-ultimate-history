@@ -1,27 +1,33 @@
 <template>
-	<div >
-		<div class='titlebar'>
-			<h1>{{event.name}}</h1>
-			<p class='dob'>{{event.date}}</p>
-			<p class='dob'>{{event.location}}</p>
+	<div>
+		<div v-show='!event_deleted'>
+			<div class='titlebar'>
+				<h1>{{event.name}}</h1>
+				<p class='dob'>{{event.date}}</p>
+				<p class='dob'>{{event.location}}</p>
+			</div>
+			<figure>
+				<img v-bind:src="'../images/event' + event.id + '.jpg'">
+			</figure>
+			<p>{{event.id}}</p>
+			<p>{{event.description}}</p>
+			<h2>Key people involved</h2>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Role</th>
+				</tr>
+				<tr v-for='person in people'>
+					<td><a v-bind:href="'/#/person/' + person.id">{{person.name}}</a></td>
+					<td>{{person.role}}</td>
+				</tr>
+			</table>
+			<p v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></p>
+			<p v-show='editable'><button v-on:click='delete_event'>Delete</button></p>
 		</div>
-		<figure>
-			<img v-bind:src="'../images/event' + event.id + '.jpg'">
-		</figure>
-		<p>{{event.id}}</p>
-		<p>{{event.description}}</p>
-		<h2>Key people involved</h2>
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Role</th>
-			<tr v-for='person in people'>
-				<td><a v-bind:href="'/#/person/' + person.id">{{person.name}}</a></td>
-				<td>{{person.role}}</td>
-			</tr>
-		</table>
-		<p v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></p>
-		<p v-show='editable'><button v-on:click='delete_event'>Delete</button></p>
+		<div v-show='event_deleted'>
+			<h1>Event deleted</h1>
+		</div>
 	</div>
 </template>
 
@@ -82,7 +88,6 @@
 							this.deleted_data = data;
 							console.log('event deleted' + this.deleted_data)
 							this.event_deleted = true;
-
 						})
 					})
 				};

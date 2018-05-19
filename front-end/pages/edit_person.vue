@@ -72,7 +72,8 @@
 			      encType="multipart/form-data">
 			        <input id='picture' type="file" name='pic'/>
 			        <input type='submit' value='Upload!' />
-			    </form>     
+			    </form>
+			    <button v-on:click='finish'>Finish</button>    
 			</div>
 		</div>
 		<div v-show='changes_made'>
@@ -228,6 +229,10 @@ module.exports = {
 				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
 
 			})
+		},
+
+		finish: function(){
+			this.changes_made = true;
 		}
 	}
 }
