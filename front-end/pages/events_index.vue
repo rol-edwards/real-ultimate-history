@@ -53,7 +53,10 @@ module.exports = {
 				this.events.forEach(function(event){
 					event.date = this.numberToDate(event.date);
 				});
-			});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 
 		},
 	}

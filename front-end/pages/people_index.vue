@@ -59,7 +59,10 @@ module.exports = {
 					person.dob = this.numberToDate(person.dob);
 					person.dod = this.numberToDate(person.dod);
 				});
-			});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 
 		},
 	}

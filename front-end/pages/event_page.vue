@@ -56,25 +56,28 @@
 		methods: {
 			//gets information for event and associated people
 			on_created: function(option){
-			if (option == 'true'){
-					console.log('show button eventpage gone')
-					this.editable = true;
-					this.$emit('login');
+				if (option == 'true'){
+						console.log('show button eventpage gone')
+						this.editable = true;
+						this.$emit('login');
+						
+				}	
+				this.$http.get('/api/event/' + this.id)
+				.then(function (data) {
+					console.log(data.body);
+					this.event = data.body[0];
+					this.event.date = this.numberToDate(this.event.date);
+					console.log('this is event.id: ' + this.event.id)
 					
-			}	
-			this.$http.get('/api/event/' + this.id)
-			.then(function (data) {
-				console.log(data.body);
-				this.event = data.body[0];
-				this.event.date = this.numberToDate(this.event.date);
-				console.log('this is event.id: ' + this.event.id)
-				
-				this.$http.get('/api/people_events/?id=' + this.id + '&table=people')
-				.then(function(data) {
-					this.people = data.body;
-					console.log(data.body)
+					this.$http.get('/api/people_events/?id=' + this.id + '&table=people')
+					.then(function(data) {
+						this.people = data.body;
+						console.log(data.body)
 					});
-				});
+				})
+				.catch(function(error){
+					alert(error.body)
+				})
 			},
 
 			//first removes events associated people then removes event
@@ -89,6 +92,9 @@
 							console.log('event deleted' + this.deleted_data)
 							this.event_deleted = true;
 						})
+					})
+					.catch(function(error){
+						alert(error.body)
 					})
 				};
 			},	

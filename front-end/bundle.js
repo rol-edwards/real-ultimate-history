@@ -8698,19 +8698,25 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 module.exports = {
 	
 	data: function () {
 		return{
+			
 			events: 'placeholder',
-			person: 'placeholder',
+			person: '',
+			name: 'Tamerlane',
 			list_visible: false,
 			duplicates_visible: false,
 			dob: {era: 'BC'},
 			dod: {era: 'AD'},
-			name: 'Tamerlane',
 			id_list: [],
 		    boxes: {},
 			roles: {},
@@ -8738,10 +8744,10 @@ module.exports = {
 		//redirects user to login if not logged in
 		check_login: function(logged_in){
 			if (logged_in == 'true'){
-				console.log('upload should have changed')
 				this.$emit('login');
 				
 				return
+				
 			}	
 			else {
 				this.$router.push('/login');
@@ -8879,7 +8885,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Add new person")]),_vm._v(" "),_c('table',[_c('tr',[_c('td',[_vm._v("Name")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.name),expression:"name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.name=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),(_vm.dod.era=="BC")?_c('tr',[_c('td',[_vm._v("Date of birth")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.number),expression:"dob.number"}],attrs:{"type":"text","id":"dob"},domProps:{"value":(_vm.dob.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dob, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_vm._v("BC")])]):_c('tr',[_c('td',[_vm._v("Date of birth")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.number),expression:"dob.number"}],attrs:{"type":"text","id":"dob"},domProps:{"value":(_vm.dob.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dob, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.era),expression:"dob.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.dob.era,"BC")},on:{"change":function($event){_vm.$set(_vm.dob, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.era),expression:"dob.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.dob.era,"AD")},on:{"change":function($event){_vm.$set(_vm.dob, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),(_vm.dob.era=="AD")?_c('tr',[_c('td',[_vm._v("Date of death")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.number),expression:"dod.number"}],attrs:{"type":"text","id":"dod"},domProps:{"value":(_vm.dod.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dod, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_vm._v("AD")])]):_c('tr',[_c('td',[_vm._v("Date of death")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.number),expression:"dod.number"}],attrs:{"type":"text","id":"dod"},domProps:{"value":(_vm.dod.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dod, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.era),expression:"dod.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.dod.era,"BC")},on:{"change":function($event){_vm.$set(_vm.dod, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.era),expression:"dod.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.dod.era,"AD")},on:{"change":function($event){_vm.$set(_vm.dod, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Biography")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.bio),expression:"bio"}],attrs:{"type":"text","id":"bio"},domProps:{"value":(_vm.bio)},on:{"input":function($event){if($event.target.composing){ return; }_vm.bio=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Nationality")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.nation),expression:"nation"}],attrs:{"type":"text","id":"nation"},domProps:{"value":(_vm.nation)},on:{"input":function($event){if($event.target.composing){ return; }_vm.nation=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Primary role")]),_vm._v(" "),_c('td',[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.cat),expression:"cat"}],attrs:{"id":"cat"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.cat=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":"Political"}},[_vm._v("Political")]),_vm._v(" "),_c('option',{attrs:{"value":"Military"}},[_vm._v("Military")]),_vm._v(" "),_c('option',{attrs:{"value":"Philosopher"}},[_vm._v("Philosophical")]),_vm._v(" "),_c('option',{attrs:{"value":"Religious"}},[_vm._v("Religious")])])])])]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.duplicates_visible),expression:"!duplicates_visible"}],on:{"click":function($event){_vm.date_checks(_vm.dateToNumber(_vm.dob), _vm.dateToNumber(_vm.dod), _vm.duplicateCheck)}}},[_vm._v("Submit")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.duplicates_visible),expression:"duplicates_visible"}]},[_c('button',{on:{"click":function($event){_vm.amend()}}},[_vm._v("Amend")]),_vm._v(" "),_c('h2',[_vm._v("Potential duplicates")]),_vm._v(" "),_c('p',[_vm._v("The people below have similar details to the person you are trying to input. Please check that you are not adding a duplicate person")]),_vm._v(" "),_c('table',[_vm._m(0),_vm._v(" "),_vm._l((_vm.duplicates),function(duplicate){return _c('tr',[_c('td',[_vm._v(_vm._s(duplicate.name))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.dob))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.dod))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.bio))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.nation))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.role))])])})],2),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_visible),expression:"!list_visible"}],on:{"click":_vm.submit_person}},[_vm._v("Confirm new person")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_visible),expression:"list_visible"}]},[_c('h2',[_vm._v("Events for "+_vm._s(_vm.person.id))]),_vm._v(" "),_c('p',[_vm._v("Select from existing events during this person's lifetime, or add new events")]),_vm._v(" "),_vm._l((_vm.events),function(event){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.boxes[event.id])?_vm._i(_vm.boxes[event.id],null)>-1:(_vm.boxes[event.id])},on:{"change":function($event){var $$a=_vm.boxes[event.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.boxes, event.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.boxes, event.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.boxes, event.id, $$c)}}}}),_vm._v(_vm._s(event.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[event.id]),expression:"roles[event.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[event.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, event.id, $event.target.value)}}}),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"}],attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":_vm.submit_events}},[_vm._v("Submit")])],2),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.events_updated),expression:"events_updated"}]},[_c('p',[_vm._v("Upload an image, or click to finish")]),_vm._v(" "),_c('form',{ref:"uploadForm",attrs:{"id":"uploadForm","method":"post","encType":"multipart/form-data"}},[_c('input',{attrs:{"id":"picture","type":"file","name":"pic"}}),_vm._v(" "),_c('input',{attrs:{"type":"submit","value":"Upload!"},on:{"click":_vm.changes_made}})]),_vm._v(" "),_c('button',{on:{"click":_vm.finish}},[_vm._v("Finish")])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/person/' + _vm.person.id}},[_vm._v("Return to person")])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.changes_made),expression:"!changes_made"}]},[_c('h1',[_vm._v("Add new person")]),_vm._v(" "),_c('table',[_c('tr',[_c('td',[_vm._v("Name")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.name),expression:"name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.name=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Name")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.name),expression:"name"}],attrs:{"type":"text","id":"name"},domProps:{"value":(_vm.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.name=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),(_vm.dod.era=="BC")?_c('tr',[_c('td',[_vm._v("Date of birth")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.number),expression:"dob.number"}],attrs:{"type":"text","id":"dob"},domProps:{"value":(_vm.dob.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dob, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_vm._v("BC")])]):_c('tr',[_c('td',[_vm._v("Date of birth")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.number),expression:"dob.number"}],attrs:{"type":"text","id":"dob"},domProps:{"value":(_vm.dob.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dob, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.era),expression:"dob.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.dob.era,"BC")},on:{"change":function($event){_vm.$set(_vm.dob, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dob.era),expression:"dob.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.dob.era,"AD")},on:{"change":function($event){_vm.$set(_vm.dob, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),(_vm.dob.era=="AD")?_c('tr',[_c('td',[_vm._v("Date of death")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.number),expression:"dod.number"}],attrs:{"type":"text","id":"dod"},domProps:{"value":(_vm.dod.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dod, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_vm._v("AD")])]):_c('tr',[_c('td',[_vm._v("Date of death")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.number),expression:"dod.number"}],attrs:{"type":"text","id":"dod"},domProps:{"value":(_vm.dod.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dod, "number", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.era),expression:"dod.era"}],attrs:{"type":"radio","value":"BC","id":"BC"},domProps:{"checked":_vm._q(_vm.dod.era,"BC")},on:{"change":function($event){_vm.$set(_vm.dod, "era", "BC")}}}),_vm._v("BC"),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dod.era),expression:"dod.era"}],attrs:{"type":"radio","value":"AD","id":"AD"},domProps:{"checked":_vm._q(_vm.dod.era,"AD")},on:{"change":function($event){_vm.$set(_vm.dod, "era", "AD")}}}),_vm._v("AD")])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Biography")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.bio),expression:"bio"}],attrs:{"type":"text","id":"bio"},domProps:{"value":(_vm.bio)},on:{"input":function($event){if($event.target.composing){ return; }_vm.bio=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Nationality")]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.nation),expression:"nation"}],attrs:{"type":"text","id":"nation"},domProps:{"value":(_vm.nation)},on:{"input":function($event){if($event.target.composing){ return; }_vm.nation=$event.target.value}}})]),_vm._v(" "),_c('td')]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("Primary role")]),_vm._v(" "),_c('td',[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.cat),expression:"cat"}],attrs:{"id":"cat"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.cat=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":"Political"}},[_vm._v("Political")]),_vm._v(" "),_c('option',{attrs:{"value":"Military"}},[_vm._v("Military")]),_vm._v(" "),_c('option',{attrs:{"value":"Philosopher"}},[_vm._v("Philosophical")]),_vm._v(" "),_c('option',{attrs:{"value":"Religious"}},[_vm._v("Religious")])])])])]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.duplicates_visible),expression:"!duplicates_visible"}],on:{"click":function($event){_vm.date_checks(_vm.dateToNumber(_vm.dob), _vm.dateToNumber(_vm.dod), _vm.duplicateCheck)}}},[_vm._v("Submit")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.duplicates_visible),expression:"duplicates_visible"}]},[_c('button',{on:{"click":function($event){_vm.amend()}}},[_vm._v("Amend")]),_vm._v(" "),_c('h2',[_vm._v("Potential duplicates")]),_vm._v(" "),_c('p',[_vm._v("The people below have similar details to the person you are trying to input. Please check that you are not adding a duplicate person")]),_vm._v(" "),_c('table',[_vm._m(0),_vm._v(" "),_vm._l((_vm.duplicates),function(duplicate){return _c('tr',[_c('td',[_vm._v(_vm._s(duplicate.name))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.dob))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.dod))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.bio))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.nation))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(duplicate.role))])])})],2),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.list_visible),expression:"!list_visible"}],on:{"click":_vm.submit_person}},[_vm._v("Confirm new person")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.list_visible),expression:"list_visible"}]},[_c('h2',[_vm._v("Events for "+_vm._s(_vm.person.id))]),_vm._v(" "),_c('p',[_vm._v("Select from existing events during this person's lifetime, or add new events")]),_vm._v(" "),_vm._l((_vm.events),function(event){return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.boxes[event.id])?_vm._i(_vm.boxes[event.id],null)>-1:(_vm.boxes[event.id])},on:{"change":function($event){var $$a=_vm.boxes[event.id],$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.boxes, event.id, $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.boxes, event.id, $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.boxes, event.id, $$c)}}}}),_vm._v(_vm._s(event.name)),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"},{name:"model",rawName:"v-model",value:(_vm.roles[event.id]),expression:"roles[event.id]"}],attrs:{"type":"text","id":"role"},domProps:{"value":(_vm.roles[event.id])},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.roles, event.id, $event.target.value)}}}),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(_vm.boxes[event.id]),expression:"boxes[event.id]"}],attrs:{"for":"role"}},[_vm._v("Role")])])}),_vm._v(" "),_c('button',{on:{"click":_vm.submit_events}},[_vm._v("Submit")])],2),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.events_updated),expression:"events_updated"}]},[_c('p',[_vm._v("Upload an image, or click to finish")]),_vm._v(" "),_c('form',{ref:"uploadForm",attrs:{"id":"uploadForm","method":"post","encType":"multipart/form-data"}},[_c('input',{attrs:{"id":"picture","type":"file","name":"pic"}}),_vm._v(" "),_c('input',{attrs:{"type":"submit","value":"Upload!"},on:{"click":_vm.changes_made}})]),_vm._v(" "),_c('button',{on:{"click":_vm.finish}},[_vm._v("Finish")])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.changes_made),expression:"changes_made"}]},[_c('h1',[_vm._v("Changes made!")]),_vm._v(" "),_c('p',[_c('a',{attrs:{"href":'/#/person/' + _vm.person.id}},[_vm._v("Return to person")])])])])}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('th',[_vm._v("Name")]),_vm._v(" "),_c('th',[_vm._v("Date of birth")]),_vm._v(" "),_c('th',[_vm._v("Date of death")]),_vm._v(" "),_c('th',[_vm._v("Biography")]),_vm._v(" "),_c('th',[_vm._v("Nation")]),_vm._v(" "),_c('th',[_vm._v("Principal role")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -9418,25 +9424,28 @@ module.exports = {
 	methods: {
 		//gets information for event and associated people
 		on_created: function(option){
-		if (option == 'true'){
-				console.log('show button eventpage gone')
-				this.editable = true;
-				this.$emit('login');
+			if (option == 'true'){
+					console.log('show button eventpage gone')
+					this.editable = true;
+					this.$emit('login');
+					
+			}	
+			this.$http.get('/api/event/' + this.id)
+			.then(function (data) {
+				console.log(data.body);
+				this.event = data.body[0];
+				this.event.date = this.numberToDate(this.event.date);
+				console.log('this is event.id: ' + this.event.id)
 				
-		}	
-		this.$http.get('/api/event/' + this.id)
-		.then(function (data) {
-			console.log(data.body);
-			this.event = data.body[0];
-			this.event.date = this.numberToDate(this.event.date);
-			console.log('this is event.id: ' + this.event.id)
-			
-			this.$http.get('/api/people_events/?id=' + this.id + '&table=people')
-			.then(function(data) {
-				this.people = data.body;
-				console.log(data.body)
+				this.$http.get('/api/people_events/?id=' + this.id + '&table=people')
+				.then(function(data) {
+					this.people = data.body;
+					console.log(data.body)
 				});
-			});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 		},
 
 		//first removes events associated people then removes event
@@ -9451,6 +9460,9 @@ module.exports = {
 						console.log('event deleted' + this.deleted_data)
 						this.event_deleted = true;
 					})
+				})
+				.catch(function(error){
+					alert(error.body)
 				})
 			};
 		},	
@@ -9530,7 +9542,10 @@ module.exports = {
 				this.events.forEach(function(event){
 					event.date = this.numberToDate(event.date);
 				});
-			});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 
 		},
 	}
@@ -9900,7 +9915,10 @@ module.exports = {
 					person.dob = this.numberToDate(person.dob);
 					person.dod = this.numberToDate(person.dod);
 				});
-			});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 
 		},
 	}
@@ -10010,9 +10028,12 @@ module.exports = {
 					numberToDate = this.numberToDate;
 					this.person_event.forEach(function(event){
 					event.date = this.numberToDate(event.date);
-						})
-					});
+					})
 				});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 		},
 
 		//first removes person's associated events then removes person, including their image
@@ -10027,7 +10048,10 @@ module.exports = {
 						console.log('person deleted' + this.deleted_data)
 						this.person_deleted = true;
 					});
-				});
+				})
+				.catch(function(error){
+					alert(error.body)
+				})
 			};
 		}
 	}

@@ -83,9 +83,12 @@ module.exports = {
 					numberToDate = this.numberToDate;
 					this.person_event.forEach(function(event){
 					event.date = this.numberToDate(event.date);
-						})
-					});
+					})
 				});
+			})
+			.catch(function(error){
+				alert(error.body)
+			})
 		},
 
 		//first removes person's associated events then removes person, including their image
@@ -100,7 +103,10 @@ module.exports = {
 						console.log('person deleted' + this.deleted_data)
 						this.person_deleted = true;
 					});
-				});
+				})
+				.catch(function(error){
+					alert(error.body)
+				})
 			};
 		}
 	}

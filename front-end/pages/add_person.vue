@@ -10,6 +10,11 @@
 					<td><input type='text' id='name' v-model='name' ></input></td>
 					<td></td>
 				</tr>
+				<tr>
+					<td>Name</td>
+					<td><input type='text' id='name' v-model='name' ></input></td>
+					<td></td>
+				</tr>
 				<tr v-if='dod.era=="BC"'>
 					<td>Date of birth</td>
 					<td><input type='text' id='dob' v-model='dob.number'></input></td>
@@ -52,7 +57,7 @@
 					</select></td>
 				</tr>
 			</table>
-			
+		
 				<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!duplicates_visible'>Submit</button>
 			
 			<div v-show='duplicates_visible'>
@@ -115,13 +120,14 @@ module.exports = {
 	
 	data: function () {
 		return{
+			
 			events: 'placeholder',
-			person: 'placeholder',
+			person: '',
+			name: 'Tamerlane',
 			list_visible: false,
 			duplicates_visible: false,
 			dob: {era: 'BC'},
 			dod: {era: 'AD'},
-			name: 'Tamerlane',
 			id_list: [],
 		    boxes: {},
 			roles: {},
@@ -149,10 +155,10 @@ module.exports = {
 		//redirects user to login if not logged in
 		check_login: function(logged_in){
 			if (logged_in == 'true'){
-				console.log('upload should have changed')
 				this.$emit('login');
 				
 				return
+				
 			}	
 			else {
 				this.$router.push('/login');
