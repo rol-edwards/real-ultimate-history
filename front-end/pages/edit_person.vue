@@ -6,49 +6,54 @@
 				<img v-bind:src="'../images/' + id + '.jpg'">
 			</figure>
 			<div v-show='!event_list_visible'>
-				<div>
-					<input type='text' id='name' v-model='name' ></input>
-					<label for='name'>Name</label>
-				</div>
-				<div>
-					<label for='dob'>Date of birth</label>
-					<input type='text' id='dob' v-model='dob.number' ></input>
-					<div>
-						<input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
-						
-						<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input>
-					</div>				
-				</div>
-				<div v-if="dob.era=='AD'">
-					<label for='dod'>Date of death (AD)</label>
-					<input type='text' id='dod' v-model='dod.number'></input>
-				
-				</div>
-				<div v-else>
-					<label for='dod'>Date of death </label>
-					<input type='text' id='dod' v-model='dod.number'></input>
-					<div>
-						<input type='radio' v-model='dod.era' value='BC' id='BC'>BC</input>
-						<input type='radio' v-model='dod.era' value='AD' id='AD'>AD</input>
-					</div>
-				</div>
-				<div>
-					<input type='text' id='bio' v-model='bio' ></input>
-					<label for='bio'>Biography</label>
-				</div>
-				<div>
-					<input type='text' id='nation' v-model='nation' ></input>
-					<label for='nation'>Nationality</label>
-				</div>
-				<div>
-					<select id='cat' v-model='role' >
-						<option value='Political'>Political</option>
-						<option value='Military'>Military</option>
-						<option value='Philosopher'>Philosophical</option>
-						<option value='Religious'>Religious</option>
-					</select>
-					<label for='cat'>Primary role</label>
-				</div>
+				<table>
+					<tr>
+						<td>Name</td>
+						<td><input type='text' id='name' v-model='name' ></input></td>
+						<td></td>
+					</tr>
+					<tr v-if='dod.era=="BC"'>
+						<td>Date of birth</td>
+						<td><input type='text' id='dob' v-model='dob.number'></input></td>
+						<td>BC</td>
+					</tr>
+					<tr v-else>
+						<td>Date of birth</td>
+						<td><input type='text' id='dob' v-model='dob.number'></input></td>
+						<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
+							<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
+					</tr>
+					<tr v-if='dob.era=="AD"'>
+						<td>Date of death</td>
+						<td><input type='text' id='dod' v-model='dod.number'></input></td>
+						<td>AD</td>
+					</tr>
+					<tr v-else>
+						<td>Date of death</td>
+						<td><input type='text' id='dod' v-model='dod.number'></input></td>
+						<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
+							<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
+					</tr>
+					<tr>
+						<td>Biography</td>
+						<td><input type='text' id='bio' v-model='bio' ></input></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Nationality</td>
+						<td><input type='text' id='nation' v-model='nation' ></input></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Primary role</td>
+						<td><select id='cat' v-model='cat' >
+							<option value='Political'>Political</option>
+							<option value='Military'>Military</option>
+							<option value='Philosopher'>Philosophical</option>
+							<option value='Religious'>Religious</option>
+						</select></td>
+					</tr>
+				</table>
 				<div>
 					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), update_person)' v-show='!event_list_visible'>Submit</button>
 					<button v-show='event_list_visible' v-on:click='amend'>Amend</button>
