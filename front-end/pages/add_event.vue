@@ -165,8 +165,8 @@
 						ticked_ids.push(Number(box));
 					};
 				};
-				id = this.id
-				roles = this.roles
+				id = this.id;
+				roles = this.roles;
 				$http = this.$http;
 				event = this.event;
 				count = 0;
@@ -188,8 +188,6 @@
 					this.people_updated = true;
 					console.log('people added');
 				}	
-				
-
 			},
 
 			finish: function(){

@@ -40,8 +40,8 @@
 			<input v-model='search_term' v-on:input='search(search_option)' id='search'>
 			<label for='search'>Search</label>
 			
-			<div v-if='!input_empty'>
-				<div v-for='r in search_results'>
+			<div v-if='!input_empty' class='dropdown-content'>
+				<div v-for='r in search_results' >
 					<p><a v-bind:href="'/#/' + search_option + '/' + r.id">{{r.name}}</a></p>
 				</div>
 			</div>
@@ -73,7 +73,7 @@ module.exports = {
 			search_term: '',
 			search_option: 'person',
 			spotlight: '{}',
-			input_empty: false,
+			input_empty: true,
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
@@ -128,12 +128,13 @@ module.exports = {
 		//The conditional makes sure autocomplete suggestions for first character disappear if it is deleted.
 		search: function(search_option){
 		console.log('search function working for ' + this.search_term);
+			//document.getElementById("dropdown").classList.add("show")
 			if (this.search_term == ''){
 				this.input_empty = true;
 			}
 			else {
 				this.input_empty = false;
-				
+				//document.getElementById("dropdown").classList.toggle("show")
 				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
 				.then(function(data){
 					this.search_results = data.body;

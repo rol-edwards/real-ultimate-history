@@ -21,6 +21,25 @@
 			<span>Where history goes to die</span>
 			<span v-if='!loggedin'><a v-bind:href="'/#/login'">Log in</a></span>
 			<span v-else><button v-on:click='logout'>Logout</button></span>
+			<span>
+					<label for='search_option'>Search for:</label>
+			</span>
+			<span>
+					<select id='search_option' v-model='search_option'>
+						<option value='person'>People</option>
+						<option value='event'>Events</option>
+					</select>
+				
+			</span>
+			<span>
+				<input v-model='search_term' v-on:input='search(search_option)' id='search'>
+			
+				<div v-if='!input_empty' class='dropdown-content'>
+					<div v-for='r in search_results' >
+						<p><a v-bind:href="'/#/' + search_option + '/' + r.id">{{r.name}}</a></p>
+					</div>
+				</div>
+			</span>
 			
 		</div>
 		<div class='sidenav'>
@@ -28,9 +47,7 @@
 				<li><a v-bind:href="'/#/'">Home</a></li>
 				<li><a v-bind:href="'/#/people_index'">People Index</a></li>
 				<li ><a v-bind:href="'/#/events_index'">Events Index</a></li>
-				<li><a >Historical nations</a></li>
-				<li>Historical roles</li>
-				<li>Useful links</li>	
+					
 			</ul>
 		</div> 
 		

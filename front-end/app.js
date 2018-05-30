@@ -38,7 +38,11 @@ const app = new Vue ({
 		people: 'Placeholder',
 		loggedin: false,
 		chosen_color: 'red',
-		name: ''
+		name: '',
+		search_results: 'placeholder',
+		search_term: '',
+		search_option: 'person',
+		input_empty: true,
 	},
 	
 	methods: {
@@ -60,7 +64,27 @@ const app = new Vue ({
 				this.loggedin = false;
 
 			})
-		}
+		},
+
+		search: function(search_option){
+		console.log('search function working for ' + this.search_term);
+			//document.getElementById("dropdown").classList.add("show")
+			if (this.search_term == ''){
+				this.input_empty = true;
+			}
+			else {
+				this.input_empty = false;
+				//document.getElementById("dropdown").classList.toggle("show")
+				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
+				.then(function(data){
+					this.search_results = data.body;
+					console.log(data.body);
+				})
+				.catch(function(error){
+					alert(error.body)
+				});
+			}
+		},
 	},
 
 	components: {
