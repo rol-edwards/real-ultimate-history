@@ -65,7 +65,8 @@ const app = new Vue ({
 
 			})
 		},
-
+		//Searches for people and events, autocompleting and presenting in a list with links.
+		//The conditional makes sure autocomplete suggestions for first character disappear if it is deleted.
 		search: function(search_option){
 		console.log('search function working for ' + this.search_term);
 			//document.getElementById("dropdown").classList.add("show")

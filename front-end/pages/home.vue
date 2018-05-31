@@ -3,7 +3,7 @@
 		<h1>Are YOU ready to get PUMPED???</h1>
 		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span > <em>real, ultimate history</em></span>.</p>
 		<div>
-			<button v-on:click='create_test_person'>Create test guy</button>
+			<button v-on:click='create_test_person'>Create test guy(development only)</button>
 			<div style='width: 50%; float: left;'>
 				<h2>People</h2>
 				<p v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></p>
@@ -29,23 +29,6 @@
 			</div>
 		</div>
 		<br>
-		<div style='width: 100%; float: left'>
-			<label for='search_option'>Search for:</label>
-			<select id='search_option' v-model='search_option'>
-				<option value='person'>People</option>
-				<option value='event'>Events</option>
-			</select>
-		
-			<h2>Search</h2>
-			<input v-model='search_term' v-on:input='search(search_option)' id='search'>
-			<label for='search'>Search</label>
-			
-			<div v-if='!input_empty' class='dropdown-content'>
-				<div v-for='r in search_results' >
-					<p><a v-bind:href="'/#/' + search_option + '/' + r.id">{{r.name}}</a></p>
-				</div>
-			</div>
-		</div>
 		<div style='margin-left: 50px; width: 100%; float: left'>
 					
 			<h2>Events</h2>
@@ -69,11 +52,7 @@ module.exports = {
 		return{
 			people: 'placeholder',
 			events: 'placeholder',
-			search_results: 'placeholder',
-			search_term: '',
-			search_option: 'person',
 			spotlight: '{}',
-			input_empty: true,
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
@@ -124,33 +103,10 @@ module.exports = {
 			});
 		},
 
-		//Searches for people and events, autocompleting and presenting in a list with links.
-		//The conditional makes sure autocomplete suggestions for first character disappear if it is deleted.
-		search: function(search_option){
-		console.log('search function working for ' + this.search_term);
-			//document.getElementById("dropdown").classList.add("show")
-			if (this.search_term == ''){
-				this.input_empty = true;
-			}
-			else {
-				this.input_empty = false;
-				//document.getElementById("dropdown").classList.toggle("show")
-				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
-				.then(function(data){
-					this.search_results = data.body;
-					console.log(data.body);
-				})
-				.catch(function(error){
-					alert(error.body)
-				});
-			}
-		},
-
 		//development only, quick way to create a test person.
 		create_test_person: function(){
 			this.$http.post('api/person', {name: 'testguy', dob: -20000, dod: 100})
 			.then(function(data){
-				console.log('test_guy created' + data)
 			})
 		}
 	}
