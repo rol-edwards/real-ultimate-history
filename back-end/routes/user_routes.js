@@ -8,14 +8,16 @@ var express = require('express'),
 
 router.route('/login')
 .post(bodyParser.json(), function(req, res, next){
-	console.log('login router reache');
+	console.log('login router reached');
 
 	user.findByUsername(req.body.username, function(data){
 		if (!data) {
 			res.send('username not found');
 		}
 		else { 
-			userData = data[0];
+			var userData = {};
+			userData.password = data[0].password; 
+			userData.loginAttempts = data[0].loginAttempts;
 			user.authenticate(req.body.password, userData, function(data){
 				if (!data.pw) {
 					res.send('Password incorrect. You have ' + data.loginAttempts + ' attempts left');
@@ -46,6 +48,7 @@ router.route('/logout')
 router.route('/user/new')
 .post(bodyParser.json(), function(req, res, next){
 	console.log('new user: router reached')
+	
 	user.isUsernameTaken(req.body.username, function(data){
 		console.log('this is the data: ' + data.length)
 		if (data.length == 0){

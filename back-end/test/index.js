@@ -7,7 +7,8 @@ var path = require('path'),
 	person = require(path.join(__dirname, '../models/person_model.js')),
 	assert = require('chai').assert;
 
-	var newUser = {
+
+	var newPerson = {
 			name: 'China_guy',
 			dob: 101,
 			dod: 200,
@@ -16,7 +17,7 @@ var path = require('path'),
 			role: 'philosopher'
 		}
 
-		var otherUser = {
+		var otherPerson = {
 			name: 'Euro_guy',
 			dob: 50,
 			dod: 150,
@@ -34,15 +35,15 @@ describe('the people routes', function(){
 	
 	//create user, login and out before/after each
 
-		test_helper.insertPerson(newUser);
-		test_helper.insertPerson(otherUser);
+		test_helper.insertPerson(newPerson);
+		test_helper.insertPerson(otherPerson);
 		done();
 
 	});	
 
 	/*after(function(done){
-		test_helper.deletePerson(newUser);
-		test_helper.deletePerson(otherUser);
+		test_helper.deletePerson(newPerson);
+		test_helper.deletePerson(otherPerson);
 		done();
 	})*/
 
@@ -59,7 +60,6 @@ describe('the people routes', function(){
 			request(app)
 			.get('/api/people/?date=100')
 			.end(function(err, res){
-				console.log(res.body)
 				assert.isBelow(res.body[0].dob, 100)
 				done();
 			})
@@ -90,29 +90,6 @@ describe('the people routes', function(){
 			
 		})
 
-	})
-	
-	describe('POSTing to people', function(){
-		it('should create a new record and return the id', function(done){
-			request(app)
-			.post('/api/person')
-			.send({name: 'test_gal', dob: 30, dod: 100, bio: 'helped with tests', nation: 'SQLand', role: 'political'})
-			.end(function(err, res){
-				console.log(res.text)
-				//assert.equal(res.body.length, 1);
-				dbConn.query('select * from people where name = "test_gal"').then(function(data){
-					console.log(data)
-					assert.equal(data.length, 1)
-					done();
-				})
-				.catch(function(error){
-					return done(error);
-				})
-				
-				
-			})
-		})
-		
 	})
 	
 })
