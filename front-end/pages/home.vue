@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<h1>Are YOU ready to get PUMPED???</h1>
-		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span > <em>real, ultimate history</em></span>.</p>
+		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span class='hyperbole'> <em>real, ultimate history</em></span>.</p>
 		<div>
 			<button v-on:click='create_test_person'>Create test guy(development only)</button>
 			<div style='width: 50%; float: left;'>
 				<h2>People</h2>
 				<p v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></p>
-				<p>Find out information on <span><em>important historical figures</em></span>, such as:</p>
+				<p>Find out information on <span class='hyperbole'><em>important historical figures</em></span>, such as:</p>
 				<div v-for='person in people'>
 					<a v-bind:href="'/#/person/' + person.id">
 					<figure style=' float: left; height: 150px; width: 75px'>

@@ -66,7 +66,8 @@ const app = new Vue ({
 
 			})
 		},
-
+		//Searches for people and events, autocompleting and presenting in a list with links.
+		//The conditional makes sure autocomplete suggestions for first character disappear if it is deleted.
 		search: function(search_option){
 		console.log('search function working for ' + this.search_term);
 			//document.getElementById("dropdown").classList.add("show")
@@ -9639,23 +9640,6 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 module.exports = {
@@ -9664,11 +9648,7 @@ module.exports = {
 		return{
 			people: 'placeholder',
 			events: 'placeholder',
-			search_results: 'placeholder',
-			search_term: '',
-			search_option: 'person',
 			spotlight: '{}',
-			input_empty: true,
 			editable: false,
 			//imported modules:
 			authenticate: require('../authenticate.js'),
@@ -9719,33 +9699,10 @@ module.exports = {
 			});
 		},
 
-		//Searches for people and events, autocompleting and presenting in a list with links.
-		//The conditional makes sure autocomplete suggestions for first character disappear if it is deleted.
-		search: function(search_option){
-		console.log('search function working for ' + this.search_term);
-			//document.getElementById("dropdown").classList.add("show")
-			if (this.search_term == ''){
-				this.input_empty = true;
-			}
-			else {
-				this.input_empty = false;
-				//document.getElementById("dropdown").classList.toggle("show")
-				this.$http.get('/api/' + this.search_option + '_byName/' + this.search_term)
-				.then(function(data){
-					this.search_results = data.body;
-					console.log(data.body);
-				})
-				.catch(function(error){
-					alert(error.body)
-				});
-			}
-		},
-
 		//development only, quick way to create a test person.
 		create_test_person: function(){
 			this.$http.post('api/person', {name: 'testguy', dob: -20000, dod: 100})
 			.then(function(data){
-				console.log('test_guy created' + data)
 			})
 		}
 	}
@@ -9755,8 +9712,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h1',[_vm._v("Are YOU ready to get PUMPED???")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',[_c('button',{on:{"click":_vm.create_test_person}},[_vm._v("Create test guy")]),_vm._v(" "),_c('div',{staticStyle:{"width":"50%","float":"left"}},[_c('h2',[_vm._v("People")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.editable),expression:"editable"}]},[_c('a',{attrs:{"href":'/#/add_person/'}},[_vm._v("Add person")])]),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('a',{attrs:{"href":'/#/person/' + person.id}},[_c('figure',{staticStyle:{"float":"left","height":"150px","width":"75px"}},[_c('img',{staticStyle:{"height":"75%","width":"100%"},attrs:{"src":'../images/' + person.id + '.jpg'}}),_vm._v(" "),_c('caption',{staticStyle:{"height":"25%","width":"75px","font-size":"10px","text-align":"center"}},[_vm._v(_vm._s(person.name)+","+_vm._s(person.dob)+"-"+_vm._s(person.dod))])])])])})],2),_vm._v(" "),_c('div',{staticStyle:{"width":"50%","float":"left"}},[_c('a',{attrs:{"href":'/#/person/' + _vm.spotlight.id}},[_c('h2',[_vm._v("Spotlight")]),_vm._v(" "),_c('p',{staticStyle:{"font-size":"2em"}},[_vm._v(_vm._s(_vm.spotlight.name))]),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.spotlight.dob)+" - "+_vm._s(_vm.spotlight.dod))]),_vm._v(" "),_c('p',{staticStyle:{"font-size":"2em"}},[_vm._v(_vm._s(_vm.spotlight.bio))]),_vm._v(" "),_c('img',{attrs:{"src":'../images/' + _vm.spotlight.id + '.jpg'}})])])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticStyle:{"width":"100%","float":"left"}},[_c('label',{attrs:{"for":"search_option"}},[_vm._v("Search for:")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.search_option),expression:"search_option"}],attrs:{"id":"search_option"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.search_option=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":"person"}},[_vm._v("People")]),_vm._v(" "),_c('option',{attrs:{"value":"event"}},[_vm._v("Events")])]),_vm._v(" "),_c('h2',[_vm._v("Search")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.search_term),expression:"search_term"}],attrs:{"id":"search"},domProps:{"value":(_vm.search_term)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.search_term=$event.target.value},function($event){_vm.search(_vm.search_option)}]}}),_vm._v(" "),_c('label',{attrs:{"for":"search"}},[_vm._v("Search")]),_vm._v(" "),(!_vm.input_empty)?_c('div',{staticClass:"dropdown-content"},_vm._l((_vm.search_results),function(r){return _c('div',[_c('p',[_c('a',{attrs:{"href":'/#/' + _vm.search_option + '/' + r.id}},[_vm._v(_vm._s(r.name))])])])})):_vm._e()]),_vm._v(" "),_c('div',{staticStyle:{"margin-left":"50px","width":"100%","float":"left"}},[_c('h2',[_vm._v("Events")]),_vm._v(" "),_c('table',_vm._l((_vm.events),function(event){return _c('tr',[_c('td',[_c('a',{attrs:{"href":'/#/event/' + event.id}},[_vm._v(_vm._s(event.name))])]),_vm._v(" "),_c('td',[_vm._v(_vm._s(event.date))])])})),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.editable),expression:"editable"}]},[_c('a',{attrs:{"href":'/#/add_event/'}},[_vm._v("Add event")])])])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call "),_c('span',[_c('em',[_vm._v("real, ultimate history")])]),_vm._v(".")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("Find out information on "),_c('span',[_c('em',[_vm._v("important historical figures")])]),_vm._v(", such as:")])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h1',[_vm._v("Are YOU ready to get PUMPED???")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',[_c('button',{on:{"click":_vm.create_test_person}},[_vm._v("Create test guy(development only)")]),_vm._v(" "),_c('div',{staticStyle:{"width":"50%","float":"left"}},[_c('h2',[_vm._v("People")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.editable),expression:"editable"}]},[_c('a',{attrs:{"href":'/#/add_person/'}},[_vm._v("Add person")])]),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._l((_vm.people),function(person){return _c('div',[_c('a',{attrs:{"href":'/#/person/' + person.id}},[_c('figure',{staticStyle:{"float":"left","height":"150px","width":"75px"}},[_c('img',{staticStyle:{"height":"75%","width":"100%"},attrs:{"src":'../images/' + person.id + '.jpg'}}),_vm._v(" "),_c('caption',{staticStyle:{"height":"25%","width":"75px","font-size":"10px","text-align":"center"}},[_vm._v(_vm._s(person.name)+","+_vm._s(person.dob)+"-"+_vm._s(person.dod))])])])])})],2),_vm._v(" "),_c('div',{staticStyle:{"width":"50%","float":"left"}},[_c('a',{attrs:{"href":'/#/person/' + _vm.spotlight.id}},[_c('h2',[_vm._v("Spotlight")]),_vm._v(" "),_c('p',{staticStyle:{"font-size":"2em"}},[_vm._v(_vm._s(_vm.spotlight.name))]),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.spotlight.dob)+" - "+_vm._s(_vm.spotlight.dod))]),_vm._v(" "),_c('p',{staticStyle:{"font-size":"2em"}},[_vm._v(_vm._s(_vm.spotlight.bio))]),_vm._v(" "),_c('img',{attrs:{"src":'../images/' + _vm.spotlight.id + '.jpg'}})])])]),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticStyle:{"margin-left":"50px","width":"100%","float":"left"}},[_c('h2',[_vm._v("Events")]),_vm._v(" "),_c('table',_vm._l((_vm.events),function(event){return _c('tr',[_c('td',[_c('a',{attrs:{"href":'/#/event/' + event.id}},[_vm._v(_vm._s(event.name))])]),_vm._v(" "),_c('td',[_vm._v(_vm._s(event.date))])])})),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.editable),expression:"editable"}]},[_c('a',{attrs:{"href":'/#/add_event/'}},[_vm._v("Add event")])])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call "),_c('span',{staticClass:"hyperbole"},[_c('em',[_vm._v("real, ultimate history")])]),_vm._v(".")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("Find out information on "),_c('span',{staticClass:"hyperbole"},[_c('em',[_vm._v("important historical figures")])]),_vm._v(", such as:")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
