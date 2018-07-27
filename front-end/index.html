@@ -16,21 +16,21 @@
 		</div>
 		<div class='title'>
 			Real, Ultimate History
+				
 		</div>
 		<div class='ruhtop'>
-			<span class='hyperbole'>Where history goes to die</span>
-			<span v-if='!loggedin'><a v-bind:href="'/#/login'">Log in</a></span>
-			<span v-else><button v-on:click='logout'>Logout</button></span>
-			<span>
+			<span class='hyperbole'>Where history goes to die...</span>
+		
+			<span class='search'>
 					<label for='search_option'>Search for:</label>
-			</span>
-			<span>
+			<!--</span>
+			<span>-->
 					<select id='search_option' v-model='search_option'>
 						<option value='person'>People</option>
 						<option value='event'>Events</option>
 					</select>
-			</span>
-			<span>
+			<!--</span>
+			<span>-->
 				<input v-model='search_term' v-on:input='search(search_option)' id='search'>
 			
 				<div v-if='!input_empty' class='dropdown-content'>
@@ -39,6 +39,13 @@
 					</div>
 				</div>
 			</span>
+			<!--<span v-if='!loggedin' ><a v-bind:href="'/#/login'">Log in</a></span>
+			<span v-else><button v-on:click='logout' class='login'>Logout</button></span>-->
+			<span class='login'>
+				<button v-if='!loggedin' ><a v-bind:href="'/#/login'">Log in</a></button>
+				<button v-else v-on:click='logout' class='login'>Logout</button>
+			</span>
+
 			
 		</div>
 		<div class='sidenav'>

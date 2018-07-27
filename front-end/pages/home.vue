@@ -3,7 +3,7 @@
 		<h1>Are YOU ready to get PUMPED???</h1>
 		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span class='hyperbole'> <em>real, ultimate history</em></span>.</p>
 		<div>
-			<button v-on:click='create_test_person'>Create test guy(development only)</button>
+			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
 			<div style='width: 50%; float: left;'>
 				<h2>People</h2>
 				<p v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></p>
@@ -17,14 +17,15 @@
 					</a>
 				</div>
 			</div>
-			<div style='width: 50%; float: left;'>
+			<div style='width: 50%; float: left;' class='spotlight'>
+				<h2>Spotlight</h2>
 				<a v-bind:href="'/#/person/' + spotlight.id">
-					<h2>Spotlight</h2>
-					<p style='font-size: 2em;'>{{spotlight.name}}</p>
-					<p>{{spotlight.dob}} - {{spotlight.dod}}</p>
 					
-					<p style='font-size: 2em;'>{{spotlight.bio}}</p>
+					<h3>{{spotlight.name}}</h3>
+					<p>{{spotlight.dob}} - {{spotlight.dod}}</p>
 					<img v-bind:src="'../images/' + spotlight.id + '.jpg'">
+					<p style='font-size: 1em;'>{{spotlight.bio}}</p>
+					
 				</a>
 			</div>
 		</div>
