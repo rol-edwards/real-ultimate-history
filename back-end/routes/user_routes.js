@@ -16,6 +16,7 @@ router.route('/login')
 		}
 		else { 
 			var userData = {};
+			userData.id = data[0].id;
 			userData.password = data[0].password; 
 			userData.loginAttempts = data[0].loginAttempts;
 			user.authenticate(req.body.password, userData, function(data){
@@ -23,12 +24,9 @@ router.route('/login')
 					res.send('Password incorrect. You have ' + data.loginAttempts + ' attempts left');
 				}
 				else{
-					console.log('user_routes: ready to do stuff with sessions!')
 					req.session.regenerate(function(){
 						req.session.userId = userData.id;
 						console.log('session id is: ' + req.session.userId);
-						//res.json(data); //this is pointless except to make it work; does this give the front-end access to too much
-						//info? Should I add a model function for deleting this?
 						res.send('logged in');
 					})
 				}

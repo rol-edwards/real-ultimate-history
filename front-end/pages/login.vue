@@ -61,7 +61,7 @@
 				.then(function(data){
 					console.log('data is: ' + data.body)
 					if (data.body == 'logged in') {
-						//this.$emit('login')
+						this.$emit('login')
 						this.$router.push('/')
 					}
 					else alert(data.body)
