@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<td>Biography</td>
-						<td><input type='text' id='bio' v-model='bio' ></input></td>
+						<td><textarea id='bio' v-model='bio' ></textarea></td>
 						<td></td>
 					</tr>
 					<tr>

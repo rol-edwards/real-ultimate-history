@@ -23,7 +23,7 @@
 				</tr>
 				<tr>
 					<td>Description</td>
-					<td><input type='text' id='description' v-model='description' ></input></td>
+					<td><textarea> id='description' v-model='description' ></textarea></td>
 					<td></td>
 				</tr>
 			</table>
