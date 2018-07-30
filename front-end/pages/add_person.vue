@@ -10,11 +10,6 @@
 					<td><input type='text' id='name' v-model='name' ></input></td>
 					<td></td>
 				</tr>
-				<tr>
-					<td>Name</td>
-					<td><input type='text' id='name' v-model='name' ></input></td>
-					<td></td>
-				</tr>
 				<tr v-if='dod.era=="BC"'>
 					<td>Date of birth</td>
 					<td><input type='text' id='dob' v-model='dob.number'></input></td>
