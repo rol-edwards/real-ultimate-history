@@ -28,12 +28,13 @@ tr:nth-child(even) {
 }
 
 a {
+	text-decoration: none;
 
 }
 
-a:hover {
-	color: blue
-}
+
+
+
 
 img {
 	padding: 10px;
@@ -116,12 +117,12 @@ li {
 	top: 200px;
 	bottom: 0px;
 	padding-right: 10px;
-	border-right: 1px solid grey;
+	/*border-right: 1px solid grey;*/
 	background-color: #f1f1f1;
 }
 
 .sidenav li {
-	padding-top:45px;
+	padding-top:75px;
 	width:120px;
 }
 
@@ -180,4 +181,10 @@ li {
 
 .spotlight a {
 	text-decoration: none;
+	color: black;
+}
+
+.duplicates td, th {
+	padding-right: 50px;
+	text-align: left;
 }

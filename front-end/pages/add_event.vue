@@ -156,7 +156,7 @@
 					});
 				});
 			},	
-		
+			
 			submit_people: function(){
 			
 				var ticked_ids = [];

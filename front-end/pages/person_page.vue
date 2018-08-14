@@ -27,7 +27,7 @@
 					<td>{{event.role}}</td>
 				</tr>
 			</table>
-			<p v-show='editable'><a v-bind:href='"/#/edit_person/" + id'>Edit</a></p>
+			<button v-show='editable'><a v-bind:href='"/#/edit_person/" + id'>Edit</a></button>
 			<p v-show='editable'><button v-on:click='delete_person'>Delete</button></p>
 		</div>
 		<div v-show='person_deleted'>

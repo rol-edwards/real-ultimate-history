@@ -6,7 +6,7 @@
 			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
 			<div style='width: 50%; float: left;'>
 				<h2>People</h2>
-				<p v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></p>
+				<button v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></button>
 				<p>Find out information on <span class='hyperbole'><em>important historical figures</em></span>, such as:</p>
 				<div v-for='person in people'>
 					<a v-bind:href="'/#/person/' + person.id">
@@ -24,7 +24,7 @@
 					<h3>{{spotlight.name}}</h3>
 					<p>{{spotlight.dob}} - {{spotlight.dod}}</p>
 					<img v-bind:src="'../images/' + spotlight.id + '.jpg'">
-					<p style='font-size: 1em;'>{{spotlight.bio}}</p>
+					<div><p>{{spotlight.bio}}</p></div>
 					
 				</a>
 			</div>
@@ -33,6 +33,7 @@
 		<div style='margin-left: 50px; width: 100%; float: left'>
 					
 			<h2>Events</h2>
+			<button v-show='editable'><a v-bind:href="'/#/add_event/'">Add event</a></button>
 			<!--<p><a href='/#/view/new/event'>Add new event</a></p>-->
 			<table>
 				<tr v-for='event in events'>
@@ -40,7 +41,6 @@
 					<td>{{event.date}}</td>
 				</tr>
 			</table>
-			<p v-show='editable'><a v-bind:href="'/#/add_event/'">Add event</a></p>
 		</div>
 	</div>
 </template>
@@ -81,7 +81,8 @@ module.exports = {
 					person.dod = this.numberToDate(person.dod);
 				})
 
-				this.$http.get('/api/people/?number=1')
+				this.$http.get('/api/person/233')
+				//this.$http.get('/api/people/?number=1')
 				.then(function(data) {
 					this.spotlight = data.body[0];
 					console.log(this.spotlight)

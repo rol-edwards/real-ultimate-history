@@ -22,7 +22,7 @@
 					<td>{{person.role}}</td>
 				</tr>
 			</table>
-			<p v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></p>
+			<button v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></button>
 			<p v-show='editable'><button v-on:click='delete_event'>Delete</button></p>
 		</div>
 		<div v-show='event_deleted'>
