@@ -10,7 +10,6 @@ var express = require('express'),
 
 router.route('/people')
 .get(function(req, res, next){
-	console.log('person routes reached, getting people');
 	var query = {};
 	if (Object.keys(req.query) != 0){
 		query.name = req.query.name;
@@ -24,7 +23,6 @@ router.route('/people')
 	}
 	person.find(query, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -36,7 +34,6 @@ router.route('/person_byName/:name')
 .get(function(req, res, next){
 	person.getByName(req.params.name, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -45,7 +42,6 @@ router.route('/person_byName/:name')
 
 router.route('/person')
 .post(gatekeeper, bodyParser.json(), function(req, res, next){
-	console.log('new person router working.');
 	var input = {};
 	input.name = req.body.name;
 	input.dob = req.body.dob;
@@ -56,7 +52,6 @@ router.route('/person')
 
 	person.create(input, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -65,7 +60,6 @@ router.route('/person')
 
 router.route('/person/:id')
 .put(bodyParser.json(), function(req, res, next){
-	console.log('update router working');
 	var input = {};
 	input.name = req.body.name;
 	input.dob = req.body.dob;
@@ -80,11 +74,8 @@ router.route('/person/:id')
 })
 
 .get(function(req, res, next) {
-	console.log('person routes: looking for ' + req.params.id);
 	person.findById(req.params.id, function(data) {
-		console.log(data);
 			if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -95,7 +86,6 @@ router.route('/person/:id')
 .delete(function(req, res, next){
 	person.delete(req.params.id, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -105,9 +95,7 @@ router.route('/person/:id')
 router.route('/people_count/')
 .get(function(req, res, next){
 	person.count(function(data){
-		console.log('home_routes: count router working')
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);

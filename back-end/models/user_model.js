@@ -41,10 +41,11 @@ user.update = function(id, data, callback){
 	});
 };
 
+//this is a duplicate?
 user.isUsernameTaken = function(username, callback){
 	console.log('model looking for username')
 	dbConn.query('select * from users where username = \'' + username + '\'')
-	.then(callback(null, data)).catch(function(error){
+	.then(callback).catch(function(error){
 		console.log('error: ' + error);
 	});
 };

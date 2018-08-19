@@ -18,10 +18,8 @@ router.route('/events')
 		query.dod = req.query.dod;
 		query.number = req.query.number;
 	}
-	console.log('event_routes: getting events');
 	event.find(query, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -33,7 +31,6 @@ router.route('/event_byName/:name')
 .get(function(req, res, next){
 	event.getByName(req.params.name, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -44,11 +41,9 @@ router.route('/event_byName/:name')
 
 router.route('/event')
 .post(gatekeeper, bodyParser.json(), function(req, res, next){
-	console.log('new event router working');
 	input = req.body;
 	event.create(input, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -57,10 +52,8 @@ router.route('/event')
 
 router.route('/event/:id')
 .get(function (req, res, next) {
-	console.log('event_routes: searching for ' + req.params.id);
 	event.findById (req.params.id, function (data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);
@@ -68,7 +61,6 @@ router.route('/event/:id')
 })
 
 .put(gatekeeper, bodyParser.json(), function(req, res, next){
-	console.log('edit event router working ' + req.params.id);
 	input = req.body;
 	event.update(input, req.params.id, function(data){
 		res.send('event updated');
@@ -78,7 +70,6 @@ router.route('/event/:id')
 .delete(function(req, res, next){
 	event.delete(req.params.id, function(data){
 		if (data instanceof AppError) {
-			console.log('An error was thrown');
 			next(data);
 		}
 		else res.json(data);

@@ -1,7 +1,6 @@
 queryWriter = {};
 
 queryWriter.create = function (data, table) {
-	console.log('query being written');
 	var fields = Object.keys(data);
 	var fieldString = 'insert into ' + table + ' (';
 	var valueString ='values (\'';
@@ -12,7 +11,6 @@ queryWriter.create = function (data, table) {
 	fieldString = fieldString.slice(0, -2) + ') ';
 	valueString = valueString.slice(0, -3) + ')';
 	queryString = fieldString + valueString + ' returning id as id';
-	console.log(queryString);
 	return queryString;
 };
 

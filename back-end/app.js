@@ -24,7 +24,6 @@ app.use('/api', require(__dirname + '/routes/user_routes.js'));
 
 app.use(function(err, req, res, next){
 	if (err instanceof AppError) {
-		console.log('yeah here we are');
 		res.status(err.statusCode).send(err.message); 
 	}
 	else {
