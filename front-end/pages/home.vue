@@ -81,7 +81,7 @@ module.exports = {
 					person.dod = this.numberToDate(person.dod);
 				})
 
-				this.$http.get('/api/person/233')
+				this.$http.get('/api/people/?number=1')
 				//this.$http.get('/api/people/?number=1')
 				.then(function(data) {
 					this.spotlight = data.body[0];
