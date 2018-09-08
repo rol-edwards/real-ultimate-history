@@ -97,7 +97,7 @@ const app = new Vue ({
 
 })
 
-},{"./pages/add_event.vue":5,"./pages/add_person.vue":6,"./pages/edit_event.vue":7,"./pages/edit_person.vue":8,"./pages/event_page.vue":9,"./pages/events_index.vue":10,"./pages/home.vue":11,"./pages/login.vue":12,"./pages/people_index.vue":13,"./pages/person_page.vue":14}],2:[function(require,module,exports){
+},{"./pages/add_event.vue":6,"./pages/add_person.vue":7,"./pages/edit_event.vue":8,"./pages/edit_person.vue":9,"./pages/event_page.vue":10,"./pages/events_index.vue":11,"./pages/home.vue":12,"./pages/login.vue":13,"./pages/people_index.vue":14,"./pages/person_page.vue":15}],2:[function(require,module,exports){
 var authenticate = function(callback){
 	console.log('authentication pending')
 	this.$http.get('/api/user/me')
@@ -113,6 +113,10 @@ var authenticate = function(callback){
 
 module.exports = authenticate;
 },{}],3:[function(require,module,exports){
+IP = 'localhost';
+
+module.exports = IP;
+},{}],4:[function(require,module,exports){
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -354,7 +358,7 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v2.5.16
@@ -8392,7 +8396,7 @@ if (inBrowser) {
 module.exports = Vue;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":19}],5:[function(require,module,exports){
+},{"_process":20}],6:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8609,7 +8613,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-223ef178", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_to_number.js":16,"vue":4,"vue-hot-reload-api":3}],6:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_to_number.js":17,"vue":5,"vue-hot-reload-api":4}],7:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8923,7 +8927,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-16071ae7", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_checks.js":15,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],7:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_checks.js":16,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],8:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9126,7 +9130,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-7b65cd59", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"vue":4,"vue-hot-reload-api":3}],8:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"vue":5,"vue-hot-reload-api":4}],9:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9249,7 +9253,8 @@ module.exports = {
 			date_checks: require('../utilities/date_checks.js'),
 			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../utilities/number_to_date_object.js')
+			numberToDate: require('../utilities/number_to_date_object.js'),
+			IP: require('../config.js')
 		};
 	},
 	
@@ -9348,6 +9353,7 @@ module.exports = {
 
 				//need an if-clause here in case ticked_ids is empty. if there are ticked ids, the rest of function will need to be in 'then' to deal with asynchronicity, otherwise not.
 				if (ticked_ids.length > 0){
+					console.log('IP is: ' + this.IP)
 					ticked_ids.forEach(function(eventId){
 						this.$http.post('api/people_events', {person_id: this.id, event_id: eventId, role: roles[eventId]})
 						.then(function(data){
@@ -9356,14 +9362,15 @@ module.exports = {
 							if(count >= ticked_ids.length){
 								console.log('changes made');
 								this.events_updated = true;
-								document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
+								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
 							}
 						})
 					})
 				}
 				else {
 					this.events_updated = true;
-					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.id);
+					console.log('IP is: ' + this.IP)
+					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
 				}
 			})
 		},
@@ -9390,7 +9397,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3c8889b4", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_checks.js":15,"../utilities/date_to_number.js":16,"../utilities/number_to_date_object.js":17,"vue":4,"vue-hot-reload-api":3}],9:[function(require,module,exports){
+},{"../authenticate.js":2,"../config.js":3,"../utilities/date_checks.js":16,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"vue":5,"vue-hot-reload-api":4}],10:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9511,7 +9518,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-35803a70", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],10:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],11:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9594,7 +9601,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-bfe80640", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],11:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],12:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9728,7 +9735,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-51c3c613", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],12:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],13:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9837,7 +9844,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-0499e2e5", __vue__options__)
   }
 })()}
-},{"vue":4,"vue-hot-reload-api":3}],13:[function(require,module,exports){
+},{"vue":5,"vue-hot-reload-api":4}],14:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9926,7 +9933,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-b1411a54", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],14:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],15:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -10059,7 +10066,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-50f63db5", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/number_to_date_string.js":18,"vue":4,"vue-hot-reload-api":3}],15:[function(require,module,exports){
+},{"../authenticate.js":2,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],16:[function(require,module,exports){
 date_checks = function(dob, dod, callback){
 	console.log('date_checks called')
 	
@@ -10084,7 +10091,7 @@ date_checks = function(dob, dod, callback){
 }
 
 module.exports = date_checks;
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 //turns date objects with number and BC/AD era into negative/postive numbers
 
 dateToNumber = function(date){
@@ -10102,7 +10109,7 @@ dateToNumber = function(date){
 }
 
 module.exports = dateToNumber;
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 //Turns negative/postive numbers into date objects with BC/AD era
 
 get_era_date = function(x){
@@ -10117,7 +10124,7 @@ get_era_date = function(x){
 }
 
 module.exports = get_era_date;
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 //turns negative/positive numbers to date strings with number and BC/AD era
 
 numberToDate = function(x) {
@@ -10129,7 +10136,7 @@ numberToDate = function(x) {
 }
 
 module.exports = numberToDate;
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
