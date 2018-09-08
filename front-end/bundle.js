@@ -8492,14 +8492,15 @@ module.exports = {
 			duplicates: '',
 			dupes_checked: false,
 			date: {},
-			location: '',
+			location: '', 
 			description: '',
 			eventx: 'placeholder',
 			people_updated: false,
 
 			//imported modules:
 			dateToNumber: require('../utilities/date_to_number.js'),
-			authenticate: require('../authenticate.js')
+			authenticate: require('../authenticate.js'),
+			IP: require('../config.js')
 		}
 	},
 
@@ -8542,7 +8543,7 @@ module.exports = {
 			this.$http.post('api/event', {name: this.name, date: this.dateToNumber(this.date), location: this.location, description: this.description})
 			.then(function(data){
 				this.event = data.body[0];
-				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.event.id);
+				document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.event.id);
 				console.log('new event created');
 				this.event = data.body[0];
 				console.log('event id is: '  + this.event.id);
@@ -8613,7 +8614,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-223ef178", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_to_number.js":17,"vue":5,"vue-hot-reload-api":4}],7:[function(require,module,exports){
+},{"../authenticate.js":2,"../config.js":3,"../utilities/date_to_number.js":17,"vue":5,"vue-hot-reload-api":4}],7:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8757,6 +8758,7 @@ module.exports = {
 			authenticate: require('../authenticate.js'),
 			numberToDate: require('../utilities/number_to_date_object.js'),
 			erafy: require('../utilities/number_to_date_string.js'),
+			IP: require('../config.js')
 		}
 	},
 
@@ -8927,7 +8929,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-16071ae7", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_checks.js":16,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],8:[function(require,module,exports){
+},{"../authenticate.js":2,"../config.js":3,"../utilities/date_checks.js":16,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"../utilities/number_to_date_string.js":19,"vue":5,"vue-hot-reload-api":4}],8:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -9005,7 +9007,8 @@ module.exports = {
 			//imported modules:
 			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
-			numberToDate: require('../utilities/number_to_date_object.js')
+			numberToDate: require('../utilities/number_to_date_object.js'),
+			IP: require('../config.js')
 		}
 	},
 
@@ -9026,7 +9029,7 @@ module.exports = {
 			.then(function(data){
 				console.log('event info for editing requested');
 				this.event = data.body[0];
-				console.log(this.event.date)
+				console.log(this.event.date);
 				this.event.date = this.numberToDate(this.event.date);
 			});
 		},
@@ -9094,7 +9097,7 @@ module.exports = {
 							if (count == ticked_ids.length){
 								console.log('people added');
 								this.people_updated = true;
-								document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
 							}
 							
 						});
@@ -9102,7 +9105,7 @@ module.exports = {
 				}
 				else{
 					this.people_updated = true;
-					document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/event/' + this.id);
+					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
 				}
 				
 			})
@@ -9130,7 +9133,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-7b65cd59", __vue__options__)
   }
 })()}
-},{"../authenticate.js":2,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"vue":5,"vue-hot-reload-api":4}],9:[function(require,module,exports){
+},{"../authenticate.js":2,"../config.js":3,"../utilities/date_to_number.js":17,"../utilities/number_to_date_object.js":18,"vue":5,"vue-hot-reload-api":4}],9:[function(require,module,exports){
 ;(function(){
 //
 //
