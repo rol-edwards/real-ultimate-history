@@ -31,7 +31,7 @@
 				<div v-for='person in people'>
 					<input type='checkbox' v-model='ticked_events[person.id]'>{{person.name}}</input>
 					<input type='text' id='role' v-show='ticked_events[person.id]' v-model='roles[person.id]'>
-					<label for='role'>Role</label>
+					<label for='role' v-show='ticked_events[person.id]'>Role</label>
 				</div>
 				<button v-on:click='submit_people()'>Submit</button>
 			</div>

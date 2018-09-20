@@ -66,7 +66,7 @@
 		 		<div v-for='event in events'>
 		 			<input type='checkbox' v-model='ticked_events[event.id]'>{{event.name}} {{event.id}}</input>
 		 			<input type='text' id='role' v-show='ticked_events[event.id]' v-model='roles[event.id]'></input>
-		 			<label for='role' >Role</label>
+		 			<label for='role' v-show='ticked_events[event.id]'>Role</label>
 				</div>	
 				<button v-on:click='update_events'>Submit</button>
 			</div>
