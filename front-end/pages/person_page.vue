@@ -5,15 +5,16 @@
 			<div class='titlebar'>
 				<h1>{{ person.name }}</h1>
 				<p class='dob'>{{person.dob}} - {{person.dod}}</p>
+				<p class='dob'>{{person.nation}}, {{person.role}}</p>
 			</div>
+			
 			<figure>
 				<img v-bind:src="'../images/' + person.id + '.jpg'">
 			</figure>
-			<p>{{person.id}}</p><!--development only-->
-			<p>{{person.nation}}</p>
+			
 			<h2>Biography</h2>
 			<p>{{ person.bio }}</p>
-			<p>{{person.role}}</p>
+			
 			<h2>Key Events</h2>
 			<table class='table'>
 				<tr>

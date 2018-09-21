@@ -46,8 +46,8 @@
 					</tr>
 					<tr>
 						<td>Primary role</td>
-						<td><select id='cat' v-model='cat' >
-							<option value='Political'>Political</option>
+						<td><select id='cat' v-model='cat'>
+							<option value='political'>Political</option>
 							<option value='Military'>Military</option>
 							<option value='Philosopher'>Philosophical</option>
 							<option value='Religious'>Religious</option>

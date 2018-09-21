@@ -86,6 +86,20 @@ const app = new Vue ({
 				});
 			}
 		},
+
+		documentClick: function(e){
+			if(!e.target.matches('.dropdown-content')) {
+				this.input_empty = true
+			}
+		}
+	},
+
+	created(){
+		document.addEventListener('click', this.documentClick)
+	},
+
+	destroyed(){
+		document.removeEventListener('click', this.documentClick)
 	},
 
 	components: {
