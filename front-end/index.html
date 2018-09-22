@@ -12,10 +12,10 @@
 
 	<div id='app'>
 		<div>
-			<img src="./ruh_logo.jpg" class='logo'>
+			<a v-bind:href="'/#/'"><img src="./ruh_logo.jpg" class='logo'></a>
 		</div>
 		<div class='title'>
-			Real, Ultimate History
+			<a v-bind:href="'/#/'">Real, Ultimate History</a>
 				
 		</div>
 		<div class='ruhtop'>
@@ -23,30 +23,21 @@
 		
 			<span class='search'>
 					<label for='search_option'>Search for:</label>
-			<!--</span>
-			<span>-->
 					<select id='search_option' v-model='search_option'>
 						<option value='person'>People</option>
 						<option value='event'>Events</option>
 					</select>
-			<!--</span>
-			<span>-->
 				<input v-model='search_term' v-on:input='search(search_option)' id='search'>
-			
 				<div v-if='!input_empty' class='dropdown-content'>
 					<div v-for='r in search_results' >
 						<p><a v-bind:href="'/#/' + search_option + '/' + r.id" v-on:click='clearSearch'>{{r.name}}</a></p>
 					</div>
 				</div>
 			</span>
-			<!--<span v-if='!loggedin' ><a v-bind:href="'/#/login'">Log in</a></span>
-			<span v-else><button v-on:click='logout' class='login'>Logout</button></span>-->
 			<span class='login'>
 				<button v-if='!loggedin' ><a v-bind:href="'/#/login'">Log in</a></button>
 				<button v-else v-on:click='logout' class='login'>Logout</button>
 			</span>
-
-			
 		</div>
 		<div class='sidenav'>
 			<ul>

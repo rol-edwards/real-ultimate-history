@@ -3,13 +3,12 @@
 		<div v-show='!event_deleted'>
 			<div class='titlebar'>
 				<h1>{{event.name}}</h1>
-				<p class='dob'>{{event.date}}</p>
-				<p class='dob'>{{event.location}}</p>
+				<p class='dob'>{{event.date}}, {{event.location}}</p>
 			</div>
 			<figure>
 				<img v-bind:src="'../images/event' + event.id + '.jpg'">
 			</figure>
-			<p>{{event.id}}</p>
+			<h2>Description</h2>
 			<p>{{event.description}}</p>
 			<div v-show='show_ppl'>
 				<h2>Key people involved</h2>
