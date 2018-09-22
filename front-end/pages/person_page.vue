@@ -28,12 +28,9 @@
 					<td>{{person.role}}</td>
 				</tr>
 			</table>
-
-			
-			
 			<h2>Biography</h2>
 			<p>{{ person.bio }}</p>
-			<div v-if='show_events'>
+			<div v-show='show_events'>
 				<h2>Key Events</h2>
 				<table class='table'>
 					<tr>

@@ -11,17 +11,19 @@
 			</figure>
 			<p>{{event.id}}</p>
 			<p>{{event.description}}</p>
-			<h2>Key people involved</h2>
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Role</th>
-				</tr>
-				<tr v-for='person in people'>
-					<td><a v-bind:href="'/#/person/' + person.id">{{person.name}}</a></td>
-					<td>{{person.role}}</td>
-				</tr>
-			</table>
+			<div v-show='show_ppl'>
+				<h2>Key people involved</h2>
+				<table>
+					<tr>
+						<th>Name</th>
+						<th>Role</th>
+					</tr>
+					<tr v-for='person in people'>
+						<td><a v-bind:href="'/#/person/' + person.id">{{person.name}}</a></td>
+						<td>{{person.role}}</td>
+					</tr>
+				</table>
+			</div>
 			<button v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></button>
 			<p v-show='editable'><button v-on:click='delete_event'>Delete</button></p>
 		</div>
@@ -42,10 +44,12 @@
 				id: this.$route.params.id,
 				editable: false,
 				event_deleted: false,
+				show_ppl: false,
 
 				//imported modules
 				numberToDate: require('../utilities/number_to_date_string.js'),
 				authenticate: require('../authenticate.js'),
+				
 			};
 		},
 
@@ -80,6 +84,9 @@
 					this.$http.get('/api/people_events/?id=' + this.id + '&table=people')
 					.then(function(data) {
 						this.people = data.body;
+						if (this.people.length > 0){
+							this.show_ppl = true;
+						}
 						console.log(data.body)
 					});
 				})
