@@ -92,6 +92,10 @@ const app = new Vue ({
 			if(!e.target.matches('.dropdown-content')) {
 				this.input_empty = true
 			}
+		},
+
+		clearSearch: function(){
+			this.search_term = '';
 		}
 	},
 
@@ -9471,6 +9475,14 @@ module.exports = {
 		this.authenticate(this.on_created)
 	},
 
+	watch: {
+		'$route' (to, from){
+			console.log('route changed' + to.params.id)
+			this.id = to.params.id;
+			this.authenticate(this.on_created)
+		}
+	},
+
 	methods: {
 		//gets information for event and associated people
 		on_created: function(option){
@@ -10013,6 +10025,14 @@ module.exports = {
 
 	created: function() {
 		this.authenticate(this.on_created)
+	},
+
+	watch: {
+		'$route' (to, from){
+			console.log('route changed' + to.params.id)
+			this.id = to.params.id;
+			this.authenticate(this.on_created)
+		}
 	},
 
 	methods: {

@@ -61,6 +61,14 @@ module.exports = {
 		this.authenticate(this.on_created)
 	},
 
+	watch: {
+		'$route' (to, from){
+			console.log('route changed' + to.params.id)
+			this.id = to.params.id;
+			this.authenticate(this.on_created)
+		}
+	},
+
 	methods: {
 		//gets information for person and associated events
 		on_created: function(option){

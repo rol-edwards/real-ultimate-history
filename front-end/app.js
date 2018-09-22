@@ -91,6 +91,10 @@ const app = new Vue ({
 			if(!e.target.matches('.dropdown-content')) {
 				this.input_empty = true
 			}
+		},
+
+		clearSearch: function(){
+			this.search_term = '';
 		}
 	},
 
