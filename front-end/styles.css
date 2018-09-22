@@ -6,12 +6,28 @@ html {
 h1 {
 
 	font-family: sans-serif;
-	text-align:center;
+	text-align:left;
 	font-size: 3em;
 	color: black;
 	margin-bottom: 0 px;
 	margin-top:150px;
 	border-bottom: 1px solid black;
+}
+
+.titlebar img{
+	height: 30px;
+	width: 30px;
+	text-align: right;
+	float: none;
+	visibility: hidden;
+}
+
+.titlebar:hover img {
+	visibility: visible;
+}
+
+.info  {
+	background-color: lightblue;
 }
 
 h2 { 

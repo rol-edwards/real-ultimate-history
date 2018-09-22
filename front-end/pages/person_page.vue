@@ -3,11 +3,31 @@
 	<div>
 		<div v-show='!person_deleted'>	
 			<div class='titlebar'>
-				<h1>{{ person.name }}</h1>
-				<p class='dob'>{{person.dob}} - {{person.dod}}</p>
-				<p class='dob'>{{person.nation}}, {{person.role}}</p>
+				<h1>
+					<span>{{ person.name }}
+					</span>
+						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/bin.png'">
+					
+						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/pen.png'">
+					
+
+				</h1>
 			</div>
-			
+			<table class='info'>
+				<tr>
+					<td>Lived:</td>
+					<td>{{person.dob}} - {{person.dod}}</td>
+				</tr>
+				<tr>
+					<td>National affiliation:</td>
+					<td>{{person.nation}}</td>
+				</tr>
+				<tr>
+					<td>Primary role</td>
+					<td>{{person.role}}</td>
+				</tr>
+			</table>
+
 			<figure>
 				<img v-bind:src="'../images/' + person.id + '.jpg'">
 			</figure>
