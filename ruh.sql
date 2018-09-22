@@ -26,10 +26,10 @@ create table events  (
 	
 
 create table people_events  (
-	id int (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	person_id,
-	event_id,
-	role varchar (128) NOT NULL;
+	id serial NOT NULL PRIMARY KEY,
+	person_id int NOT NULL,
+	event_id int NOT NULL,
+	role varchar (128) NOT NULL
 )
 foreign key  (person_id) references people (id),
 foreign key  (event_id) references event (id)
