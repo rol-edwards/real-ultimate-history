@@ -2,26 +2,27 @@
 	<div>
 		<div v-show='!changes_made'>
 			<h1>Edit event</h1>
+			<table>
+				<tr>
+					<td>Name of event</td>
+					<td><input type='text' v-model='event.name' id='name' ></input></td>
+				</tr>
+				<tr>
+					<td>Date</td>
+					<td><input type='text' id='date' v-model='event.date.number'></input></td>
+					<td><input type='radio' v-model='event.date.era' value='BC' id='BC' >BC</input>
+						<input type='radio' v-model='event.date.era' value='AD' id='AD' >AD</input></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><input type='text' v-model='event.location' id='location' placeholder='location' ></input></td>
+				</tr>
+			</table>
 			<div>
-				<input type='text' v-model='event.name' id='name' >Name of event</input>
-				<label for='event'></label>
+				<h3>Description</h3>
+				<td><textarea type='text' v-model='event.description' id='description' placeholder='description'></textarea></td>
 			</div>
-				<div>
-				<input type='text' v-model='event.date.number' id='date' placeholder='date' >Date</input>
-				<label for='date'></label>
-				<div>
-					<input type='radio' v-model='event.date.era' value='BC' id='BC'>BC</input>
-					<input type='radio' v-model='event.date.era' value='AD' id='AD'>AD</input>
-				</div>		
-			</div>
-				<div>
-				<input type='text' v-model='event.location' id='location' placeholder='location' >Location</input>
-				<label for='location'></label>
-			</div>
-				<div>
-				<textarea type='text' v-model='event.description' id='description' placeholder='description'>Description</textarea>
-				<label for='description'></label>
-			</div>
+			
 			<div>
 				<button v-on:click='submit_event()' v-show='!list_returned'>Submit</button>
 			</div>

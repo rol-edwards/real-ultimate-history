@@ -21,12 +21,12 @@
 					<td><input type='text' id='location' v-model='location' ></input></td>
 					<td></td>
 				</tr>
-				<tr>
-					<td>Description</td>
-					<td><textarea> id='description' v-model='description' ></textarea></td>
-					<td></td>
-				</tr>
 			</table>
+			<div>
+				<h3>Description</h3>
+				<textarea id='description' v-model='description'></textarea>
+			</div>
+			
 				<div>
 					<button v-on:click='get_duplicates'>Submit</button>
 				</div>

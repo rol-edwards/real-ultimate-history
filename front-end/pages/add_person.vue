@@ -4,57 +4,59 @@
 			<h1>Add new person</h1>
 			<!--<button v-on:click='checkEra()'>Check era</button>
 			<button v-on:click='checkDOB()'>Check DOB</button>-->
-			<table>
-				<tr>
-					<td>Name</td>
-					<td><input type='text' id='name' v-model='name' ></input></td>
-					<td></td>
-				</tr>
-				<tr v-if='dod.era=="BC"'>
-					<td>Date of birth</td>
-					<td><input type='text' id='dob' v-model='dob.number'></input></td>
-					<td>BC</td>
-				</tr>
-				<tr v-else>
-					<td>Date of birth</td>
-					<td><input type='text' id='dob' v-model='dob.number'></input></td>
-					<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
-						<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
-				</tr>
-				<tr v-if='dob.era=="AD"'>
-					<td>Date of death</td>
-					<td><input type='text' id='dod' v-model='dod.number'></input></td>
-					<td>AD</td>
-				</tr>
-				<tr v-else>
-					<td>Date of death</td>
-					<td><input type='text' id='dod' v-model='dod.number'></input></td>
-					<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
-						<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
-				</tr>
-				<tr>
-					<td>Biography</td>
-					<td><textarea id='bio' v-model='bio' ></textarea></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Nationality</td>
-					<td><input type='text' id='nation' v-model='nation' ></input></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Primary role</td>
-					<td><select id='cat' v-model='cat' >
-						<option value='Political'>Political</option>
-						<option value='Military'>Military</option>
-						<option value='Philosopher'>Philosophical</option>
-						<option value='Religious'>Religious</option>
-					</select></td>
-				</tr>
-			</table>
-		
+			<div >
+				<table>
+					<tr>
+						<td>Name</td>
+						<td><input type='text' id='name' v-model='name' ></input></td>
+						<td></td>
+					</tr>
+					<tr v-if='dod.era=="BC"'>
+						<td>Date of birth</td>
+						<td><input type='text' id='dob' v-model='dob.number'></input></td>
+						<td>BC</td>
+					</tr>
+					<tr v-else>
+						<td>Date of birth</td>
+						<td><input type='text' id='dob' v-model='dob.number'></input></td>
+						<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
+							<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
+					</tr>
+					<tr v-if='dob.era=="AD"'>
+						<td>Date of death</td>
+						<td><input type='text' id='dod' v-model='dod.number'></input></td>
+						<td>AD</td>
+					</tr>
+					<tr v-else>
+						<td>Date of death</td>
+						<td><input type='text' id='dod' v-model='dod.number'></input></td>
+						<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
+							<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
+					</tr>
+					<tr>
+						<td>Nationality</td>
+						<td><input type='text' id='nation' v-model='nation' ></input></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Primary role</td>
+						<td><select id='cat' v-model='cat' >
+							<option value='Political'>Political</option>
+							<option value='Military'>Military</option>
+							<option value='Philosopher'>Philosophical</option>
+							<option value='Religious'>Religious</option>
+						</select></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<h3>Biography</h3>
+				<textarea id='bio' v-model='bio'></textarea>
+			</div>
+			<br>
+			<div >
 				<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!duplicates_visible'>Submit</button>
-			
+			</div>
 			<div v-show='duplicates_visible'>
 				<button v-on:click='amend()'>Amend</button>
 				<h2>Potential duplicates</h2>

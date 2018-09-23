@@ -66,10 +66,15 @@ button {
 li:nth-of-type(even) {
 	color: red
 }
+
 li {
 	display: block
 }
 
+textarea {
+	height: 200px;
+	width: 1000px;
+}
 
 
 .underline {

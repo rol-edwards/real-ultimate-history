@@ -15,19 +15,17 @@
 			<a v-bind:href="'/#/'"><img src="./ruh_logo.jpg" class='logo'></a>
 		</div>
 		<div class='title'>
-			<a v-bind:href="'/#/'">Real, Ultimate History</a>
-				
+			<a v-bind:href="'/#/'">Real, Ultimate History</a>	
 		</div>
 		<div class='ruhtop'>
 			<span class='hyperbole'>'The internet's best history site!' - No-one</span>
-		
 			<span class='search'>
 					<label for='search_option'>Search for:</label>
 					<select id='search_option' v-model='search_option'>
 						<option value='person'>People</option>
 						<option value='event'>Events</option>
 					</select>
-				<input v-model='search_term' v-on:input='search(search_option)' id='search'>
+				<input v-model='search_term' v-on:input='search(search_option)' id='search' autocomplete='off'>
 				<div v-if='!input_empty' class='dropdown-content'>
 					<div v-for='r in search_results' >
 						<p><a v-bind:href="'/#/' + search_option + '/' + r.id" v-on:click='clearSearch'>{{r.name}}</a></p>

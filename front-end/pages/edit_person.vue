@@ -35,11 +35,6 @@
 							<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
 					</tr>
 					<tr>
-						<td>Biography</td>
-						<td><textarea id='bio' v-model='bio' ></textarea></td>
-						<td></td>
-					</tr>
-					<tr>
 						<td>Nationality</td>
 						<td><input type='text' id='nation' v-model='nation' ></input></td>
 						<td></td>
@@ -54,6 +49,10 @@
 						</select></td>
 					</tr>
 				</table>
+				<div style='float: left'>
+					<h3>Biography</h3>
+					<textarea id='bio' v-model='bio'></textarea>
+				</div>
 				<div>
 					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), update_person)' v-show='!event_list_visible'>Submit</button>
 					<button v-show='event_list_visible' v-on:click='amend'>Amend</button>
