@@ -4,11 +4,9 @@
 		<div v-show='!person_deleted'>	
 			<div class='titlebar'>
 				<h1>
-					<span>{{ person.name }}
-					</span>
-						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/bin.png'">
-					
-						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/pen.png'">
+					<span>{{ person.name }}</span>
+						<a v-bind:href='"/#/edit_person/" + id' v-show='editable'><img class='bin'  v-bind:src="'../images/pen.png'"></a>
+						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/bin.png'" v-show='editable'>
 				</h1>
 			</div>
 			<figure>
@@ -44,8 +42,6 @@
 						<td>{{event.role}}</td>
 					</tr>
 				</table>
-				<button v-show='editable'><a v-bind:href='"/#/edit_person/" + id'>Edit</a></button>
-				<p v-show='editable'><button v-on:click='delete_person'>Delete</button></p>
 			</div>
 		</div>
 		<div v-show='person_deleted'>

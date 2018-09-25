@@ -1,7 +1,10 @@
 <template>	
 	<div>	
 		<h1>People Index</h1>
-		<p v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></p>
+		<p v-show='editable'><a v-bind:href="'/#/add_person/'">
+			<span><img src='../images/add.png' class='plus'></span>
+		Add person
+		</a></p>
 		<table>
 			<tr>
 				<th>Name</th>

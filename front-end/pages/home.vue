@@ -6,7 +6,10 @@
 			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
 			<div style='width: 50%; float: left;'>
 				<h2>People</h2>
-				<button v-show='editable'><a v-bind:href="'/#/add_person/'">Add person</a></button>
+				<p v-show='editable'><a v-bind:href="'/#/add_person/'">
+					<span><img src='../images/add.png' class='plus'></span>
+				Add person
+				</a></p>
 				<p>Find out information on <span class='hyperbole'><em>important historical figures</em></span>, such as:</p>
 				<div v-for='person in people'>
 					<a v-bind:href="'/#/person/' + person.id">
@@ -33,7 +36,9 @@
 		<div style='margin-left: 50px; width: 100%; float: left'>
 					
 			<h2>Events</h2>
-			<button v-show='editable'><a v-bind:href="'/#/add_event/'">Add event</a></button>
+			<p v-show='editable'><a v-bind:href="'/#/add_event/'">
+				<span><img src='../images/add.png' class='plus'></span>
+			Add event</a></p>
 			<!--<p><a href='/#/view/new/event'>Add new event</a></p>-->
 			<table>
 				<tr v-for='event in events'>

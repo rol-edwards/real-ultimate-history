@@ -5,7 +5,6 @@ html {
 }
 
 h1 {
-
 	font-family: sans-serif;
 	text-align:left;
 	font-size: 3em;
@@ -13,30 +12,11 @@ h1 {
 	margin-bottom: 0 px;
 	margin-top:150px;
 	border-bottom: 1px solid black;
-}
-
-.title a {
-	color: black;
-}
-
-.titlebar img{
-	height: 30px;
-	width: 30px;
-	text-align: right;
-	float: none;
-	visibility: hidden;
-}
-
-.titlebar:hover img {
-	visibility: visible;
-}
-
-.info  {
-	background-color: lightblue;
+	padding-bottom: 10px;
 }
 
 h2 { 
-	color:black;
+	color: black;
 	border-bottom: 1px solid black;
 }
 
@@ -76,6 +56,31 @@ textarea {
 	width: 1000px;
 }
 
+.bin {
+	padding-top: 20px;
+	padding-bottom: 0;
+}
+
+.plus {
+	height: 20px; 
+	width: 20px;
+	padding: 0;
+}
+
+.title a {
+	color: black;
+}
+
+.titlebar img{
+	height: 30px;
+	width: 30px;
+	text-align: right;
+	float: none;
+}
+
+.info  {
+	background-color: lightblue;
+}
 
 .underline {
 	border-bottom: 1px solid black;
@@ -96,7 +101,6 @@ textarea {
 }
 
 .ruhtop {
-
 	top: 60px;
 	height: 50px;
 	margin: 0;
