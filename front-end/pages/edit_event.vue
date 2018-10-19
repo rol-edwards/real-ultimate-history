@@ -76,7 +76,7 @@
 				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
 				numberToDate: require('../utilities/number_to_date_object.js'),
-				IP: require('../config.js')
+				config: require('../config.js')
 			}
 		},
 
@@ -165,7 +165,7 @@
 								if (count == ticked_ids.length){
 									console.log('people added');
 									this.people_updated = true;
-									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
+									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 								}
 								
 							});
@@ -173,7 +173,7 @@
 					}
 					else{
 						this.people_updated = true;
-						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
+						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 					}
 					
 				})

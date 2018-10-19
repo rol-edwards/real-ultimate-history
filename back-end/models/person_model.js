@@ -23,8 +23,7 @@ person.find = function(query, callback){
 
 //separated from above to keep search function efficient
 person.getByName = function(name, callback){
-	dbConn.query('select * from people where lower(name) like lower(' +  '\'' + name + '%\')').then(callback)
-  	
+	dbConn.query('select * from people where lower(name) like lower(' +  '\'' + name + '%\')').then(callback)	
 };
 
 person.findById = function(id, callback) {

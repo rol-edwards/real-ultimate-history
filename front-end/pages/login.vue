@@ -4,33 +4,26 @@
 		<p>Please log-in or sign-up</p>
 		<h2>Log-in</h2>
 		<div>
-			<input type='text' v-model='username' id='username'>
-			<label for='username'>User Name</label>
-			<input type='text' v-model='password' id='password' autocomplete='off'>
-			<label for='password'>Password</label>
-			<button v-on:click='login'>Submit</button>
+			<table>
+				<tr>
+					<td><input type='text' v-model='username' id='username' placeholder="username"></td>
+				</tr>
+				<tr>
+					<td><input type='text' v-model='password' id='password' autocomplete='off' placeholder="password"></td>
+				</tr>
+				<tr>
+			<td><button v-on:click='login'>Submit</button></td>
+		</tr>
+	</table>
 		</div>
 		<h2>Sign-up</h2>
 		<form>
-			<input type='text' v-model='new_UN' id='username'>
-			<label for='username'>User Name</label>
-			<input type='text' v-model='new_PW' id='password' autocomplete='off'>
-			<label for='password'>Password</label>
-			<input type='text' v-model='new_PW_check' id='password2' autocomplete='off'>
-			<label for='password2'>Re-enter Password</label>
+			<input type='text' v-model='new_UN' id='username' placeholder='username'>
+			<input type='text' v-model='new_PW' id='password' autocomplete='off' placeholder="password">
+			<input type='text' v-model='new_PW_check' id='password2' autocomplete='off' placeholder="repeat password">
 			<input type='submit' v-on:click='signup'>Submit</input>
 		</form>
-		<table>
-			<tr>
-				<th>id</th>
-				<th>username</th>
-				<th>password</th>
-			</tr><tr v-for='result in results'>
-				<td>{{result.id}}</td>
-				<td>{{result.username}}</td>
-				<td>{{result.password}}</td>
-			</tr>
-		</table>
+		<button v-on:click='cheatLogin'>Production only</button>
 	</div>
 </template>
 
@@ -40,13 +33,14 @@
 		data: function (){
 			return{
 
-				username: 'jethro_tull',
-				password: 'seeddrill',
+				username: '',
+				password: '',
 				new_UN: '',
 				new_PW: '',
 				new_PW_check: '',
 				results: 'placeholder',
 				logins: 'placeholder',
+				config: require('../config.js')
 
 			}
 		},
@@ -84,6 +78,21 @@
 					console.log('user ID is ' + this.results)
 					//this.$router.push('/#/home')
 				});
+			},
+
+			//production only, quick login:
+			cheatLogin: function(){
+				this.$http.post('api/login', {username: this.config.username, password: this.config.password})
+				.then(function(data){
+					console.log('data is: ' + data.body)
+					if (data.body == 'logged in') {
+						this.$emit('login')
+						this.$router.push('/')
+					}
+					else alert(data.body)
+
+				});
+
 			}
 		}
 	}

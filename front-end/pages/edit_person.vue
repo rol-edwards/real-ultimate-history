@@ -119,7 +119,7 @@ module.exports = {
 			dateToNumber: require('../utilities/date_to_number.js'),
 			authenticate: require('../authenticate.js'),
 			numberToDate: require('../utilities/number_to_date_object.js'),
-			IP: require('../config.js')
+			config: require('../config.js')
 		};
 	},
 	
@@ -154,6 +154,7 @@ module.exports = {
 		update_person: function(){
 			this.$http.put('api/person/' + this.id, {name: this.name, dob: this.dateToNumber(this.dob), dod: this.dateToNumber(this.dod), bio: this.bio, nation: this.nation, role: this.role})
 			.then(function(data){
+				console.log('this is the submitted bio: ' + this.bio)
 				console.log('person data.body submitted');
 				console.log('getting list of possible events between ' + this.dateToNumber(this.dob) + ' and ' + this.dateToNumber(this.dod));
 
@@ -218,7 +219,7 @@ module.exports = {
 
 				//need an if-clause here in case ticked_ids is empty. if there are ticked ids, the rest of function will need to be in 'then' to deal with asynchronicity, otherwise not.
 				if (ticked_ids.length > 0){
-					console.log('IP is: ' + this.IP)
+					console.log('IP is: ' + this.config.IP)
 					ticked_ids.forEach(function(eventId){
 						this.$http.post('api/people_events', {person_id: this.id, event_id: eventId, role: roles[eventId]})
 						.then(function(data){
@@ -227,15 +228,15 @@ module.exports = {
 							if(count >= ticked_ids.length){
 								console.log('changes made');
 								this.events_updated = true;
-								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
+								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 							}
 						})
 					})
 				}
 				else {
 					this.events_updated = true;
-					console.log('IP is: ' + this.IP)
-					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.id);
+					console.log('IP is: ' + this.config.IP)
+					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 				}
 			})
 		},

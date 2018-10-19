@@ -31,9 +31,7 @@
 						<p><a v-bind:href="'/#/' + search_option + '/' + r.id" v-on:click='clearSearch'>{{r.name}}</a></p>
 					</div>
 				</div>
-			</span>
-			<span class='login'>
-				<button v-if='!loggedin' ><a v-bind:href="'/#/login'">Log in</a></button>
+				<button v-if='!loggedin' class='login'><a v-bind:href="'/#/login'">Log in</a></button>
 				<button v-else v-on:click='logout' class='login'>Logout</button>
 			</span>
 		</div>
@@ -55,3 +53,6 @@
 
 
 </body>
+
+
+

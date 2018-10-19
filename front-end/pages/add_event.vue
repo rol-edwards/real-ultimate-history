@@ -100,7 +100,7 @@
 				//imported modules:
 				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
-				IP: require('../config.js')
+				config: require('../config.js')
 			}
 		},
 
@@ -143,7 +143,7 @@
 				this.$http.post('api/event', {name: this.name, date: this.dateToNumber(this.date), location: this.location, description: this.description})
 				.then(function(data){
 					this.event = data.body[0];
-					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.IP + ':3000/api/upload/person/' + this.event.id);
+					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.event.id);
 					console.log('new event created');
 					this.event = data.body[0];
 					console.log('event id is: '  + this.event.id);

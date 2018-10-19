@@ -1,3 +1,28 @@
+@media all and (max-width: 900px) {
+	.login { 
+	  	color: red; 
+	  	display: none;
+	}
+	
+	.people {
+		color: red;
+		float: none;
+		width: 100%;
+	}
+
+	.spotlight {
+		color: red;
+		float: none;
+		width: 100%;
+	}
+
+	h1 {
+		color: red;
+	}
+
+
+}
+
 html {
 	font-size: 15px;
 	font-family: Verdana;
@@ -118,19 +143,19 @@ textarea {
 }
 
 .ruhtop span {
-	position: absolute;
 	margin-top: 10px;
+
 }
 
-.ruhtop .search {
-	position: absolute;
-	left: 700px;
+.search {
+	position: fixed;
+	left: 65%;
 }
 
-.ruhtop .login {
-	position: absolute;
-	right: 10px;
-	margin-top: 6px;
+.login {
+	position: fixed;
+	left: 90%;
+	top: 61px;
 }
 
 .ruhtop a {
@@ -206,9 +231,16 @@ textarea {
 	color: red;
 }
 
-.spotlight a {
+.people {
+	width: 50%; 
+	float: left;
+}
+
+.spotlight {
 	text-decoration: none;
 	color: black;
+	width: 50%; 
+	float: left;
 }
 
 .duplicates td, th {

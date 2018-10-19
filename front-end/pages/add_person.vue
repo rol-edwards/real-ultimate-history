@@ -142,7 +142,7 @@ module.exports = {
 			authenticate: require('../authenticate.js'),
 			numberToDate: require('../utilities/number_to_date_object.js'),
 			erafy: require('../utilities/number_to_date_string.js'),
-			IP: require('../config.js')
+			config: require('../config.js')
 		}
 	},
 

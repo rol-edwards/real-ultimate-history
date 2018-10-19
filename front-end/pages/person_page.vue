@@ -9,9 +9,7 @@
 						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/bin.png'" v-show='editable'>
 				</h1>
 			</div>
-			<figure>
 				<img v-bind:src="'../images/' + person.id + '.jpg'">
-			</figure>
 			<table class='info'>
 				<tr>
 					<td>Lived:</td>
@@ -26,8 +24,6 @@
 					<td>{{person.role}}</td>
 				</tr>
 			</table>
-			<h2>Biography</h2>
-			<p>{{ person.bio }}</p>
 			<div v-show='show_events'>
 				<h2>Key Events</h2>
 				<table class='table'>
@@ -42,6 +38,10 @@
 						<td>{{event.role}}</td>
 					</tr>
 				</table>
+			</div>
+			<div>
+				<h2>Biography</h2>
+				<p>{{ person.bio }}</p>
 			</div>
 		</div>
 		<div v-show='person_deleted'>

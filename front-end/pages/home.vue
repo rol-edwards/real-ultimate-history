@@ -4,7 +4,7 @@
 		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span class='hyperbole'> <em>real, ultimate history</em></span>.</p>
 		<div>
 			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
-			<div style='width: 50%; float: left;'>
+			<div class='people'>
 				<h2>People</h2>
 				<p v-show='editable'><a v-bind:href="'/#/add_person/'">
 					<span><img src='../images/add.png' class='plus'></span>
@@ -20,7 +20,7 @@
 					</a>
 				</div>
 			</div>
-			<div style='width: 50%; float: left;' class='spotlight'>
+			<div class='spotlight'>
 				<h2>Spotlight</h2>
 				<a v-bind:href="'/#/person/' + spotlight.id">
 					
@@ -60,6 +60,7 @@ module.exports = {
 			events: 'placeholder',
 			spotlight: '{}',
 			editable: false,
+			
 			//imported modules:
 			authenticate: require('../authenticate.js'),
 			numberToDate: require('../utilities/number_to_date_string.js'),
@@ -118,4 +119,6 @@ module.exports = {
 		}
 	}
 }
+
+
 </script>

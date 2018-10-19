@@ -67,6 +67,7 @@ router.route('/person/:id')
 	input.bio = req.body.bio;
 	input.nation = req.body.nation;
 	input.role = req.body.role;
+	console.log('bio is ' + input.bio)
 
 	person.update(input, req.params.id, function(data){
 		res.send('Edits made');
