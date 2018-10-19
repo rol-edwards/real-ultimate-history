@@ -2,9 +2,10 @@
 	<div>
 		<h1>Welcome</h1>
 		<p>Please log-in or sign-up</p>
-		<h2>Log-in</h2>
-		<div>
-			<table>
+		
+		<div class='logfields'>
+			<h2>Log-in</h2>
+			<table >
 				<tr>
 					<td><input type='text' v-model='username' id='username' placeholder="username"></td>
 				</tr>
@@ -12,17 +13,28 @@
 					<td><input type='text' v-model='password' id='password' autocomplete='off' placeholder="password"></td>
 				</tr>
 				<tr>
-			<td><button v-on:click='login'>Submit</button></td>
-		</tr>
-	</table>
+					<td><input type='submit' v-on:click='login'></td>
+				</tr>
+			</table>
 		</div>
-		<h2>Sign-up</h2>
-		<form>
-			<input type='text' v-model='new_UN' id='username' placeholder='username'>
-			<input type='text' v-model='new_PW' id='password' autocomplete='off' placeholder="password">
-			<input type='text' v-model='new_PW_check' id='password2' autocomplete='off' placeholder="repeat password">
-			<input type='submit' v-on:click='signup'>Submit</input>
-		</form>
+		<div class='logfields'>
+			<h2>Sign-up</h2>
+			
+			<table>
+				<tr>
+					<td><input type='text' v-model='new_UN' id='username' placeholder='username'></td>
+				</tr>
+				<tr>
+					<td><input type='text' v-model='new_PW' id='password' autocomplete='off' placeholder="password"></td>
+				</tr>
+				<tr>
+					<td><input type='text' v-model='new_PW_check' id='password2' autocomplete='off' placeholder="repeat password"></td>
+				</tr>
+				<tr>
+					<td><input type='submit' v-on:click='signup'></td>
+				</tr>
+			</table>
+		</div>
 		<button v-on:click='cheatLogin'>Production only</button>
 	</div>
 </template>

@@ -255,3 +255,21 @@ textarea {
 .edit input {
 	font-size: 15pt;
 }
+
+.logfields {
+	border: 1px solid lightgrey;
+	float: left;
+	width: 40%;
+	height: 200px;
+	padding: 10px;
+	margin: 10px;
+
+}
+
+.logfields input{
+	font-size: 12pt;
+}
+
+.logfields h2 {
+	border: none;
+}
