@@ -4,7 +4,7 @@
 		<p v-show='editable'><a v-bind:href="'/#/add_event/'">
 			<span><img src='../images/add.png' class='plus'></span>
 		Add event</a></p>
-		<table>
+		<table class='index'>
 			<tr>
 				<th>Name</th>
 				<th>Date</th>

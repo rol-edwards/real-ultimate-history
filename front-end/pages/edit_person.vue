@@ -6,7 +6,7 @@
 				<img v-bind:src="'../images/' + id + '.jpg'">
 			</figure>
 			<div v-show='!event_list_visible'>
-				<table>
+				<table class='edit'>
 					<tr>
 						<td>Name</td>
 						<td><input type='text' id='name' v-model='name' ></input></td>

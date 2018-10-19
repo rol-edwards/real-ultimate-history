@@ -40,7 +40,7 @@
 				<span><img src='../images/add.png' class='plus'></span>
 			Add event</a></p>
 			<!--<p><a href='/#/view/new/event'>Add new event</a></p>-->
-			<table>
+			<table class='index'>
 				<tr v-for='event in events'>
 					<td><a v-bind:href="'/#/event/' + event.id">{{event.name}}</a></td>
 					<td>{{event.date}}</td>

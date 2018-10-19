@@ -5,7 +5,7 @@
 			<span><img src='../images/add.png' class='plus'></span>
 		Add person
 		</a></p>
-		<table>
+		<table class='index'>
 			<tr>
 				<th>Name</th>
 				<th>Date of birth</th>
