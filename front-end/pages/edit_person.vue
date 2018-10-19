@@ -1,11 +1,11 @@
 <template>	
 	<div>
-		<div v-show='!changes_made'>
+		<div v-show='show_edit'>
 			<h1>Edit person</h1>
 			<figure>
-				<img v-bind:src="'../images/' + id + '.jpg'">
+				<img class='imgedit' v-bind:src="'../images/' + id + '.jpg'">
 			</figure>
-			<div v-show='!event_list_visible'>
+			<div v-show='show_details'>
 				<table class='edit'>
 					<tr>
 						<td>Name</td>
@@ -49,17 +49,17 @@
 						</select></td>
 					</tr>
 				</table>
-				<div style='float: left'>
+				<div>
 					<h3>Biography</h3>
 					<textarea id='bio' v-model='bio'></textarea>
 				</div>
 				<div>
-					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), update_person)' v-show='!event_list_visible'>Submit</button>
+					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), update_person)' v-show='!details_given'>Submit</button>
 					<button v-show='event_list_visible' v-on:click='amend'>Amend</button>
 				</div>
 			</div>
 
-			<div v-show='event_list_visible'>
+			<div v-show='show_events'>
 		 		<h2>Events</h2>
 		 		<p>Select from existing events during this person's lifetime</p>
 		 		<div v-for='event in events'>
@@ -69,18 +69,20 @@
 				</div>	
 				<button v-on:click='update_events'>Submit</button>
 			</div>
-			<div v-show='events_updated'>
+			<div v-show='show_image'>
+				<h2>Update image?</h2>
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
 			      method='post' 
-			      encType="multipart/form-data">
+			      encType="multipart/form-data"
+			     >
 			        <input id='picture' type="file" name='pic'/>
 			        <input type='submit' value='Upload!' />
 			    </form>
 			    <button v-on:click='finish'>Finish</button>    
 			</div>
 		</div>
-		<div v-show='changes_made'>
+		<div v-show='!show_edit'>
 			<h1>Changes made!</h1>
 			<p><a v-bind:href='"/#/person/" + id'>Return to person</a></p>
 		</div>
@@ -100,9 +102,10 @@ module.exports = {
 			roles: {},
 			existing_events: [],
 			events: [],
-			event_list_visible: false,
-			changes_made: false,
-			events_updated: false,
+			show_edit: true,
+			show_details: true,
+			show_events: false,
+			show_image: false,
 
 			//person details:
 			name: 'placeholder',
@@ -168,24 +171,28 @@ module.exports = {
 					this.events.forEach(function(event){
 						console.log(event);
 					});
-
-					//get an array of events already associated with person
-					this.$http.get('/api/people_events/?id=' + this.id + '&table=events')
-					.then(function(data) {
-						console.log('getting ids and roles already associated');
-						this.existing_events = data.body;
-						ticked_events = {};
-						roles = {};
-						this.existing_events.forEach(function(event){
-							this.ticked_events[event.id] = true;
-								this.roles[event.id] = event.role;
-						})
-						this.ticked_events = ticked_events;
-						this.roles = roles;
-						this.event_list_visible = true;
-
-						
-					});
+					if (this.events.length == 0){
+						this.show_details = false;
+						this.show_image = true;
+					}
+					else {
+						//get an array of events already associated with person
+						this.$http.get('/api/people_events/?id=' + this.id + '&table=events')
+						.then(function(data) {
+							console.log('getting ids and roles already associated');
+							this.existing_events = data.body;
+							ticked_events = {};
+							roles = {};
+							this.existing_events.forEach(function(event){
+								this.ticked_events[event.id] = true;
+									this.roles[event.id] = event.role;
+							})
+							this.ticked_events = ticked_events;
+							this.roles = roles;
+							this.show_details = false;
+							this.show_events = true;
+						});
+					}
 				})
 			});
 		},
@@ -227,14 +234,16 @@ module.exports = {
 							count += 1;//why doesn't it have to be this.count?
 							if(count >= ticked_ids.length){
 								console.log('changes made');
-								this.events_updated = true;
+								this.show_events = false;
+								this.show_image = true
 								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 							}
 						})
 					})
 				}
 				else {
-					this.events_updated = true;
+					this.show_events = false;
+					this.show_image = true;
 					console.log('IP is: ' + this.config.IP)
 					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 				}
@@ -242,7 +251,7 @@ module.exports = {
 		},
 
 		finish: function(){
-			this.changes_made = true;
+			this.show_edit = false;
 		}
 	}
 }

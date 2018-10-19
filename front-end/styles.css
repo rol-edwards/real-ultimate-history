@@ -273,3 +273,9 @@ textarea {
 .logfields h2 {
 	border: none;
 }
+
+.imgedit {
+	float: none;
+	height: 150px; 
+	width: 100px;
+}
