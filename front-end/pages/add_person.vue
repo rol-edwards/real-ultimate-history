@@ -4,60 +4,62 @@
 			<h1>Add new person</h1>
 			<!--<button v-on:click='checkEra()'>Check era</button>
 			<button v-on:click='checkDOB()'>Check DOB</button>-->
-			<div >
-				<table>
-					<tr>
-						<td>Name</td>
-						<td><input type='text' id='name' v-model='name' ></input></td>
-						<td></td>
-					</tr>
-					<tr v-if='dod.era=="BC"'>
-						<td>Date of birth</td>
-						<td><input type='text' id='dob' v-model='dob.number'></input></td>
-						<td>BC</td>
-					</tr>
-					<tr v-else>
-						<td>Date of birth</td>
-						<td><input type='text' id='dob' v-model='dob.number'></input></td>
-						<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
-							<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
-					</tr>
-					<tr v-if='dob.era=="AD"'>
-						<td>Date of death</td>
-						<td><input type='text' id='dod' v-model='dod.number'></input></td>
-						<td>AD</td>
-					</tr>
-					<tr v-else>
-						<td>Date of death</td>
-						<td><input type='text' id='dod' v-model='dod.number'></input></td>
-						<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
-							<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
-					</tr>
-					<tr>
-						<td>Nationality</td>
-						<td><input type='text' id='nation' v-model='nation' ></input></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Primary role</td>
-						<td><select id='cat' v-model='cat' >
-							<option value='Political'>Political</option>
-							<option value='Military'>Military</option>
-							<option value='Philosopher'>Philosophical</option>
-							<option value='Religious'>Religious</option>
-						</select></td>
-					</tr>
-				</table>
+			<div v-show='show_details'>
+				<div>
+					<table>
+						<tr>
+							<td>Name</td>
+							<td><input type='text' id='name' v-model='name' ></input></td>
+							<td></td>
+						</tr>
+						<tr v-if='dod.era=="BC"'>
+							<td>Date of birth</td>
+							<td><input type='text' id='dob' v-model='dob.number'></input></td>
+							<td>BC</td>
+						</tr>
+						<tr v-else>
+							<td>Date of birth</td>
+							<td><input type='text' id='dob' v-model='dob.number'></input></td>
+							<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
+								<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
+						</tr>
+						<tr v-if='dob.era=="AD"'>
+							<td>Date of death</td>
+							<td><input type='text' id='dod' v-model='dod.number'></input></td>
+							<td>AD</td>
+						</tr>
+						<tr v-else>
+							<td>Date of death</td>
+							<td><input type='text' id='dod' v-model='dod.number'></input></td>
+							<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
+								<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
+						</tr>
+						<tr>
+							<td>Nationality</td>
+							<td><input type='text' id='nation' v-model='nation' ></input></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Primary role</td>
+							<td><select id='cat' v-model='cat' >
+								<option value='Political'>Political</option>
+								<option value='Military'>Military</option>
+								<option value='Philosopher'>Philosophical</option>
+								<option value='Religious'>Religious</option>
+							</select></td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<h3>Biography</h3>
+					<textarea id='bio' v-model='bio'></textarea>
+				</div>
+				<br>
+				<div >
+					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!show_dupes'>Submit</button>
+				</div>
 			</div>
-			<div>
-				<h3>Biography</h3>
-				<textarea id='bio' v-model='bio'></textarea>
-			</div>
-			<br>
-			<div >
-				<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!duplicates_visible'>Submit</button>
-			</div>
-			<div v-show='duplicates_visible'>
+			<div v-show='show_dupes'>
 				<button v-on:click='amend()'>Amend</button>
 				<h2>Potential duplicates</h2>
 				<p>The people below have similar details to the person you are trying to input. Please check that you are not adding a duplicate person</p>
@@ -82,7 +84,7 @@
 
 				<button v-on:click='submit_person' v-show='!list_visible'>Confirm new person</button>
 			</div>
-			<div v-show='list_visible'>
+			<div v-show='show_events'>
 		 		<h2>Possible Events</h2>
 		 		<p>Select from existing events during this person's lifetime, or add new events</p>
 		 		<div v-for='event in events'>
@@ -92,7 +94,7 @@
 				</div>	
 				<button v-on:click='submit_events'>Submit</button>	
 			</div>
-			<div v-show='events_updated'>
+			<div v-show='show_image'>
 				<p>Upload an image, or click to finish</p>
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
@@ -122,7 +124,6 @@ module.exports = {
 			person: '',
 			name: 'Tamerlane',
 			list_visible: false,
-			duplicates_visible: false,
 			dob: {era: 'BC'},
 			dod: {era: 'AD'},
 			id_list: [],
@@ -135,6 +136,11 @@ module.exports = {
 			pic: 'placeholder',
 			events_updated: false,
 			changes_made: false,
+
+			show_details: true,
+			show_events: false,
+			show_image: false,
+			show_dupes: false,
 
 			//imported modules
 			date_checks: require('../utilities/date_checks.js'),
@@ -205,12 +211,14 @@ module.exports = {
 						//call next method
 						if (this.duplicates.length == 0){
 							console.log('duplicate check: nothing returned')
+							this.show_details = false;
 							this.submit_person();
 						}
 						else {
 							//need to sort dates
 							console.log('duplicate check: something returned')
-							this.duplicates_visible = true;
+							this.show_details = false;
+							this.show_dupes = true;
 						}
 					})
 				})
@@ -230,7 +238,15 @@ module.exports = {
 			.then(function(data){
 				this.events = data.body;
 				console.log(this.events);
-				this.list_visible = true;
+				if (this.events.length == 0){
+					this.show_dupes = false;
+					this.show_image = true;
+				}
+				else {
+					this.show_dupes = false;
+					this.show_events = true;
+				}
+				
 			})//not asynchronous?
 		},
 
@@ -260,20 +276,22 @@ module.exports = {
 						count += 1;
 						if (count == ticked_ids.length){
 							console.log('events added to person');
-							this.events_updated = true;
+							this.show_events = false;
+							this.show_image = true;
 						}
 					});
 				});
 			}
 			else{
-				this.events_updated = true;
+				this.show_events = false;
+				this.show_image = true;
 			}
 			
 		},
 
 		//
 		amend: function(){
-			this.duplicates_visible = false;
+			this.show_dupes = false;
 		},
 
 		check_dob: function(dod, dob){
