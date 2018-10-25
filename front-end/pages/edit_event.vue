@@ -2,31 +2,32 @@
 	<div>
 		<div v-show='!changes_made'>
 			<h1>Edit event</h1>
-			<table>
-				<tr>
-					<td>Name of event</td>
-					<td><input type='text' v-model='event.name' id='name' ></input></td>
-				</tr>
-				<tr>
-					<td>Date</td>
-					<td><input type='text' id='date' v-model='event.date.number'></input></td>
-					<td><input type='radio' v-model='event.date.era' value='BC' id='BC' >BC</input>
-						<input type='radio' v-model='event.date.era' value='AD' id='AD' >AD</input></td>
-				</tr>
-				<tr>
-					<td>Location</td>
-					<td><input type='text' v-model='event.location' id='location' placeholder='location' ></input></td>
-				</tr>
-			</table>
-			<div>
-				<h3>Description</h3>
-				<td><textarea type='text' v-model='event.description' id='description' placeholder='description'></textarea></td>
+			<div v-show='show_details'>
+				<table>
+					<tr>
+						<td>Name of event</td>
+						<td><input type='text' v-model='event.name' id='name' ></input></td>
+					</tr>
+					<tr>
+						<td>Date</td>
+						<td><input type='text' id='date' v-model='event.date.number'></input></td>
+						<td><input type='radio' v-model='event.date.era' value='BC' id='BC' >BC</input>
+							<input type='radio' v-model='event.date.era' value='AD' id='AD' >AD</input></td>
+					</tr>
+					<tr>
+						<td>Location</td>
+						<td><input type='text' v-model='event.location' id='location' placeholder='location' ></input></td>
+					</tr>
+				</table>
+				<div>
+					<h3>Description</h3>
+					<td><textarea type='text' v-model='event.description' id='description' placeholder='description'></textarea></td>
+				</div>
+				<div>
+					<button v-on:click='submit_event()'>Submit</button>
+				</div>
 			</div>
-			
-			<div>
-				<button v-on:click='submit_event()' v-show='!list_returned'>Submit</button>
-			</div>
-			<div v-show='list_returned'>
+			<div v-show='show_ppl'>
 				<h2>People to add</h2>
 				<p>Select people involved or add new people</p>
 				<div v-for='person in people'>
@@ -36,7 +37,7 @@
 				</div>
 				<button v-on:click='submit_people()'>Submit</button>
 			</div>
-			<div v-show='people_updated'>
+			<div v-show='show_image'>
 				<p>Upload an image or click to finish
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
@@ -76,7 +77,11 @@
 				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
 				numberToDate: require('../utilities/number_to_date_object.js'),
-				config: require('../config.js')
+				config: require('../config.js'),
+
+				show_details: true,
+				show_ppl: false,
+				show_image: false,
 			}
 		},
 
@@ -112,7 +117,7 @@
 				})
 				//get 'people', an array of data objects for people alive during event.
 				this.$http.get('/api/people/?date=' + this.dateToNumber(this.event.date))
-				.then(function(data){
+				.then(function(data){ 
 					console.log('request made to router to get people');
 					this.people = data.body;
 					console.log(this.people);
@@ -124,6 +129,10 @@
 						console.log('existing_people: ' + data.body)
 						
 						//tick boxes and add roles
+						if (this.existing_people.length == 0){
+							this.show_details = false;
+							this.show_image = true;
+						}
 						roles = this.roles;
 						ticked_events = {};
 						console.log('existing_ids: ' + this.existing_ids)
@@ -134,9 +143,10 @@
 						});
 						this.ticked_events = ticked_events;
 						this.roles = roles;
+						this.show_details = false;
+						this.show_ppl = true;
 					})
 				})
-				this.list_returned = true;
 			},
 			
 			//delete existing associations and submit all that are currently ticked
@@ -164,7 +174,8 @@
 								count += 1;
 								if (count == ticked_ids.length){
 									console.log('people added');
-									this.people_updated = true;
+									this.show_ppl = false;
+									this.show_image = true;
 									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 								}
 								
@@ -172,7 +183,8 @@
 						});
 					}
 					else{
-						this.people_updated = true;
+						this.show_ppl = false;
+						this.show_image = true;
 						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 					}
 					

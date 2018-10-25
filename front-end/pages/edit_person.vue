@@ -167,10 +167,6 @@ module.exports = {
 					console.log('event list created');
 					this.events = data.body;
 					console.log('Possible events are...')
-					//console.log them for reference
-					this.events.forEach(function(event){
-						console.log(event);
-					});
 					if (this.events.length == 0){
 						this.show_details = false;
 						this.show_image = true;
