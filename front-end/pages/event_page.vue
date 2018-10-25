@@ -2,14 +2,25 @@
 	<div>
 		<div v-show='!event_deleted'>
 			<div class='titlebar'>
-				<h1>{{event.name}}</h1>
-				<p class='dob'>{{event.date}}, {{event.location}}</p>
+				<h1>
+					<span>{{ event.name }}</span>
+						<a v-bind:href='"/#/edit_event/" + id' v-show='editable'><img class='bin'  v-bind:src="'../images/pen.png'"></a>
+						<img class='bin' v-on:click='delete_event' v-bind:src="'../images/bin.png'" v-show='editable'>
+				</h1>
 			</div>
 			<figure>
 				<img v-bind:src="'../images/event' + event.id + '.jpg'">
 			</figure>
-			<h2>Description</h2>
-			<p>{{event.description}}</p>
+			<table class='info'>
+				<tr>
+					<td>Date:</td>
+					<td>{{event.date}}</td>
+				</tr>
+				<tr>
+					<td>Location:</td>
+					<td>{{event.location}}</td>
+				</tr>
+			</table>
 			<div v-show='show_ppl'>
 				<h2>Key people involved</h2>
 				<table>
@@ -23,8 +34,8 @@
 					</tr>
 				</table>
 			</div>
-			<button v-show='editable'><a v-bind:href='"/#/edit_event/" + event.id'>Edit</a></button>
-			<p v-show='editable'><button v-on:click='delete_event'>Delete</button></p>
+			<h2>Description</h2>
+			<p>{{event.description}}</p>
 		</div>
 		<div v-show='event_deleted'>
 			<h1>Event deleted</h1>
