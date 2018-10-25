@@ -2,36 +2,38 @@
 <template>
 	<div>
 		<div v-show='!changes_made'>
-			<div>
-				<h1>Add an event</h1>
-				<table>
-				<tr>
-					<td>Name</td>
-					<td><input type='text' id='name' v-model='name' ></input></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Date</td>
-					<td><input type='text' id='date' v-model='date.number'></input></td>
-					<td><input type='radio' v-model='date.era' value='BC' id='BC' >BC</input>
-						<input type='radio' v-model='date.era' value='AD' id='AD' >AD</input></td>
-				</tr>
-				<tr>
-					<td>Location</td>
-					<td><input type='text' id='location' v-model='location' ></input></td>
-					<td></td>
-				</tr>
-			</table>
-			<div>
-				<h3>Description</h3>
-				<textarea id='description' v-model='description'></textarea>
-			</div>
-			
+			<h1>Add an event</h1>
+			<div v-show='show_details'>
 				<div>
-					<button v-on:click='get_duplicates'>Submit</button>
+					<table>
+						<tr>
+							<td>Name</td>
+							<td><input type='text' id='name' v-model='name' ></input></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td><input type='text' id='date' v-model='date.number'></input></td>
+							<td><input type='radio' v-model='date.era' value='BC' id='BC' >BC</input>
+								<input type='radio' v-model='date.era' value='AD' id='AD' >AD</input></td>
+						</tr>
+						<tr>
+							<td>Location</td>
+							<td><input type='text' id='location' v-model='location' ></input></td>
+							<td></td>
+						</tr>
+					</table>
+				<div>
+					<h3>Description</h3>
+					<textarea id='description' v-model='description'></textarea>
+				</div>
+				
+					<div>
+						<button v-on:click='get_duplicates'>Submit</button>
+					</div>
 				</div>
 			</div>
-			<div v-show='dupes_checked'>
+			<div v-show='show_dupes'>
 				<h2>Potential duplicates</h2>
 				<p>The following events have the same name. Please check that you are not submitting a duplicate</p>
 				<table>
@@ -44,7 +46,7 @@
 				<button v-on:click='submit_event'>Submit</button>
 
 			</div>
-			<div v-show='submitted'>
+			<div v-show='show_ppl'>
 				<h2>People</h2>
 				<p>Please select the people involved in this event, or add new people</p>
 				<div v-for='person in people'>
@@ -56,7 +58,7 @@
 				<button v-on:click='submit_people'>Submit</button>
 
 			</div>
-			<div v-show='people_updated'>
+			<div v-show='show_image'>
 				<p>Upload an image or click to finish
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
@@ -83,24 +85,24 @@
 			return{
 				event: '',
 				people: '',
-				list_returned: false,
-				changes_made: false,
 				boxes: {},
 				roles: {},
-				submitted: false,
 				id: '',
 				duplicates: '',
-				dupes_checked: false,
 				date: {},
 				location: '', 
 				description: '',
 				eventx: 'placeholder',
-				people_updated: false,
 
 				//imported modules:
 				dateToNumber: require('../utilities/date_to_number.js'),
 				authenticate: require('../authenticate.js'),
-				config: require('../config.js')
+				config: require('../config.js'),
+
+				show_details: true,
+				show_ppl: false,
+				show_image: false,
+				show_dupes: false,
 			}
 		},
 
@@ -130,10 +132,13 @@
 					this.duplicates = data.body;
 					if (this.duplicates.length == 0){
 						console.log('there were no duplicates')
+						this.show_details = false;
 						this.submit_event(); 
 					}
 					else {
-						this.dupes_checked = true;
+						this.show_details = false;
+						this.show_dupes = true;
+						
 					}
 				})
 			},
@@ -152,7 +157,8 @@
 					.then(function(data){
 						this.people = data.body;
 						console.log(this.people)
-						this.submitted = true;
+						this.show_dupes = false;
+						this.show_ppl = true;
 						console.log('submitted should be true now' + this.submitted)
 					});
 				});
@@ -177,7 +183,8 @@
 						.then(function(data){
 							count += 1;
 							if (count == ticked_ids.length){
-								this.people_updated = true;
+								this.show_ppl = false;
+								this.show_image = true;
 								console.log('people added');
 							}
 							
@@ -186,7 +193,8 @@
 				}
 
 				else {
-					this.people_updated = true;
+					this.show_ppl = false;
+					this.show_image = true;
 					console.log('people added');
 				}	
 			},
