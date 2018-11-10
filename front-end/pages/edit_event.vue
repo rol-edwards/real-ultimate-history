@@ -97,6 +97,7 @@
 					this.$router.push('/login');
 				}
 				this.$emit('login');
+				document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 				console.log('edit-event page: at least something is happening');
 				this.$http.get('/api/event/' + this.id)
 				.then(function(data){
@@ -124,7 +125,6 @@
 					if (this.people.length == 0){
 							this.show_details = false;
 							this.show_image = true;
-							document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 						}
 					else {
 						//get 'existing_people', an array of person data for people already associated with event
@@ -179,7 +179,6 @@
 									console.log('people added');
 									this.show_ppl = false;
 									this.show_image = true;
-									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
 								}
 								
 							});
@@ -188,7 +187,6 @@
 					else{
 						this.show_ppl = false;
 						this.show_image = true;
-						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
 					}
 					
 				})

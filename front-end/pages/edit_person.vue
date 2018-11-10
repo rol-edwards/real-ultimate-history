@@ -75,6 +75,7 @@
 			      id='uploadForm' 
 			      method='post' 
 			      encType="multipart/form-data"
+			      action=''
 			     >
 			        <input id='picture' type="file" name='pic'/>
 			        <input type='submit' value='Upload!' />
@@ -138,6 +139,8 @@ module.exports = {
 			this.$router.push('/login');
 		}
 		this.$emit('login');
+		document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/person/' + this.id);
+		console.log('action added?')
 		this.$http.get('/api/person/' + this.id)
 		.then(function(data){
 			console.log('info requested for editing');
@@ -170,7 +173,6 @@ module.exports = {
 					if (this.events.length == 0){
 						this.show_details = false;
 						this.show_image = true;
-						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/person/' + this.id);
 					}
 					else {
 						//get an array of events already associated with person
@@ -233,7 +235,6 @@ module.exports = {
 								console.log('changes made');
 								this.show_events = false;
 								this.show_image = true
-								document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
 							}
 						})
 					})
@@ -241,8 +242,7 @@ module.exports = {
 				else {
 					this.show_events = false;
 					this.show_image = true;
-					console.log('IP is: ' + this.config.IP)
-					document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
+					console.log('IP is: ' + this.config.IP);
 				}
 			})
 		},
