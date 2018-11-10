@@ -232,7 +232,7 @@ module.exports = {
 				this.person = data.body[0];
 				console.log('new id? ' + this.person.id)
 				console.log('post worked' + this.person);
-				document.getElementById('uploadForm').setAttribute('action', 'http://localhost:3000/api/upload/person/' + this.person.id);
+				document.getElementById('uploadForm').setAttribute('action', 'http://' + config.upload + '/api/upload/person/' + this.person.id);
 			})
 			this.$http.get('api/events/?dob=' + this.dateToNumber(this.dob) + '&dod=' + this.dateToNumber(this.dod))
 			.then(function(data){
