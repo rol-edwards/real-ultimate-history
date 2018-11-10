@@ -170,7 +170,7 @@ module.exports = {
 					if (this.events.length == 0){
 						this.show_details = false;
 						this.show_image = true;
-						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
+						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 					}
 					else {
 						//get an array of events already associated with person

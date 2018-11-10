@@ -124,7 +124,7 @@
 					if (this.people.length == 0){
 							this.show_details = false;
 							this.show_image = true;
-							document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
+							document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 						}
 					else {
 						//get 'existing_people', an array of person data for people already associated with event
