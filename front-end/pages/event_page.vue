@@ -4,8 +4,8 @@
 			<div class='titlebar'>
 				<h1>
 					<span>{{ event.name }}</span>
-						<a v-bind:href='"/#/edit_event/" + id' v-show='editable'><img class='bin'  v-bind:src="'../images/pen.png'"></a>
-						<img class='bin' v-on:click='delete_event' v-bind:src="'../images/bin.png'" v-show='editable'>
+						<a v-bind:href='"/#/edit_event/" + id' v-show='editable'><img class='bin'  v-bind:src="'../static_images/pen.png'"></a>
+						<img class='bin' v-on:click='delete_event' v-bind:src="'../static_images/bin.png'" v-show='editable'>
 				</h1>
 			</div>
 			<figure>

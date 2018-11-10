@@ -121,31 +121,34 @@
 					console.log('request made to router to get people');
 					this.people = data.body;
 					console.log(this.people);
-
-					//get 'existing_people', an array of person data for people already associated with event
-					this.$http.get('/api/people_events/?table=people&id=' + this.id)
-					.then(function(data) {
-						this.existing_people = data.body;
-						console.log('existing_people: ' + data.body)
-						
-						//tick boxes and add roles
-						if (this.existing_people.length == 0){
+					if (this.people.length == 0){
 							this.show_details = false;
 							this.show_image = true;
+							document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
 						}
-						roles = this.roles;
-						ticked_events = {};
-						console.log('existing_ids: ' + this.existing_ids)
-						this.existing_people.forEach(function(person){
-						console.log(person.id);
-							this.ticked_events[person.id] = true;
-							this.roles[person.id] = person.role
-						});
-						this.ticked_events = ticked_events;
-						this.roles = roles;
-						this.show_details = false;
-						this.show_ppl = true;
-					})
+					else {
+						//get 'existing_people', an array of person data for people already associated with event
+						this.$http.get('/api/people_events/?table=people&id=' + this.id)
+						.then(function(data) {
+							this.existing_people = data.body;
+							console.log('existing_people: ' + data.body)
+							
+							//tick boxes and add roles
+							
+							roles = this.roles;
+							ticked_events = {};
+							console.log('existing_ids: ' + this.existing_ids)
+							this.existing_people.forEach(function(person){
+							console.log(person.id);
+								this.ticked_events[person.id] = true;
+								this.roles[person.id] = person.role
+							});
+							this.ticked_events = ticked_events;
+							this.roles = roles;
+							this.show_details = false;
+							this.show_ppl = true;
+						})
+					}
 				})
 			},
 			
@@ -176,7 +179,7 @@
 									console.log('people added');
 									this.show_ppl = false;
 									this.show_image = true;
-									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
+									document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
 								}
 								
 							});
@@ -185,7 +188,7 @@
 					else{
 						this.show_ppl = false;
 						this.show_image = true;
-						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/person/' + this.id);
+						document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.IP + ':3000/api/upload/event/' + this.id);
 					}
 					
 				})

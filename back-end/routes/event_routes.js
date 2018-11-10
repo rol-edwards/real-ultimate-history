@@ -78,12 +78,13 @@ router.route('/event/:id')
 
 router.route('/upload/event/:id')
 .post(function(req, res, next){
+	console.log('beginning upload?')
 	var id = req.params.id;
 	let pic = req.files.pic;
 	pic.mv(path.join(__dirname, '../../front-end/images/event' + id + '.jpg'), function(err){
 		if (err)
 			return res.status(500).send(err);
-
+		console.log('image uploaded?')
 		res.send('file uploaded');
 	});
 });

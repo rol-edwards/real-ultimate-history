@@ -35,7 +35,6 @@
 				</tr>
 			</table>
 		</div>
-		<button v-on:click='cheatLogin'>Production only</button>
 	</div>
 </template>
 

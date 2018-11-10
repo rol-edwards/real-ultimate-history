@@ -5,8 +5,8 @@
 			<div class='titlebar'>
 				<h1>
 					<span>{{ person.name }}</span>
-						<a v-bind:href='"/#/edit_person/" + id' v-show='editable'><img class='bin'  v-bind:src="'../images/pen.png'"></a>
-						<img class='bin' v-on:click='delete_person' v-bind:src="'../images/bin.png'" v-show='editable'>
+						<a v-bind:href='"/#/edit_person/" + id' v-show='editable'><img class='bin'  v-bind:src="'../static_images/pen.png'"></a>
+						<img class='bin' v-on:click='delete_person' v-bind:src="'../static_images/bin.png'" v-show='editable'>
 				</h1>
 			</div>
 				<img v-bind:src="'../images/' + person.id + '.jpg'">

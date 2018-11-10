@@ -2,7 +2,7 @@
 	<div>	
 		<h1>People Index</h1>
 		<p v-show='editable'><a v-bind:href="'/#/add_person/'">
-			<span><img src='../images/add.png' class='plus'></span>
+			<span><img src='../static_images/add.png' class='plus'></span>
 		Add person
 		</a></p>
 		<table class='index'>

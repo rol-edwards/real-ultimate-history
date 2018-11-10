@@ -7,7 +7,7 @@
 			<div class='people'>
 				<h2>People</h2>
 				<p v-show='editable'><a v-bind:href="'/#/add_person/'">
-					<span><img src='../images/add.png' class='plus'></span>
+					<span><img src='../static_images/add.png' class='plus'></span>
 				Add person
 				</a></p>
 				<p>Find out information on <span class='hyperbole'><em>important historical figures</em></span>, such as:</p>
@@ -37,7 +37,7 @@
 					
 			<h2>Events</h2>
 			<p v-show='editable'><a v-bind:href="'/#/add_event/'">
-				<span><img src='../images/add.png' class='plus'></span>
+				<span><img src='../static_images/add.png' class='plus'></span>
 			Add event</a></p>
 			<!--<p><a href='/#/view/new/event'>Add new event</a></p>-->
 			<table class='index'>
