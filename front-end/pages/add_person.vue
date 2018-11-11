@@ -122,7 +122,7 @@ module.exports = {
 			
 			events: 'placeholder',
 			person: '',
-			name: 'Tamerlane',
+			name: '',
 			list_visible: false,
 			dob: {era: 'BC'},
 			dod: {era: 'AD'},
