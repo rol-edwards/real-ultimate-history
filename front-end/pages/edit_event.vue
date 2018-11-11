@@ -97,7 +97,7 @@
 					this.$router.push('/login');
 				}
 				this.$emit('login');
-				document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
+				//document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 				console.log('edit-event page: at least something is happening');
 				this.$http.get('/api/event/' + this.id)
 				.then(function(data){
@@ -116,6 +116,7 @@
 				.then(function(data){
 					console.log('event updated');
 				})
+				document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/event/' + this.id);
 				//get 'people', an array of data objects for people alive during event.
 				this.$http.get('/api/people/?date=' + this.dateToNumber(this.event.date))
 				.then(function(data){ 

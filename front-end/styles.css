@@ -235,6 +235,14 @@ textarea {
 	color: red;
 }
 
+.tagline {
+	font-size: 1.2em;
+	color: red;
+	position: fixed;
+	top: 58px;
+}
+
+
 .people {
 	width: 50%; 
 	float: left;
