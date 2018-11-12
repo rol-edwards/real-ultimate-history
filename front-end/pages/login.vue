@@ -73,7 +73,6 @@
 
 				});
 			},
-
 			
 			signup: function(){
 				console.log('signup function called');
@@ -81,6 +80,10 @@
 					this.new_PW = '',
 					this.new_PW_check = '',
 					alert('Confirmation does not match initial entry. Please try again');
+					return
+				}
+				if (this.new_PW.length > 10){
+					alert('Password must be ten characters or less')
 					return
 				}
 				this.$http.post('api/user/new', {username: this.new_UN, password: this.new_PW})
