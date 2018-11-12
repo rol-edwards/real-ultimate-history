@@ -68,12 +68,13 @@ button {
 	margin: 10px;
 }
 
-li:nth-of-type(even) {
-	color: red
+li {
+	display: block;
 }
 
-li {
-	display: block
+ol li {
+	list-style: decimal;
+	display: list-item;
 }
 
 textarea {

@@ -22,13 +22,13 @@
 			
 			<table>
 				<tr>
-					<td><input type='text' v-model='new_UN' id='username' placeholder='username'></td>
+					<td><input type='text' v-model='new_UN' placeholder='username'></td>
 				</tr>
 				<tr>
-					<td><input type='password' v-model='new_PW' id='password' autocomplete='off' placeholder="password"></td>
+					<td><input type='password' v-model='new_PW' autocomplete='off' placeholder="password"></td>
 				</tr>
 				<tr>
-					<td><input type='password' v-model='new_PW_check' id='password2' autocomplete='off' placeholder="repeat password"></td>
+					<td><input type='password' v-model='new_PW_check' autocomplete='off' placeholder="repeat password"></td>
 				</tr>
 				<tr>
 					<td><input type='submit' v-on:click='signup'></td>

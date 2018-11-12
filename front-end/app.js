@@ -8,6 +8,7 @@ const people_index = require('./pages/people_index.vue')
 const events_index = require('./pages/events_index.vue')
 const edit_event = require('./pages/edit_event.vue')
 const login = require('./pages/login.vue')
+const tutorial = require('./pages/tutorial.vue')
 //const sidebar = require('./pages/sidebar.vue')
 //const Vue = require('vue');
 //const VueRouter = require('vue-router');
@@ -27,6 +28,7 @@ const router = new VueRouter ({
 		{path: '/people_index', component: people_index, props: true},
 		{path: '/events_index', component: events_index, props: true},
 		{path: '/login', component: login, props: true},
+		{path: '/tutorial', component: tutorial, props: true}
 		//{path: '*', redirect: '/'}
 	]
 });

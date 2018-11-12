@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>Welcome!</h1>
-		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. </p>
+		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Start with the <a v-bind:href="'/#/tutorial/'">tutorial</a>, or just explore...</p>
 		<div>
 			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
 			<div class='people'>
