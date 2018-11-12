@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<h1>Are YOU ready to get PUMPED???</h1>
-		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. Now thats what I call <span class='hyperbole'> <em>real, ultimate history</em></span>.</p>
+		<h1>Welcome!</h1>
+		<p>Welcome to the best history site on the internet. Here you will find data on important people and events from the last two thousand years and more. </p>
 		<div>
 			<!--<button v-on:click='create_test_person'>Create test guy(development only)</button>-->
 			<div class='people'>

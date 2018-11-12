@@ -291,3 +291,16 @@ textarea {
 	height: 150px; 
 	width: 100px;
 }
+
+.square {
+	color: white;
+	background-color: blue;
+	height: 50px;
+	width: 100px;
+	font-size: 20px;
+	border-radius: 0px;
+}
+
+.square:hover {
+	cursor: pointer;
+}

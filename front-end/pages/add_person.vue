@@ -56,7 +56,7 @@
 				</div>
 				<br>
 				<div >
-					<button v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!show_dupes'>Submit</button>
+					<button class='square' v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!show_dupes'>Submit</button>
 				</div>
 			</div>
 			<div v-show='show_dupes'>
@@ -82,7 +82,7 @@
 					</tr>
 				</table>
 
-				<button v-on:click='submit_person' v-show='!list_visible'>Confirm new person</button>
+				<button class='square' v-on:click='submit_person' v-show='!list_visible'>Confirm new person</button>
 			</div>
 			<div v-show='show_events'>
 		 		<h2>Possible Events</h2>
@@ -92,7 +92,7 @@
 		 			<input type='text' id='role' v-show='boxes[event.id]' v-model='roles[event.id]'></input>
 		 			<label for='role' v-show='boxes[event.id]'>Role</label>
 				</div>	
-				<button v-on:click='submit_events'>Submit</button>	
+				<button class='square' v-on:click='submit_events'>Submit</button>	
 			</div>
 			<div v-show='show_image'>
 				<p>Upload an image, or click to finish</p>
@@ -100,10 +100,10 @@
 			      id='uploadForm' 
 			      method='post' 
 			      encType="multipart/form-data">
-			        <input id='picture' type="file" name='pic'/>
-			        <input type='submit' value='Upload!' v-on:click='changes_made'/>
+			        <input id='picture' type="file" name='pic' value='Choose!'/>
+			        <input class='square' type='submit' value='Upload!' v-on:click='changes_made'/>
 			    </form>     
-			    <button v-on:click='finish'>Finish</button>
+			    <button class='square' v-on:click='finish'>Finish</button>
 			</div>
 		</div>
 		<div v-show='changes_made'>
@@ -310,6 +310,8 @@ module.exports = {
 		finish: function(){
 			this.changes_made = true;
 		}
+
+		
 	}
 }
 
