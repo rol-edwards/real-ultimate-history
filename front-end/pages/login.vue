@@ -86,6 +86,10 @@
 					alert('Password must be ten characters or less')
 					return
 				}
+				if (this.new_UN.length > 10){
+					alert('Username must be ten characters or less')
+					return
+				}
 				this.$http.post('api/user/new', {username: this.new_UN, password: this.new_PW})
 				.then(function(data){
 					this.results = data.body;
