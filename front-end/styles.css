@@ -306,7 +306,7 @@ textarea {
 	width: 100px;
 }
 
-.square {
+.square, .input{
 	color: white;
 	background-color: blue;
 	height: 50px;
@@ -315,10 +315,26 @@ textarea {
 	border-radius: 0px;
 }
 
-.square:hover {
+.square, .input, .finish:hover {
 	cursor: pointer;
 }
 
+.input {
+	margin-top: 20px;
+}
+
+.finish {
+	color: white;
+	background-color: black;
+	height: 50px;
+	width: 100px;
+	font-size: 20px;
+	border-radius: 0px;
+	margin: 0;
+	position: absolute;
+	bottom: 20 px;
+	margin-top: 100px;
+}
 
 
 .inputfile {
@@ -331,7 +347,7 @@ textarea {
 }
 
 .inputfile + label {
-	text-align: center;
+	/*text-align: center;
 	display: inline-block;
 	color: white;
 	background-color: blue;
@@ -339,6 +355,9 @@ textarea {
 	width: 100px;
 	font-size: 20px;
 	border-radius: 0px;
-	margin-bottom: 20px;
+	margin-bottom: 20px;*/
 	cursor: pointer;
+	color: blue;
+	position: static;
 }
+

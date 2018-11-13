@@ -98,12 +98,17 @@
 			      id='uploadForm' 
 			      method='post' 
 			      encType="multipart/form-data">
-			        <input id='picture' type="file" name='pic' value='Choose!' class='inputfile'/>
-			        <label for='picture'>Choose file</label>
-			        <br>
-			        <input class='square' type='submit' value='Upload!' v-on:click='changes_made'/>
+			      <table>
+			      	<tr>
+			      		<td>
+			        <input id='picture' type="file" name='pic' value='Choose!' class='inputfile' data-multiple-caption="{count} files selected" multiple/>
+			        <label for='picture'><img src='static_images/download.png' class='plus'><span>Choose file</span></label></td></tr>
+			       <tr><td>
+			        <input class='input' type='submit' value='Upload!' v-on:click='changes_made'/>
+			    </td></tr>
+			</table>
 			    </form>     
-			    <button class='square' v-on:click='finish'>Finish</button>
+			    <button class='finish' v-on:click='finish'>Finish</button>
 			</div>
 		</div>
 		<div v-show='changes_made'>
@@ -230,6 +235,30 @@ module.exports = {
 				console.log('new id? ' + this.person.id)
 				console.log('post worked' + this.person);
 				document.getElementById('uploadForm').setAttribute('action', 'http://' + config.upload + '/api/upload/person/' + this.person.id);
+
+				var inputs = document.querySelectorAll( '.inputfile' );
+				Array.prototype.forEach.call( inputs, function( input )
+				{
+					var label	 = input.nextElementSibling,
+						labelVal = label.innerHTML;
+					console.log('new bit accessed' + labelVal)	
+					input.addEventListener( 'change', function( e )
+					{
+						console.log('inner function activated')
+						var fileName = '';
+						if( this.files && this.files.length > 1 )
+							fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+						else
+							fileName = e.target.value.split( '\\' ).pop();
+
+						if( fileName )
+							label.querySelector( 'span' ).innerHTML = fileName;
+
+						else
+							label.innerHTML = labelVal;
+					});
+				});
+
 			})
 			this.$http.get('api/events/?dob=' + this.dateToNumber(this.dob) + '&dod=' + this.dateToNumber(this.dod))
 			.then(function(data){
