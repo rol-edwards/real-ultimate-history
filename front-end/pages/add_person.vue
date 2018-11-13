@@ -2,8 +2,6 @@
 	<div>
 		<div v-show='!changes_made'>
 			<h1>Add new person</h1>
-			<!--<button v-on:click='checkEra()'>Check era</button>
-			<button v-on:click='checkDOB()'>Check DOB</button>-->
 			<div v-show='show_details'>
 				<div>
 					<table>
@@ -95,12 +93,14 @@
 				<button class='square' v-on:click='submit_events'>Submit</button>	
 			</div>
 			<div v-show='show_image'>
-				<p>Upload an image, or click to finish</p>
+				<p>Upload an image if you want, or click 'finish'</p>
 			    <form ref='uploadForm' 
 			      id='uploadForm' 
 			      method='post' 
 			      encType="multipart/form-data">
-			        <input id='picture' type="file" name='pic' value='Choose!'/>
+			        <input id='picture' type="file" name='pic' value='Choose!' class='inputfile'/>
+			        <label for='picture'>Choose file</label>
+			        <br>
 			        <input class='square' type='submit' value='Upload!' v-on:click='changes_made'/>
 			    </form>     
 			    <button class='square' v-on:click='finish'>Finish</button>
@@ -205,8 +205,6 @@ module.exports = {
 
 						console.log('these are the duplicates' + this.duplicates);
 
-
-
 						//if there are duplicates, produce a list and reveal a button for next method, otherwise 
 						//call next method
 						if (this.duplicates.length == 0){
@@ -222,7 +220,6 @@ module.exports = {
 						}
 					})
 				})
-			
 		},
 
 		//submits information to create new person record, and gets an array of events within their lifetime

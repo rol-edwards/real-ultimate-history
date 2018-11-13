@@ -5,7 +5,7 @@
 		<p>If you would like to become a contributor to the site, you can create an account by <a v-bind:href="'/#/login'">signing up</a>. You will then be able to add new pages or edit existing ones.</p>
 		<h2>Adding a person</h2>
 		<ol>
-			<li>Click the link here, on the home page or the people index page to get the add person form.</li>
+			<li>Click the link <a v-bind:href="'/#/add_person'">here</a>, on the home page or the people index page to get the add person form.</li>
 			<li>Fill in the details for the person. Be careful to select the correct era for dates! You will receive a warning if the date of birth is after the date of death, or if the person's age, based on your input, is below 10 or over 120.</li>
 			<li>If there is already a page for a person with that name, or a person with an identical lifespan, you will be asked to confirm that you are not adding a duplicate.</li>
 			<li>If this wiki has pages for events that occurred within the lifespan you have specified, you will be given the option to link any relevant events to the person (please only choose events that involved the person!) You can then enter the person's role in the event.</li>

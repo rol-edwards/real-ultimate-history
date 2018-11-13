@@ -8,9 +8,8 @@
 						<img class='bin' v-on:click='delete_event' v-bind:src="'../static_images/bin.png'" v-show='editable'>
 				</h1>
 			</div>
-			<figure>
 				<img v-bind:src="'../images/event' + event.id + '.jpg'">
-			</figure>
+		
 			<table class='info'>
 				<tr>
 					<td>Date:</td>

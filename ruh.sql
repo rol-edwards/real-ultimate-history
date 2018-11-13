@@ -3,7 +3,6 @@ create roles here
 create database history;
 
 
-
 use history;
 
 create table people (
@@ -11,7 +10,7 @@ create table people (
 	name varchar (128) NOT NULL,
 	DOB integer NOT NULL,
 	DOD integer NOT NULL,
-	Bio varchar (128) NOT NULL,
+	Bio text NOT NULL,
 	nation varchar (128) NOT NULL,
 	role varchar (128) NOT NULL
 	)
