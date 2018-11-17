@@ -9,6 +9,7 @@ const events_index = require('./pages/events_index.vue')
 const edit_event = require('./pages/edit_event.vue')
 const login = require('./pages/login.vue')
 const tutorial = require('./pages/tutorial.vue')
+const search = require('./search.vue')
 //const sidebar = require('./pages/sidebar.vue')
 //const Vue = require('vue');
 //const VueRouter = require('vue-router');
@@ -109,7 +110,7 @@ const app = new Vue ({
 	},
 
 	components: {
-
+		search: search
 		//'login': login,
 		//'sidebar': sidebar,
 	}

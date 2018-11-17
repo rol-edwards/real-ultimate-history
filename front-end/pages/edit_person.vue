@@ -2,9 +2,7 @@
 	<div>
 		<div v-show='show_edit'>
 			<h1>Edit person</h1>
-			<figure>
 				<img class='imgedit' v-bind:src="'../images/' + id + '.jpg'">
-			</figure>
 			<div v-show='show_details'>
 				<table class='edit'>
 					<tr>
@@ -140,6 +138,7 @@ module.exports = {
 		}
 		this.$emit('login');
 		document.getElementById('uploadForm').setAttribute('action', 'http://' + this.config.upload + '/api/upload/person/' + this.id);
+
 		console.log('action added?')
 		this.$http.get('/api/person/' + this.id)
 		.then(function(data){

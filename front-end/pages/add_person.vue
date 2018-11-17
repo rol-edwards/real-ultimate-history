@@ -101,7 +101,7 @@
 			      <table>
 			      	<tr>
 			      		<td>
-			        <input id='picture' type="file" name='pic' value='Choose!' class='inputfile' data-multiple-caption="{count} files selected" multiple/>
+			        <input id='picture' type="file" name='pic' class='inputfile' data-multiple-caption="{count} files selected" multiple/>
 			        <label for='picture'><img src='static_images/download.png' class='plus'><span>Choose file</span></label></td></tr>
 			       <tr><td>
 			        <input class='input' type='submit' value='Upload!' v-on:click='changes_made'/>
@@ -234,17 +234,14 @@ module.exports = {
 				this.person = data.body[0];
 				console.log('new id? ' + this.person.id)
 				console.log('post worked' + this.person);
+				
+				//having got new id, photo upload form can be completed and styled:
 				document.getElementById('uploadForm').setAttribute('action', 'http://' + config.upload + '/api/upload/person/' + this.person.id);
-
 				var inputs = document.querySelectorAll( '.inputfile' );
-				Array.prototype.forEach.call( inputs, function( input )
-				{
+				Array.prototype.forEach.call( inputs, function( input ){
 					var label	 = input.nextElementSibling,
 						labelVal = label.innerHTML;
-					console.log('new bit accessed' + labelVal)	
-					input.addEventListener( 'change', function( e )
-					{
-						console.log('inner function activated')
+					input.addEventListener( 'change', function(e){
 						var fileName = '';
 						if( this.files && this.files.length > 1 )
 							fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
