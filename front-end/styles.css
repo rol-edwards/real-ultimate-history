@@ -269,8 +269,8 @@ textarea {
 	float: left;
 }
 
-.duplicates td, th {
-	padding-right: 50px;
+td, th {
+	padding-right: 20px;
 	text-align: left;
 }
 
