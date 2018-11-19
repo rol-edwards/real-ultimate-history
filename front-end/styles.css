@@ -93,6 +93,7 @@ ol li {
 textarea {
 	height: 200px;
 	width: 1000px;
+	font-size: 10pt;
 }
 
 .bin {
@@ -278,9 +279,7 @@ td, th {
 	font-size: 15pt;
 }
 
-.edit input {
-	font-size: 15pt;
-}
+
 
 .logfields {
 	border: 1px solid lightgrey;

@@ -4,7 +4,7 @@
 			<h1>Edit person</h1>
 				<img class='imgedit' v-bind:src="'../images/' + id + '.jpg'">
 			<div v-show='show_details'>
-				<table class='edit'>
+				<table>
 					<tr>
 						<td>Name</td>
 						<td><input type='text' id='name' v-model='name' ></input></td>
