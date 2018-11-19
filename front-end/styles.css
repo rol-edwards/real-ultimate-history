@@ -19,8 +19,6 @@
 	h1 {
 		color: red;
 	}
-
-
 }
 
 figure {
@@ -62,8 +60,8 @@ table {
 	border-collapse: collapse;
 }
 
-.index tr:nth-child(even) {
-	background-color: #f2f2f2;
+td {
+	text-overflow: ellipsis;
 }
 
 a {
@@ -96,6 +94,13 @@ textarea {
 	font-size: 10pt;
 }
 
+td, th {
+	padding-right: 20px;
+	text-align: left;
+}
+
+
+
 .bin {
 	padding-top: 20px;
 	padding-bottom: 0;
@@ -125,6 +130,10 @@ textarea {
 .info  {
 }
 
+.index tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
 .underline {
 	border-bottom: 1px solid black;
 	margin-top: 100px;
@@ -141,6 +150,7 @@ textarea {
 	height:75px;
 	width: 100%;
 	margin-bottom:0;
+	z-index: 1;
 }
 
 .ruhtop {
@@ -154,6 +164,7 @@ textarea {
 	left: 200px;
 	color: white;
 	vertical-align: center;
+	z-index: 2;
 }
 
 .ruhtop p {
@@ -270,16 +281,9 @@ textarea {
 	float: left;
 }
 
-td, th {
-	padding-right: 20px;
-	text-align: left;
-}
-
 .edit {
 	font-size: 15pt;
 }
-
-
 
 .logfields {
 	border: 1px solid lightgrey;
@@ -360,3 +364,19 @@ td, th {
 	position: static;
 }
 
+.ellipsis {
+	width: 40%;
+    position: relative;
+}
+.ellipsis:before {
+    content: '&nbsp;';
+    visibility: hidden;
+}
+.ellipsis span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

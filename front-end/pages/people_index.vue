@@ -18,7 +18,7 @@
 				<td><a v-bind:href="'/#/person/' + person.id">{{person.name}}</a></td>
 				<td>{{person.dob}}</td>
 				<td>{{person.dod}}</td>
-				<td>{{person.bio}}</td>
+				<td class='ellipsis'><span>{{person.bio}}</span></td>
 				<td>{{person.nation}}</td>
 				<td>{{person.role}}</td>
 			</tr>

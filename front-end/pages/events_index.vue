@@ -15,7 +15,7 @@
 				<td><a v-bind:href="'/#/event/' + event.id">{{event.name}}</a></td>
 				<td>{{event.date}}</td>
 				<td>{{event.location}}</td>
-				<td>{{event.description}}</td>
+				<td class='ellipsis'><span>{{event.description}}</span></td>
 			</tr>
 		</table>
 	</div>

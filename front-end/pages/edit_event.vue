@@ -2,6 +2,7 @@
 	<div>
 		<div v-show='!changes_made'>
 			<h1>Edit event</h1>
+			<img class='imgedit' v-bind:src="'../images/event' + id + '.jpg'">
 			<div v-show='show_details'>
 				<table>
 					<tr>
