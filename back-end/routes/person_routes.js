@@ -7,6 +7,7 @@ var express = require('express'),
 	fileUpload = require('express-fileupload'),
 	path = require('path'),
 	AppError = require(path.join(__dirname, '../app_error.js'));
+	config = require(path.join(__dirname, '../config.js'))
 
 router.route('/people')
 .get(function(req, res, next){
@@ -112,7 +113,7 @@ router.route('/upload/person/:id')
 		if (err)
 			return res.status(500).send(err);
 
-		res.send('file uploaded');
+		res.redirect("http://" + config.redirect);
 	});
 });
 
