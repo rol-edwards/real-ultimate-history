@@ -1,5 +1,6 @@
 date_checks = function(dob, dod, callback){
 	console.log('date_checks called')
+
 	
 	if (dob > dod){
 		if(confirm('date of death is before date of birth!')){

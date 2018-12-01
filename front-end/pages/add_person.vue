@@ -9,28 +9,34 @@
 							<td>Name</td>
 							<td><input type='text' id='name' v-model='name' ></input></td>
 							<td></td>
+							<td v-show='empty_name' class='empty'>Required field</td>
 						</tr>
 						<tr v-if='dod.era=="BC"'>
 							<td>Date of birth</td>
 							<td><input type='text' id='dob' v-model='dob.number'></input></td>
 							<td>BC</td>
+							<td v-show='empty_dob' class='empty'>Required field</td>
 						</tr>
 						<tr v-else>
 							<td>Date of birth</td>
 							<td><input type='text' id='dob' v-model='dob.number'></input></td>
 							<td><input type='radio' v-model='dob.era' value='BC' id='BC' >BC</input>
 								<input type='radio' v-model='dob.era' value='AD' id='AD' >AD</input></td>
+							<td v-show='empty_dob' class='empty'>Required field</td>
 						</tr>
 						<tr v-if='dob.era=="AD"'>
 							<td>Date of death</td>
 							<td><input type='text' id='dod' v-model='dod.number'></input></td>
 							<td>AD</td>
+							<td v-show='empty_dod' class='empty'>Required field</td>
 						</tr>
 						<tr v-else>
 							<td>Date of death</td>
 							<td><input type='text' id='dod' v-model='dod.number'></input></td>
 							<td><input type='radio' v-model='dod.era' value='BC' id='BC' >BC</input>
 								<input type='radio' v-model='dod.era' value='AD' id='AD' >AD</input></td>
+							<td v-show='empty_dod' class='empty'>Required field</td>
+
 						</tr>
 						<tr>
 							<td>Nationality</td>
@@ -54,7 +60,7 @@
 				</div>
 				<br>
 				<div >
-					<button class='square' v-on:click='date_checks(dateToNumber(dob), dateToNumber(dod), duplicateCheck)' v-show='!show_dupes'>Submit</button>
+					<button class='square' v-on:click='fieldCheck' v-show='!show_dupes'>Submit</button>
 				</div>
 			</div>
 			<div v-show='show_dupes'>
@@ -129,12 +135,11 @@ module.exports = {
 			person: '',
 			name: '',
 			list_visible: false,
-			dob: {era: 'BC'},
-			dod: {era: 'AD'},
+			dob: {era: 'BC', number: ''},
+			dod: {era: 'AD', number: ''},
 			id_list: [],
 		    boxes: {},
 			roles: {},
-			dob_AD: true,
 			duplicates: '',
 			dupes1: [],
 			dupes2: [],
@@ -146,6 +151,10 @@ module.exports = {
 			show_events: false,
 			show_image: false,
 			show_dupes: false,
+
+			empty_name: false,
+			empty_dob: false,
+			empty_dod: false,
 
 			//imported modules
 			date_checks: require('../utilities/date_checks.js'),
@@ -175,8 +184,37 @@ module.exports = {
 			};
 		},		
 
+		fieldCheck: function(){
+			if (this.name.length * this.dob.number.length * this.dod.number.length == 0){
+				if (this.name.length == 0){
+					this.empty_name = true;
+				}
+				else {
+					this.empty_name = false;
+				}
+				if (this.dob.number.length == 0){
+					this.empty_dob = true;
+				}
+				else {
+					this.empty_dob = false;
+				}
+				if (this.dod.number.length == 0){
+					this.empty_dod = true;
+				}
+				else {
+					this.empty_dod = false;
+				}
+				return 
+			}
+			this.date_checks(this.dateToNumber(this.dob), this.dateToNumber(this.dod), this.duplicateCheck)
+		},
+
 		//creates list of possible duplicates, consisting of existing people with same name and/or same dob and dod
 		duplicateCheck: function(){
+
+			
+			
+
 			console.log('duplicate button pressed');
 
 			//get people with same name and put into dupes1

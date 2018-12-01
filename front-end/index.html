@@ -12,6 +12,7 @@
 
 	<div id='app'>
 		<div>
+
 			<a v-bind:href="'/#/'"><img src="./static_images/ruh_logo.jpg" class='logo'></a>
 		</div>
 		<div class='title'>
@@ -45,7 +46,7 @@
 					
 			</ul>
 		</div> 
-		
+		<eraToggle></eraToggle>
 		<router-view class='main' v-on:login='logged_in'></router-view>
 
 	</div>

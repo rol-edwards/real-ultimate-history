@@ -368,6 +368,7 @@ td, th {
 	width: 40%;
     position: relative;
 }
+
 .ellipsis:before {
     content: '&nbsp;';
     visibility: hidden;
@@ -379,4 +380,8 @@ td, th {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.empty {
+	color: red;
 }
